@@ -1,0 +1,3 @@
+Eine Krankmeldung muss spätestens am ersten Krankheitstag vor Arbeitsbeginn erfolgen.
+Ab dem dritten Krankheitstag ist eine ärztliche Arbeitsunfähigkeitsbescheinigung erforderlich.
+Die Krankmeldung erfolgt per E-Mail an die Führungskraft und die Personalabteilung.
