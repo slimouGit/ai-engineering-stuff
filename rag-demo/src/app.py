@@ -8,7 +8,7 @@ SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 if SRC_DIR not in sys.path:
     sys.path.insert(0, SRC_DIR)
 
-from document_loader import load_txt_documents, build_chunks
+from document_loader import load_documents, build_chunks
 from retriever import TfidfRetriever
 from rag_service import RAGService
 
@@ -53,7 +53,7 @@ def main():
 
     llm = create_llm(provider)
 
-    documents = load_txt_documents(DATA_DIR)
+    documents = load_documents(DATA_DIR)
     chunks = build_chunks(documents)
 
     retriever = TfidfRetriever(chunks)
