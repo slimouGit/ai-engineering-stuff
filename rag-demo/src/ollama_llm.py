@@ -1,5 +1,11 @@
 import requests
 from base import LLM
+from settings import (
+    LLM_PROVIDER,
+    LLM_MODEL,
+    LLM_URL,
+    LLM_TIMEOUT
+)
 
 
 class OllamaLLM(LLM):
@@ -10,9 +16,9 @@ class OllamaLLM(LLM):
 
     def __init__(
         self,
-        model: str = "llama3.2",
-        url: str = "http://localhost:11434/api/generate",
-        timeout: int = 120
+        model: str = LLM_MODEL,
+        url: str = LLM_URL,
+        timeout: int = LLM_TIMEOUT
     ):
         self.model = model
         self.url = url
