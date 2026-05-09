@@ -1,12 +1,11 @@
-# python
 import os
-import sys
 
-# Sicherstellen, dass das aktuelle Verzeichnis (`src`) in sys.path ist,
-# damit lokale Paket-Imports wie `llm.base` funktionieren.
-SRC_DIR = os.path.dirname(os.path.abspath(__file__))
-if SRC_DIR not in sys.path:
-    sys.path.insert(0, SRC_DIR)
+from settings import (
+    LLM_PROVIDER,
+    LLM_MODEL,
+    LLM_URL,
+    LLM_TIMEOUT
+)
 
 from document_loader import load_documents, build_chunks
 from retriever import TfidfRetriever
@@ -17,75 +16,132 @@ from ollama_llm import OllamaLLM
 from lm_studio_llm import LMStudioLLM
 
 
+# Projekt-Basisordner bestimmen
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Pfad zum data-Ordner
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
 
-def create_llm(provider: str):
+def create_llm():
     """
-    Factory-Methode für das gewünschte LLM.
+    Factory-Methode für die Erstellung des konfigurierten LLMs.
 
-    Nur hier entscheidest du, welches Modell genutzt wird.
-    Die restliche App bleibt unverändert.
+    Die konkrete Implementierung wird ausschließlich
+    über die Konfiguration bestimmt.
+
+    Dadurch bleibt die restliche Anwendung unabhängig
+    vom verwendeten Modellanbieter.
     """
 
-    if provider == "mock":
+    # Mock-LLM für lokale Tests ohne echtes Modell
+    if LLM_PROVIDER == "mock":
         return MockLLM()
 
-    if provider == "ollama":
+    # Ollama-Implementierung
+    if LLM_PROVIDER == "ollama":
         return OllamaLLM(
-            model="llama3.2"
+            model=LLM_MODEL,
+            url=LLM_URL,
+            timeout=LLM_TIMEOUT
         )
 
-    if provider == "lmstudio":
+    # LM Studio Implementierung
+    if LLM_PROVIDER == "lmstudio":
         return LMStudioLLM(
-            model="local-model"
+            model=LLM_MODEL,
+            url=LLM_URL,
+            timeout=LLM_TIMEOUT
         )
 
-    raise ValueError(f"Unbekannter LLM-Provider: {provider}")
+    # Fehler bei unbekannter Konfiguration
+    raise ValueError(
+        f"Unbekannter LLM-Provider: {LLM_PROVIDER}"
+    )
 
 
 def main():
-    provider = input("LLM wählen [mock / ollama / lmstudio]: ").strip().lower()
+    """
+    Haupteinstiegspunkt der Anwendung.
 
-    if not provider:
-        provider = "mock"
+    Ablauf:
+    1. Dokumente laden
+    2. Dokumente in Chunks zerlegen
+    3. Retriever initialisieren
+    4. Konfiguriertes LLM erstellen
+    5. RAG-Service starten
+    6. Nutzerfragen verarbeiten
+    """
 
-    llm = create_llm(provider)
+    print("Starte RAG-Anwendung...")
+    print(f"LLM-Provider: {LLM_PROVIDER}")
+    print(f"LLM-Modell: {LLM_MODEL}")
+    print()
 
+    # Dokumente laden (.txt und .pdf)
     documents = load_documents(DATA_DIR)
+
+    print(f"{len(documents)} Dokument(e) geladen.")
+
+    # Dokumente in kleinere Chunks zerlegen
     chunks = build_chunks(documents)
 
+    print(f"{len(chunks)} Chunk(s) erstellt.")
+    print()
+
+    # Retriever initialisieren
     retriever = TfidfRetriever(chunks)
-    rag = RAGService(retriever=retriever, llm=llm)
 
-    print("\nGenerische RAG Demo")
-    print("-------------------")
-    print(f"LLM-Provider: {provider}")
-    print("Mit 'exit' beenden.\n")
+    # Konfiguriertes LLM erzeugen
+    llm = create_llm()
 
+    # RAG-Service erzeugen
+    rag = RAGService(
+        retriever=retriever,
+        llm=llm
+    )
+
+    print("RAG-System bereit.")
+    print("Mit 'exit' beenden.")
+    print("-" * 50)
+
+    # Hauptschleife
     while True:
-        question = input("Frage: ")
 
+        question = input("\nFrage: ").strip()
+
+        # Anwendung beenden
         if question.lower() in ["exit", "quit", "q"]:
-            print("App beendet.")
+            print("Anwendung beendet.")
             break
 
-        if not question.strip():
-            print("Bitte eine Frage eingeben.\n")
+        # Leere Eingaben verhindern
+        if not question:
+            print("Bitte eine Frage eingeben.")
             continue
 
-        result = rag.ask(question)
+        try:
+            # RAG-Abfrage ausführen
+            result = rag.ask(question)
 
-        print("\nAntwort:")
-        print(result["answer"])
+            print("\nAntwort:")
+            print(result["answer"])
 
-        print("\nQuellen:")
-        for source in result["sources"]:
-            print(f"- {source['source']} | Score: {source['score']}")
+            print("\nQuellen:")
 
-        print("\n" + "-" * 50 + "\n")
+            for source in result["sources"]:
+                print(
+                    f"- {source['source']} "
+                    f"(Score: {source['score']})"
+                )
+
+        except Exception as e:
+            print("\nFehler bei der Verarbeitung:")
+            print(str(e))
+
+        print("\n" + "-" * 50)
 
 
+# Direkter Programmeinstieg
 if __name__ == "__main__":
     main()
