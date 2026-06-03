@@ -1,0 +1,149 @@
+Frage: Wie viele Urlaubstage stehen Mitarbeitern zu?
+Antwort: Mitarbeiter haben Anspruch auf 30 Urlaubstage pro Kalenderjahr.
+
+Frage: Wieviel Urlaub habe ich pro Jahr?
+Antwort: Mitarbeiter haben Anspruch auf 30 Urlaubstage pro Kalenderjahr.
+
+Frage: Gibt es einen jährlichen Urlaubsanspruch?
+Antwort: Ja, Mitarbeiter haben Anspruch auf 30 Urlaubstage pro Kalenderjahr.
+
+Frage: Wie hoch ist der Urlaubsanspruch?
+Antwort: Der Urlaubsanspruch beträgt 30 Urlaubstage pro Kalenderjahr.
+
+Frage: Wie viele freie Tage bekomme ich?
+Antwort: Mitarbeiter haben Anspruch auf 30 Urlaubstage pro Kalenderjahr.
+
+Frage: Muss Urlaub beantragt werden?
+Antwort: Urlaub muss vorab mit der Führungskraft abgestimmt und genehmigt werden.
+
+Frage: Benötigt Urlaub eine Genehmigung?
+Antwort: Ja, Urlaub muss vorab mit der Führungskraft abgestimmt und genehmigt werden.
+
+Frage: Kann ich Urlaub einfach nehmen?
+Antwort: Nein, Urlaub muss vorab mit der Führungskraft abgestimmt und genehmigt werden.
+
+Frage: Wer genehmigt meinen Urlaub?
+Antwort: Die zuständige Führungskraft genehmigt den Urlaub.
+
+Frage: Wann sollte ich Urlaub beantragen?
+Antwort: Urlaub sollte möglichst frühzeitig beantragt werden.
+
+Frage: Kann Urlaub ins nächste Jahr übertragen werden?
+Antwort: Nicht genommener Urlaub kann grundsätzlich bis zum 31. März des Folgejahres übertragen werden.
+
+Frage: Was passiert mit Resturlaub?
+Antwort: Resturlaub kann grundsätzlich bis zum 31. März des Folgejahres übertragen werden.
+
+Frage: Bis wann kann ich Resturlaub nehmen?
+Antwort: Übertragener Urlaub kann grundsätzlich bis zum 31. März des Folgejahres genommen werden.
+
+Frage: Verfällt Urlaub sofort zum Jahresende?
+Antwort: Nein, nicht genommener Urlaub kann grundsätzlich bis zum 31. März des Folgejahres übertragen werden.
+
+Frage: Wie lange bleibt Resturlaub gültig?
+Antwort: Resturlaub bleibt grundsätzlich bis zum 31. März des Folgejahres gültig.
+
+Frage: Was passiert bei Krankheit während des Urlaubs?
+Antwort: Krankheitstage werden nicht als Urlaubstage gezählt, wenn eine ärztliche Bescheinigung vorliegt.
+
+Frage: Werden Krankheitstage vom Urlaub abgezogen?
+Antwort: Nein, Krankheitstage werden bei Vorlage einer ärztlichen Bescheinigung nicht als Urlaubstage gezählt.
+
+Frage: Muss ich eine Krankmeldung einreichen?
+Antwort: Ja, eine ärztliche Bescheinigung ist erforderlich.
+
+Frage: Wird mein Urlaub verlängert wenn ich krank werde?
+Antwort: Krankheitstage werden nicht als Urlaubstage gezählt, wenn eine ärztliche Bescheinigung vorliegt.
+
+Frage: Kann ich Urlaubstage zurückbekommen wenn ich krank bin?
+Antwort: Ja, sofern eine ärztliche Bescheinigung vorliegt.
+
+Frage: Gibt es Sonderurlaub?
+Antwort: Ja, Sonderurlaub kann bei besonderen Ereignissen gewährt werden.
+
+Frage: Wann bekomme ich Sonderurlaub?
+Antwort: Sonderurlaub kann beispielsweise bei Hochzeit, Geburt eines Kindes oder Todesfall naher Angehöriger gewährt werden.
+
+Frage: Gibt es Sonderurlaub bei einer Hochzeit?
+Antwort: Ja, Sonderurlaub kann bei einer Hochzeit gewährt werden.
+
+Frage: Gibt es Sonderurlaub bei Geburt eines Kindes?
+Antwort: Ja, Sonderurlaub kann bei Geburt eines Kindes gewährt werden.
+
+Frage: Gibt es Sonderurlaub bei einem Todesfall?
+Antwort: Ja, Sonderurlaub kann bei Todesfällen naher Angehöriger gewährt werden.
+
+Frage: Sollte Urlaub frühzeitig beantragt werden?
+Antwort: Ja, Urlaub sollte möglichst frühzeitig beantragt werden.
+
+Frage: Wann sollte ich Ferienurlaub planen?
+Antwort: Urlaub sollte insbesondere während Ferienzeiten frühzeitig beantragt werden.
+
+Frage: Warum sollte Urlaub früh beantragt werden?
+Antwort: Besonders während Ferienzeiten empfiehlt sich eine frühzeitige Beantragung.
+
+Frage: Kann Urlaub abgelehnt werden?
+Antwort: Ja, wenn dringende betriebliche Gründe entgegenstehen.
+
+Frage: Darf der Arbeitgeber Urlaub ablehnen?
+Antwort: Ja, der Arbeitgeber kann Urlaub bei dringenden betrieblichen Gründen ablehnen.
+
+Frage: Wann wird ein Urlaubsantrag abgelehnt?
+Antwort: Wenn dringende betriebliche Gründe entgegenstehen.
+
+Frage: Welche Gründe sprechen gegen Urlaub?
+Antwort: Dringende betriebliche Gründe können einer Genehmigung entgegenstehen.
+
+Frage: Muss jeder Urlaubsantrag genehmigt werden?
+Antwort: Nein, bei dringenden betrieblichen Gründen kann Urlaub abgelehnt werden.
+
+Frage: Wie viele Urlaubstage hat ein Mitarbeiter pro Jahr?
+Antwort: Ein Mitarbeiter hat Anspruch auf 30 Urlaubstage pro Kalenderjahr.
+
+Frage: Wie viele Urlaubstage gibt es jährlich?
+Antwort: Es gibt 30 Urlaubstage pro Kalenderjahr.
+
+Frage: Kann ich Resturlaub mitnehmen?
+Antwort: Ja, grundsätzlich bis zum 31. März des Folgejahres.
+
+Frage: Was ist mit nicht genommenem Urlaub?
+Antwort: Dieser kann grundsätzlich bis zum 31. März des Folgejahres übertragen werden.
+
+Frage: Muss Urlaub mit dem Vorgesetzten abgestimmt werden?
+Antwort: Ja, Urlaub muss mit der Führungskraft abgestimmt werden.
+
+Frage: Wer entscheidet über Urlaub?
+Antwort: Die zuständige Führungskraft entscheidet über die Genehmigung.
+
+Frage: Ist eine Genehmigung erforderlich?
+Antwort: Ja, Urlaub muss genehmigt werden.
+
+Frage: Welche Ereignisse rechtfertigen Sonderurlaub?
+Antwort: Beispielsweise Hochzeit, Geburt eines Kindes oder Todesfall naher Angehöriger.
+
+Frage: Gibt es Sonderurlaub für Familienereignisse?
+Antwort: Ja, bei bestimmten Familienereignissen kann Sonderurlaub gewährt werden.
+
+Frage: Kann Urlaub während hoher Auslastung verweigert werden?
+Antwort: Ja, wenn dringende betriebliche Gründe vorliegen.
+
+Frage: Werden Krankheitstage als Urlaubstage gerechnet?
+Antwort: Nein, wenn eine ärztliche Bescheinigung vorliegt.
+
+Frage: Brauche ich einen Nachweis bei Krankheit im Urlaub?
+Antwort: Ja, eine ärztliche Bescheinigung ist erforderlich.
+
+Frage: Wie beantrage ich Urlaub?
+Antwort: Urlaub muss vorab mit der Führungskraft abgestimmt und genehmigt werden.
+
+Frage: Was muss ich vor Urlaubsantritt tun?
+Antwort: Den Urlaub rechtzeitig beantragen und genehmigen lassen.
+
+Frage: Kann ich Urlaub spontan nehmen?
+Antwort: Urlaub muss vorab abgestimmt und genehmigt werden.
+
+Frage: Gibt es Regeln für Ferienzeiten?
+Antwort: Ja, Urlaub sollte insbesondere während Ferienzeiten frühzeitig beantragt werden.
+
+Frage: Kann Urlaub ins Folgejahr verschoben werden?
+Antwort: Ja, grundsätzlich bis zum 31. März des Folgejahres.
