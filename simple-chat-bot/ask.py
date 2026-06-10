@@ -2,7 +2,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
 
-MODEL_DIR = "./trained_model"
+MODEL_DIR = "./trained_model" 
 
 
 def generate_answer(question: str) -> str:

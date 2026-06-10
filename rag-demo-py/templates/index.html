@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask RAG mit Ollama</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 950px;
+            margin: 40px auto;
+            line-height: 1.5;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 16px;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-top: 6px;
+        }
+
+        button {
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        table {
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        th {
+            background: #eee;
+            text-align: left;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 24px;
+            background: #f8f8f8;
+        }
+
+        .model {
+            background: #eef5ff;
+        }
+
+        .success {
+            background: #eefbea;
+        }
+
+        .error {
+            color: #b00020;
+            font-weight: bold;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            background: #fff;
+            padding: 12px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+
+        .chunk {
+            margin-top: 16px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+
+        .inline-form {
+            display: inline;
+        }
+
+        .small-button {
+            width: auto;
+            padding: 6px 10px;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Flask RAG mit Ollama und lokaler SQLite-Datenbank</h1>
+
+<div class="box">
+    <h2>Navigation</h2>
+    <p>
+        <a href="/">RAG-Anwendung</a> |
+        <a href="/db">DB-Einblick</a>
+    </p>
+</div>
+
+<div class="box model">
+    <h2>Ollama-Status</h2>
+
+    {% if model_error %}
+        <p class="error">{{ model_error }}</p>
+    {% endif %}
+
+    {% if chat_model %}
+        <p>Chat-Modell: <strong>{{ chat_model }}</strong></p>
+    {% endif %}
+
+    {% if embedding_model %}
+        <p>Embedding-Modell: <strong>{{ embedding_model }}</strong></p>
+    {% endif %}
+
+    {% if models %}
+        <p>Lokale Ollama-Modelle:</p>
+        <ul>
+            {% for model in models %}
+                <li>{{ model.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+{% if message %}
+    <div class="box success">
+        <p>{{ message }}</p>
+    </div>
+{% endif %}
+
+{% if error %}
+    <div class="box error">
+        <p>{{ error }}</p>
+    </div>
+{% endif %}
+
+{% if db_overview is none %}
+    <div class="box">
+        <h2>1. Dokument hochladen und indexieren</h2>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file">Dokument hochladen (.txt oder .pdf)</label>
+            <input id="file" name="file" type="file" accept=".txt,.pdf" required>
+
+            <button type="submit">Dokument indexieren</button>
+        </form>
+    </div>
+
+    <div class="box">
+        <h2>2. Frage zum Dokument stellen</h2>
+
+        <form action="/ask" method="post">
+            <label for="document_name">Indexiertes Dokument</label>
+            <select id="document_name" name="document_name" required>
+                <option value="">Bitte auswählen</option>
+
+                {% for document in documents %}
+                    <option value="{{ document }}"
+                            {% if document == selected_document %}selected{% endif %}>
+                        {{ document }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="question">Frage</label>
+            <textarea id="question"
+                      name="question"
+                      rows="4"
+                      required
+                      placeholder="Welche Kernaussage enthält das Dokument?">{{ question or "" }}</textarea>
+
+            <button type="submit">Frage stellen</button>
+        </form>
+    </div>
+
+    {% if answer %}
+        <div class="box">
+            <h2>Antwort</h2>
+            <pre>{{ answer }}</pre>
+        </div>
+    {% endif %}
+
+    {% if chunks %}
+        <div class="box">
+            <h2>Verwendete Chunks</h2>
+
+            {% for chunk in chunks %}
+                <div class="chunk">
+                    <p><strong>Score:</strong> {{ "%.4f"|format(chunk.score) }}</p>
+                    <pre>{{ chunk.content }}</pre>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endif %}
+
+{% if db_overview is not none %}
+    <div class="box">
+        <h2>DB-Einblick</h2>
+
+        {% if not db_overview %}
+            <p>Die Datenbank enthält noch keine indexierten Dokumente.</p>
+        {% endif %}
+
+        {% if db_overview %}
+            <table border="1" cellpadding="8" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th>Dokument</th>
+                    <th>Chunks</th>
+                    <th>Erste ID</th>
+                    <th>Letzte ID</th>
+                    <th>Aktionen</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in db_overview %}
+                    <tr>
+                        <td>{{ row.document_name }}</td>
+                        <td>{{ row.chunk_count }}</td>
+                        <td>{{ row.first_chunk_id }}</td>
+                        <td>{{ row.last_chunk_id }}</td>
+                        <td>
+                            <a href="/db?document_name={{ row.document_name }}">
+                                Chunks anzeigen
+                            </a>
+
+                            <form action="/db/delete-document"
+                                  method="post"
+                                  class="inline-form"
+                                  onsubmit="return confirm('Dokument wirklich aus der DB löschen?');">
+                                <input type="hidden" name="document_name" value="{{ row.document_name }}">
+                                <button type="submit" class="small-button">
+                                    Löschen
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    {% if db_chunks %}
+        <div class="box">
+            <h2>Chunks für {{ db_selected_document }}</h2>
+
+            {% for chunk in db_chunks %}
+                <div class="chunk">
+                    <p>
+                        <strong>ID:</strong> {{ chunk.id }} |
+                        <strong>Index:</strong> {{ chunk.chunk_index }}
+                    </p>
+
+                    <pre>{{ chunk.content }}</pre>
+
+                    <p><strong>Embedding-Vorschau:</strong></p>
+                    <pre>{{ chunk.embedding_preview }}</pre>
+
+                    <form action="/db/delete-chunk"
+                          method="post"
+                          onsubmit="return confirm('Chunk wirklich löschen?');">
+                        <input type="hidden" name="chunk_id" value="{{ chunk.id }}">
+                        <input type="hidden" name="document_name" value="{{ db_selected_document }}">
+                        <button type="submit">Chunk löschen</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endif %}
+
+</body>
+</html>
