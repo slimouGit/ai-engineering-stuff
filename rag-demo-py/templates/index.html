@@ -243,7 +243,7 @@
                         <td>{{ row.first_chunk_id }}</td>
                         <td>{{ row.last_chunk_id }}</td>
                         <td>
-                            <a href="/db?document_name={{ row.document_name }}">
+                            <a href="/db?document_name={{ row.document_name | urlencode }}">
                                 Chunks anzeigen
                             </a>
 
