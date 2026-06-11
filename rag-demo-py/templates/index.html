@@ -5,95 +5,199 @@
     <title>Flask RAG mit Ollama</title>
 
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
+
+        :root {
+            --bg: #eef1f6;
+            --surface: #ffffff;
+            --surface-soft: #f8f9fc;
+            --stroke: #d8deea;
+            --text: #1a2233;
+            --muted: #5c667a;
+            --primary: #1164e0;
+            --primary-soft: #eaf2ff;
+            --success: #0f9d58;
+            --danger: #d63638;
+            --radius: 0;
+            --shadow: none;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 950px;
-            margin: 40px auto;
+            font-family: "Manrope", "Segoe UI", "Helvetica Neue", sans-serif;
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 16px;
             line-height: 1.5;
-            background: #f3f5f7;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, #f8fbff 0%, transparent 45%),
+                radial-gradient(circle at top right, #f3f7ff 0%, transparent 40%),
+                var(--bg);
         }
 
-        h1, h2 {
-            margin-top: 0;
+        h1,
+        h2 {
+            margin: 0;
+            color: var(--text);
         }
 
-        h1 {
-            margin-bottom: 12px;
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
         }
 
         label {
             display: block;
-            font-weight: bold;
             margin-top: 16px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--muted);
         }
 
-        input, textarea, select, button {
+        input,
+        textarea,
+        select,
+        button {
             width: 100%;
-            box-sizing: border-box;
-            padding: 10px;
             margin-top: 6px;
+            font: inherit;
+        }
+
+        input,
+        textarea,
+        select {
+            border: 1px solid var(--stroke);
+            border-radius: 0;
+            background: var(--surface);
+            padding: 10px 12px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--primary);
         }
 
         button {
-            margin-top: 20px;
+            border: none;
+            border-radius: 0;
+            margin-top: 16px;
+            padding: 10px 14px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
             cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
         }
 
         table {
+            width: 100%;
             border-collapse: collapse;
-            background: #fff;
+            border: 1px solid var(--stroke);
+            border-radius: 0;
+            overflow: hidden;
+            background: var(--surface);
         }
 
         th {
-            background: #eee;
+            background: var(--surface-soft);
             text-align: left;
+            font-size: 0.86rem;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid var(--stroke);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
         }
 
         .box {
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            padding: 16px;
-            margin-top: 24px;
-            background: #f8f8f8;
+            margin-top: 16px;
+            border: 1px solid var(--stroke);
+            border-radius: var(--radius);
+            background: var(--surface);
+            padding: 18px;
+            box-shadow: var(--shadow);
         }
 
         .app-header {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: #f3f5f7;
-            padding-top: 8px;
-            padding-bottom: 8px;
+            padding: 4px 0 10px;
         }
 
         .header-inner {
-            border: 1px solid #d0d5db;
-            border-radius: 10px;
-            background: #ffffff;
+            border: 1px solid var(--stroke);
+            border-radius: 0;
+            background: rgba(255, 255, 255, 0.9);
             padding: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow);
         }
 
-        .header-inner .box {
-            margin-top: 12px;
-            margin-bottom: 0;
+        .header-nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
         }
 
-        .nav-links {
-            margin: 0;
+        .nav-pill {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--stroke);
+            border-radius: 0;
+            padding: 6px 12px;
+            background: var(--surface-soft);
+            font-size: 0.9rem;
+        }
+
+        .nav-divider {
+            color: #9ba5b8;
         }
 
         .model-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 14px;
             align-items: start;
         }
 
         .model-form {
-            background: #ffffff;
-            border: 1px solid #d9e4ff;
-            border-radius: 8px;
+            background: var(--surface-soft);
+            border: 1px solid #d5e1f9;
+            border-radius: 0;
             padding: 12px;
         }
 
@@ -102,7 +206,7 @@
         }
 
         .model-error {
-            margin-bottom: 12px;
+            margin: 0 0 10px;
         }
 
         .content {
@@ -110,31 +214,42 @@
         }
 
         .model {
-            background: #eef5ff;
+            margin-top: 0;
+            background: linear-gradient(180deg, #f6f9ff 0%, #fafdff 100%);
         }
 
         .success {
-            background: #eefbea;
+            border-color: #b9e8cf;
+            background: #ecfbf2;
         }
 
         .error {
-            color: #b00020;
-            font-weight: bold;
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .box.error {
+            border-color: #f0c0c1;
+            background: #fff3f3;
         }
 
         pre {
             white-space: pre-wrap;
-            background: #fff;
+            margin: 8px 0 0;
+            border-radius: 0;
+            background: #f6f8fc;
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--stroke);
             overflow-x: auto;
+            font-size: 0.93rem;
         }
 
         .chunk {
-            margin-top: 16px;
+            margin-top: 12px;
             padding: 12px;
-            border: 1px solid #ddd;
-            background: #fff;
+            border: 1px solid var(--stroke);
+            border-radius: 0;
+            background: var(--surface);
         }
 
         .inline-form {
@@ -143,17 +258,35 @@
 
         .small-button {
             width: auto;
-            padding: 6px 10px;
+            padding: 7px 10px;
             margin-top: 0;
+            margin-left: 6px;
+            box-shadow: none;
+            background: #e95151;
+        }
+
+        .small-button:hover {
+            box-shadow: none;
+            background: #d94848;
+        }
+
+        .section-divider {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid var(--stroke);
         }
 
         @media (max-width: 760px) {
             body {
-                margin: 20px 12px;
+                padding: 10px;
             }
 
             .model-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .header-nav {
+                gap: 8px;
             }
         }
     </style>
@@ -162,12 +295,11 @@
 
 <header class="app-header">
     <div class="header-inner">
-        <div class="box">
-            <p class="nav-links">
-                <a href="/">RAG-Anwendung</a> |
-                <a href="/db">DB-Einblick</a>
-            </p>
-        </div>
+        <nav class="header-nav" aria-label="Hauptnavigation">
+            <a href="/" class="nav-pill">RAG-Anwendung</a>
+            <span class="nav-divider">|</span>
+            <a href="/db" class="nav-pill">DB-Einblick</a>
+        </nav>
 
         <div class="box model">
             <h2>Ollama-Modelle</h2>
@@ -184,7 +316,7 @@
                             <option value="{{ m }}" {% if m == chat_model %}selected{% endif %}>{{ m }}</option>
                         {% endfor %}
                     </select>
-                    <button type="submit" style="margin-top: 10px;">Übernehmen</button>
+                    <button type="submit">Übernehmen</button>
                 </form>
 
                 <form action="/set-embedding-model" method="post" class="model-form">
@@ -194,7 +326,7 @@
                             <option value="{{ m }}" {% if m == embedding_model %}selected{% endif %}>{{ m }}</option>
                         {% endfor %}
                     </select>
-                    <button type="submit" style="margin-top: 10px;">Übernehmen</button>
+                    <button type="submit">Übernehmen</button>
                 </form>
             </div>
         </div>
@@ -226,7 +358,7 @@
             <button type="submit">Dokument indexieren</button>
         </form>
 
-        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+        <hr class="section-divider">
 
         <form action="/ingest-url" method="post">
             <label for="url">Oder Internetseite per URL indexieren</label>
