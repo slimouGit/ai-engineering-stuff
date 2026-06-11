@@ -10,10 +10,15 @@
             max-width: 950px;
             margin: 40px auto;
             line-height: 1.5;
+            background: #f3f5f7;
         }
 
         h1, h2 {
             margin-top: 0;
+        }
+
+        h1 {
+            margin-bottom: 12px;
         }
 
         label {
@@ -50,6 +55,58 @@
             padding: 16px;
             margin-top: 24px;
             background: #f8f8f8;
+        }
+
+        .app-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #f3f5f7;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .header-inner {
+            border: 1px solid #d0d5db;
+            border-radius: 10px;
+            background: #ffffff;
+            padding: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-inner .box {
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+
+        .nav-links {
+            margin: 0;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .model-form {
+            background: #ffffff;
+            border: 1px solid #d9e4ff;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .model-form label {
+            margin-top: 0;
+        }
+
+        .model-error {
+            margin-bottom: 12px;
+        }
+
+        .content {
+            padding-top: 8px;
         }
 
         .model {
@@ -89,47 +146,62 @@
             padding: 6px 10px;
             margin-top: 0;
         }
+
+        @media (max-width: 760px) {
+            body {
+                margin: 20px 12px;
+            }
+
+            .model-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
 
-<h1>Flask RAG mit Ollama und lokaler SQLite-Datenbank</h1>
+<header class="app-header">
+    <div class="header-inner">
+        <div class="box">
+            <p class="nav-links">
+                <a href="/">RAG-Anwendung</a> |
+                <a href="/db">DB-Einblick</a>
+            </p>
+        </div>
 
-<div class="box">
-    <h2>Navigation</h2>
-    <p>
-        <a href="/">RAG-Anwendung</a> |
-        <a href="/db">DB-Einblick</a>
-    </p>
-</div>
+        <div class="box model">
+            <h2>Ollama-Modelle</h2>
 
-<div class="box model">
-    <h2>Ollama-Modelle</h2>
+            {% if model_error %}
+                <p class="error model-error">{{ model_error }}</p>
+            {% endif %}
 
-    {% if model_error %}
-        <p class="error">{{ model_error }}</p>
-    {% endif %}
+            <div class="model-grid">
+                <form action="/set-chat-model" method="post" class="model-form">
+                    <label for="chat_model">Chat-Modell (Antwortgenerierung)</label>
+                    <select id="chat_model" name="chat_model">
+                        {% for m in chat_models %}
+                            <option value="{{ m }}" {% if m == chat_model %}selected{% endif %}>{{ m }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" style="margin-top: 10px;">Übernehmen</button>
+                </form>
 
-    <form action="/set-chat-model" method="post" style="margin-bottom: 12px;">
-        <label for="chat_model">Chat-Modell (Antwortgenerierung)</label>
-        <select id="chat_model" name="chat_model">
-            {% for m in chat_models %}
-                <option value="{{ m }}" {% if m == chat_model %}selected{% endif %}>{{ m }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit" style="margin-top: 10px;">Übernehmen</button>
-    </form>
+                <form action="/set-embedding-model" method="post" class="model-form">
+                    <label for="embedding_model">Embedding-Modell (Indexierung &amp; Suche)</label>
+                    <select id="embedding_model" name="embedding_model">
+                        {% for m in embedding_models %}
+                            <option value="{{ m }}" {% if m == embedding_model %}selected{% endif %}>{{ m }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" style="margin-top: 10px;">Übernehmen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
 
-    <form action="/set-embedding-model" method="post">
-        <label for="embedding_model">Embedding-Modell (Indexierung &amp; Suche)</label>
-        <select id="embedding_model" name="embedding_model">
-            {% for m in embedding_models %}
-                <option value="{{ m }}" {% if m == embedding_model %}selected{% endif %}>{{ m }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit" style="margin-top: 10px;">Übernehmen</button>
-    </form>
-</div>
+<main class="content">
 
 {% if message %}
     <div class="box success">
@@ -292,6 +364,8 @@
         </div>
     {% endif %}
 {% endif %}
+
+</main>
 
 </body>
 </html>
