@@ -195,7 +195,7 @@
 
             {% for chunk in chunks %}
                 <div class="chunk">
-                    <p><strong>Score:</strong> {{ "%.4f"|format(chunk.score) }}</p>
+                    <p><strong>Chunk #{{ chunk.chunk_id if chunk.chunk_id is not none else chunk.chunk_index }}</strong> | <strong>Score:</strong> {{ "%.4f"|format(chunk.score) }}</p>
                     <pre>{{ chunk.content }}</pre>
                 </div>
             {% endfor %}

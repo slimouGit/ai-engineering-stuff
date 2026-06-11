@@ -94,6 +94,8 @@ class RagService:
             )
 
             scored_chunks.append({
+                "chunk_id": chunk["id"],
+                "chunk_index": chunk["chunk_index"],
                 "content": chunk["content"],
                 "score": similarity
             })
@@ -132,7 +134,7 @@ class RagService:
     def _load_chunks(self, document_name: str) -> list[dict]:
         with get_connection() as conn:
             rows = conn.execute("""
-                SELECT content, embedding
+                SELECT id, chunk_index, content, embedding
                 FROM document_chunks
                 WHERE document_name = ?
                 ORDER BY chunk_index
@@ -140,8 +142,10 @@ class RagService:
 
         return [
             {
-                "content": row[0],
-                "embedding": json.loads(row[1])
+                "id": row[0],
+                "chunk_index": row[1],
+                "content": row[2],
+                "embedding": json.loads(row[3])
             }
             for row in rows
         ]
