@@ -104,28 +104,31 @@
 </div>
 
 <div class="box model">
-    <h2>Ollama-Status</h2>
+    <h2>Ollama-Modelle</h2>
 
     {% if model_error %}
         <p class="error">{{ model_error }}</p>
     {% endif %}
 
-    {% if chat_model %}
-        <p>Chat-Modell: <strong>{{ chat_model }}</strong></p>
-    {% endif %}
-
-    {% if embedding_model %}
-        <p>Embedding-Modell: <strong>{{ embedding_model }}</strong></p>
-    {% endif %}
-
-    {% if models %}
-        <p>Lokale Ollama-Modelle:</p>
-        <ul>
-            {% for model in models %}
-                <li>{{ model.name }}</li>
+    <form action="/set-chat-model" method="post" style="margin-bottom: 12px;">
+        <label for="chat_model">Chat-Modell (Antwortgenerierung)</label>
+        <select id="chat_model" name="chat_model">
+            {% for m in chat_models %}
+                <option value="{{ m }}" {% if m == chat_model %}selected{% endif %}>{{ m }}</option>
             {% endfor %}
-        </ul>
-    {% endif %}
+        </select>
+        <button type="submit" style="margin-top: 10px;">Übernehmen</button>
+    </form>
+
+    <form action="/set-embedding-model" method="post">
+        <label for="embedding_model">Embedding-Modell (Indexierung &amp; Suche)</label>
+        <select id="embedding_model" name="embedding_model">
+            {% for m in embedding_models %}
+                <option value="{{ m }}" {% if m == embedding_model %}selected{% endif %}>{{ m }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" style="margin-top: 10px;">Übernehmen</button>
+    </form>
 </div>
 
 {% if message %}

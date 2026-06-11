@@ -1,3 +1,4 @@
+# python
 import json
 import math
 from database import get_connection
@@ -9,6 +10,39 @@ from config import CHUNK_SIZE, CHUNK_OVERLAP, TOP_K
 class RagService:
     def __init__(self):
         self.ollama = OllamaService()
+        # defaults - may be overridden by available models or set_* methods
+        self.current_chat_model = None
+        self.current_embedding_model = None
+
+        models = self.ollama.list_models()
+
+        embedding_terms = ("embed", "embedding", "bge", "minilm")
+        embedding_models = [m for m in models if any(t in m.lower() for t in embedding_terms)]
+        chat_models = [m for m in models if not any(t in m.lower() for t in embedding_terms)]
+
+        self.current_embedding_model = embedding_models[0] if embedding_models else (models[0] if models else None)
+        self.current_chat_model = chat_models[0] if chat_models else (models[0] if models else None)
+
+    def get_ollama_status(self) -> dict:
+        models = self.ollama.list_models()
+
+        return {
+            "available_models": models,
+            "current_chat_model": self.current_chat_model,
+            "current_embedding_model": self.current_embedding_model
+        }
+
+    def set_chat_model(self, model_name: str) -> None:
+        status = self.get_ollama_status()
+        if model_name not in status["available_models"]:
+            raise ValueError("Model not available: {}".format(model_name))
+        self.current_chat_model = model_name
+
+    def set_embedding_model(self, model_name: str) -> None:
+        status = self.get_ollama_status()
+        if model_name not in status["available_models"]:
+            raise ValueError("Model not available: {}".format(model_name))
+        self.current_embedding_model = model_name
 
     def ingest_document(self, document_name: str, file_path: str) -> int:
         text = extract_text_from_file(file_path)
@@ -24,7 +58,7 @@ class RagService:
             )
 
             for index, chunk in enumerate(chunks):
-                embedding = self.ollama.embed(chunk)
+                embedding = self.ollama.embed(chunk, model=self.current_embedding_model)
 
                 conn.execute("""
                     INSERT INTO document_chunks (
@@ -44,7 +78,8 @@ class RagService:
         return len(chunks)
 
     def ask(self, document_name: str, question: str) -> dict:
-        question_embedding = self.ollama.embed(question)
+        question_embedding = self.ollama.embed(question, model=self.current_embedding_model)
+
         chunks = self._load_chunks(document_name)
 
         if not chunks:
@@ -73,11 +108,15 @@ class RagService:
             chunk["content"] for chunk in relevant_chunks
         )
 
-        answer = self.ollama.generate_answer(context, question)
+        answer = self.ollama.generate_answer(context, question, model=self.current_chat_model)
 
         return {
             "answer": answer,
-            "chunks": relevant_chunks
+            "chunks": relevant_chunks,
+            "used_models": {
+                "chat_model": self.current_chat_model,
+                "embedding_model": self.current_embedding_model
+            }
         }
 
     def get_documents(self) -> list[str]:

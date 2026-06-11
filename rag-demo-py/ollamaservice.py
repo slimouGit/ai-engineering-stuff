@@ -41,8 +41,12 @@ class OllamaService:
 
         return chat_models[0]["name"]
 
-    def embed(self, text: str) -> list[float]:
-        model = self.detect_embedding_model()
+    def list_models(self) -> list[str]:
+        return [m.get("name", "") for m in self.get_models()]
+
+    def embed(self, text: str, model: str = None) -> list[float]:
+        if model is None:
+            model = self.detect_embedding_model()
 
         payload = {
             "model": model,
@@ -64,8 +68,9 @@ class OllamaService:
 
         return embeddings[0]
 
-    def generate_answer(self, context: str, question: str) -> str:
-        model = self.detect_chat_model()
+    def generate_answer(self, context: str, question: str, model: str = None) -> str:
+        if model is None:
+            model = self.detect_chat_model()
 
         prompt = f"""
 Du bist ein RAG-Assistent.
