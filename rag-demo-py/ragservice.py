@@ -2,7 +2,7 @@
 import json
 import math
 from database import get_connection
-from documentservice import extract_text_from_file
+from documentservice import extract_text_from_file, extract_text_from_url
 from ollamaservice import OllamaService
 from config import CHUNK_SIZE, CHUNK_OVERLAP, TOP_K
 
@@ -46,6 +46,15 @@ class RagService:
 
     def ingest_document(self, document_name: str, file_path: str) -> int:
         text = extract_text_from_file(file_path)
+        return self._ingest_text(document_name, text)
+
+    def ingest_url(self, url: str) -> tuple[str, int]:
+        extracted = extract_text_from_url(url)
+        document_name = f"URL: {extracted['normalized_url']}"
+        chunk_count = self._ingest_text(document_name, extracted["text"])
+        return document_name, chunk_count
+
+    def _ingest_text(self, document_name: str, text: str) -> int:
         chunks = self._split_into_chunks(text)
 
         if not chunks:

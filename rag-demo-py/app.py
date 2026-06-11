@@ -56,6 +56,25 @@ def upload():
         return render_page(error=str(e))
 
 
+@app.route("/ingest-url", methods=["POST"])
+def ingest_url():
+    try:
+        url = request.form.get("url")
+
+        if not url:
+            raise ValueError("Bitte eine URL eingeben.")
+
+        document_name, chunk_count = rag_service.ingest_url(url)
+
+        return render_page(
+            message=f"URL wurde indexiert: {document_name} ({chunk_count} Chunks)",
+            selected_document=document_name
+        )
+
+    except Exception as e:
+        return render_page(error=str(e))
+
+
 @app.route("/ask", methods=["POST"])
 def ask():
     try:

@@ -153,6 +153,19 @@
 
             <button type="submit">Dokument indexieren</button>
         </form>
+
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
+
+        <form action="/ingest-url" method="post">
+            <label for="url">Oder Internetseite per URL indexieren</label>
+            <input id="url"
+                   name="url"
+                   type="url"
+                   placeholder="https://example.com/artikel"
+                   required>
+
+            <button type="submit">URL indexieren</button>
+        </form>
     </div>
 
     <div class="box">
