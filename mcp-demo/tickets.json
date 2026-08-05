@@ -1,0 +1,14 @@
+{
+  "1001": {
+    "id": 1001,
+    "title": "Gesamtbetrag wird verdoppelt",
+    "description": "Bei einem Warenwert von 100 Euro zeigt die Anwendung 200 Euro an.",
+    "status": "OPEN"
+  },
+  "1002": {
+    "id": 1002,
+    "title": "Login schlägt sporadisch fehl",
+    "description": "Einige Benutzer erhalten beim Login einen HTTP-500-Fehler.",
+    "status": "IN_PROGRESS"
+  }
+}
