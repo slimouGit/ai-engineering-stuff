@@ -3,7 +3,7 @@
     "id": 1001,
     "title": "Gesamtbetrag wird verdoppelt",
     "description": "Bei einem Warenwert von 100 Euro zeigt die Anwendung 200 Euro an.",
-    "status": "OPEN"
+    "status": "RESOLVED"
   },
   "1002": {
     "id": 1002,
