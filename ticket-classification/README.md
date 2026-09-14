@@ -88,6 +88,7 @@ Danach ist die API normalerweise unter dieser Adresse erreichbar:
 Die Swagger-Dokumentation ist verfügbar unter:
 
 - http://127.0.0.1:8000/docs
+- from inside the ticket-classification folder): uvicorn app:app --reload --host 127.0.0.1 --port 8000
 
 ## API-Endpunkte
 

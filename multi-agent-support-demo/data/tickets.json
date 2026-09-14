@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "category": "LOGIN",
+    "title": "Loginproblem nach Update",
+    "description": "Benutzer kann sich nach einem Softwareupdate nicht mehr anmelden"
+  },
+  {
+    "id": 2,
+    "category": "VPN",
+    "title": "VPN-Verbindung funktioniert nicht",
+    "description": "VPN Client kann keine Verbindung herstellen"
+  },
+  {
+    "id": 3,
+    "category": "PASSWORD",
+    "title": "Passwort vergessen",
+    "description": "Benutzer hat sein Passwort vergessen und benötigt einen Reset"
+  }
+]

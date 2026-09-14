@@ -1,0 +1,506 @@
+﻿ticket_id,created_at,closed_at,category,subcategory,channel,priority,status,team,agent,region,customer_type,customer_age,attempts,has_attachment,sentiment,resolution_minutes,sla_minutes,sla_breached,satisfaction_score,text_length,cost_eur
+T-0001,2026-04-19 08:01:00,2026-04-19 15:17:00,Antrag,Neuantrag,Web,medium,closed,Fachteam A,Ben,Mitte,Privat,71,2,False,neutral,436,480,False,4,31,271.96
+T-0002,2026-04-08 09:22:00,,Termin,Verschiebung,Web,medium,open,Service Desk,Deniz,West,Privat,66,1,False,neutral,95,480,False,,325,31.49
+T-0003,2026-08-07 11:55:00,2026-08-07 13:27:00,Termin,Absage,Telefon,medium,closed,Service Desk,Deniz,West,Partner,52,2,False,neutral,92,480,False,5,675,30.23
+T-0004,2026-01-09 13:25:00,,Zugang,2FA,Web,low,in_progress,Identity,Farid,Nord,Privat,68,3,False,neutral,110,720,False,,683,71.93
+T-0005,2026-04-13 13:14:00,2026-04-13 16:35:00,Abrechnung,Gutschrift,Telefon,low,closed,Service Desk,Jonas,Ost,Organisation,38,2,False,negativ,201,720,False,4,415,65.41
+T-0006,2026-07-16 13:07:00,2026-07-16 18:47:00,Antrag,Status,App,medium,closed,Fachteam A,Ben,Mitte,Organisation,40,2,False,neutral,340,480,False,2,679,187.04
+T-0007,2026-01-29 13:56:00,2026-01-29 18:19:00,Abrechnung,Zahlung,Telefon,low,closed,Finance,Jonas,West,Privat,,1,True,neutral,263,720,False,5,570,181.78
+T-0008,2026-04-19 11:59:00,2026-04-19 12:32:00,Termin,Verschiebung,App,medium,closed,Service Desk,Eva,Mitte,Organisation,74,1,False,negativ,33,480,False,4,90,13.17
+T-0009,2026-01-09 13:04:00,2026-01-09 15:13:00,Technik,Performance,Web,medium,closed,Backend,Aylin,Süd,Privat,78,3,False,neutral,129,480,False,4,121,59.7
+T-0010,2026-03-28 09:15:00,2026-03-28 10:59:00,Zugang,Benutzername,E-Mail,medium,closed,Identity,Ben,Nord,Privat,27,3,False,neutral,104,480,False,5,76,54.09
+T-0011,2026-02-24 14:57:00,,Antrag,Neuantrag,App,critical,waiting,Fachteam A,Carla,Ost,Privat,72,2,True,negativ,294,120,True,,773,170.12
+T-0012,2026-03-22 08:03:00,,Allgemein,Information,Web,low,in_progress,Service Desk,Jonas,Mitte,Privat,41,1,True,negativ,40,720,False,,94,13.1
+T-0013,2026-01-21 14:42:00,,Antrag,Unterlagen,App,medium,in_progress,Fachteam A,Jonas,Mitte,Privat,68,1,True,neutral,227,480,False,,685,79.98
+T-0014,2026-01-26 09:34:00,,Technik,Upload,App,high,in_progress,Platform,Hassan,Mitte,Partner,38,4,False,negativ,146,240,False,,581,69.39
+T-0015,2026-01-28 16:09:00,2026-01-28 21:44:00,Antrag,Neuantrag,E-Mail,medium,closed,Fachteam A,Carla,West,Privat,80,3,True,neutral,335,480,False,5,674,107.31
+T-0016,2026-05-22 14:35:00,,Abrechnung,Gutschrift,Web,low,in_progress,Finance,Eva,Süd,Organisation,36,2,False,neutral,194,720,False,,67,91.55
+T-0017,2026-08-15 14:39:00,2026-08-15 16:53:00,Technik,Fehlermeldung,Web,high,closed,Platform,Ben,West,Organisation,70,1,True,neutral,134,240,False,,365,79.68
+T-0018,2026-01-28 14:55:00,2026-01-28 16:19:00,Termin,Ort,Telefon,high,closed,Service Desk,Eva,Süd,Organisation,47,2,False,neutral,84,240,False,4,310,38.59
+T-0019,2026-03-08 10:37:00,2026-03-08 11:34:00,Allgemein,Zuständigkeit,E-Mail,medium,closed,Service Desk,Aylin,Nord,Organisation,32,1,False,neutral,57,480,False,4,750,22.91
+T-0020,2026-02-01 12:32:00,2026-02-01 14:33:00,Abrechnung,Zahlung,Web,medium,closed,Service Desk,Jonas,West,Privat,66,3,True,positiv,121,480,False,5,333,66.09
+T-0021,2026-04-24 11:32:00,,Technik,Fehlermeldung,Web,low,open,Backend,Jonas,West,Privat,60,3,True,positiv,91,720,False,,794,30.7
+T-0022,2026-06-06 09:29:00,2026-06-06 11:57:00,Technik,Upload,Web,low,closed,Platform,Aylin,Süd,Partner,18,3,False,neutral,148,720,False,5,460,96.82
+T-0023,2026-06-20 16:35:00,,Technik,Verbindung,Web,low,in_progress,Platform,Hassan,Süd,Organisation,75,1,False,neutral,97,720,False,,786,63.91
+T-0024,2026-03-12 15:04:00,2026-03-12 15:57:00,Allgemein,Information,Web,low,closed,Service Desk,Ina,Ost,Privat,67,1,False,positiv,53,720,False,5,442,17.26
+T-0025,2026-01-06 17:24:00,2026-01-06 17:54:00,Technik,Verbindung,Web,medium,closed,Service Desk,Greta,Mitte,Partner,46,3,True,negativ,30,480,False,3,423,14.83
+T-0026,2026-04-11 17:36:00,2026-04-11 20:22:00,Technik,Verbindung,Telefon,medium,closed,Platform,Jonas,Mitte,Privat,59,2,False,positiv,166,480,False,4,413,100.35
+T-0027,2026-03-31 11:41:00,2026-03-31 17:49:00,Technik,Verbindung,Web,low,closed,Platform,Ina,Nord,Partner,37,4,True,positiv,368,720,False,4,248,127.24
+T-0028,2026-01-07 12:36:00,2026-01-07 14:01:00,Abrechnung,Gutschrift,Web,medium,closed,Finance,Carla,West,Privat,49,1,False,positiv,85,480,False,,725,51.76
+T-0029,2026-04-05 09:32:00,2026-04-05 13:49:00,Antrag,Neuantrag,E-Mail,high,closed,Fachteam A,Farid,Mitte,Privat,76,2,False,neutral,257,240,True,2,691,152.53
+T-0030,2026-08-01 09:17:00,2026-08-01 12:51:00,Technik,Verbindung,Telefon,medium,closed,Backend,Eva,West,Organisation,,2,False,neutral,214,480,False,3,289,82.36
+T-0031,2026-05-06 16:48:00,2026-05-06 19:52:00,Technik,Upload,E-Mail,medium,closed,Platform,Ben,Süd,Organisation,69,4,True,positiv,184,480,False,4,509,98.0
+T-0032,2026-03-06 11:07:00,2026-03-06 16:47:00,Antrag,Nachreichung,Telefon,medium,closed,Fachteam B,Farid,Ost,Privat,79,1,False,neutral,340,480,False,4,636,205.39
+T-0033,2026-05-17 10:17:00,2026-05-17 12:52:00,Technik,Fehlermeldung,Web,high,closed,Service Desk,Carla,West,Privat,31,3,False,neutral,155,240,False,4,476,75.6
+T-0034,2026-05-28 08:09:00,2026-05-28 12:41:00,Technik,Fehlermeldung,Telefon,low,closed,Platform,Ben,Ost,Privat,46,4,False,positiv,272,720,False,4,329,180.45
+T-0035,2026-01-21 10:15:00,2026-01-21 11:14:00,Allgemein,Information,E-Mail,low,closed,Service Desk,Deniz,Süd,Privat,47,2,False,neutral,59,720,False,3,97,37.99
+T-0036,2026-06-15 10:58:00,2026-06-15 15:21:00,Antrag,Nachreichung,E-Mail,high,closed,Fachteam A,Greta,Nord,Privat,54,2,False,negativ,263,240,True,2,437,110.89
+T-0037,2026-01-24 11:43:00,,Allgemein,Information,E-Mail,medium,waiting,Service Desk,Farid,Mitte,Privat,23,1,False,neutral,55,480,False,,204,33.29
+T-0038,2026-04-15 13:20:00,2026-04-15 14:18:00,Abrechnung,Bankdaten,Web,high,closed,Service Desk,Hassan,Nord,Privat,22,1,False,neutral,58,240,False,4,438,24.9
+T-0039,2026-06-09 15:40:00,2026-06-09 16:20:00,Allgemein,Öffnungszeiten,E-Mail,medium,closed,Service Desk,Aylin,Süd,Privat,80,2,True,neutral,40,480,False,5,270,21.74
+T-0040,2026-01-31 10:31:00,2026-01-31 18:06:00,Antrag,Nachreichung,E-Mail,medium,closed,Fachteam A,Deniz,Nord,Privat,76,1,True,neutral,455,480,False,4,545,304.28
+T-0041,2026-01-01 12:46:00,,Termin,Verschiebung,Web,high,waiting,Fachteam A,Farid,Mitte,Privat,62,3,False,positiv,45,240,False,,581,19.48
+T-0042,2026-07-18 14:02:00,,Technik,Upload,App,high,in_progress,Platform,Jonas,Ost,Privat,37,4,True,negativ,105,240,False,,62,52.3
+T-0043,2026-01-04 10:26:00,2026-01-04 12:30:00,Zugang,Konto gesperrt,Telefon,high,closed,Service Desk,Ben,Mitte,Partner,68,1,False,positiv,124,240,False,5,571,79.48
+T-0044,2026-03-02 12:14:00,2026-03-02 15:12:00,Technik,Upload,App,medium,closed,Service Desk,Ina,Nord,Privat,56,1,False,negativ,178,480,False,2,325,110.09
+T-0045,2026-06-06 14:39:00,2026-06-06 17:53:00,Technik,Verbindung,E-Mail,low,closed,Backend,Carla,Süd,Privat,19,1,True,neutral,194,720,False,4,584,80.52
+T-0046,2026-03-19 11:24:00,2026-03-19 12:40:00,Zugang,Benutzername,App,high,closed,Service Desk,Greta,West,Privat,20,1,False,neutral,76,240,False,4,604,31.14
+T-0047,2026-02-26 11:39:00,2026-02-26 12:12:00,Allgemein,Öffnungszeiten,Telefon,high,closed,Service Desk,Deniz,Mitte,Organisation,23,4,False,positiv,33,240,False,4,774,17.55
+T-0048,2026-04-04 16:32:00,2026-04-04 18:52:00,Zugang,Konto gesperrt,E-Mail,medium,closed,Identity,Carla,Mitte,Organisation,61,1,False,neutral,140,480,False,4,797,46.22
+T-0049,2026-05-18 09:29:00,2026-05-18 09:39:00,Allgemein,Information,Telefon,critical,closed,Service Desk,Ben,Ost,Privat,47,3,False,neutral,10,120,False,4,360,6.77
+T-0050,2026-01-12 08:19:00,2026-01-12 09:11:00,Allgemein,Kontakt,E-Mail,medium,closed,Service Desk,Eva,Ost,Privat,71,2,False,neutral,52,480,False,5,695,34.02
+T-0051,2026-04-24 11:54:00,2026-04-24 12:26:00,Zugang,Benutzername,App,medium,closed,Service Desk,Aylin,West,Privat,,4,False,neutral,32,480,False,5,490,21.75
+T-0052,2026-02-02 17:13:00,2026-02-02 19:31:00,Zugang,2FA,E-Mail,medium,closed,Identity,Aylin,West,Privat,36,3,False,negativ,138,480,False,4,173,56.71
+T-0053,2026-07-21 11:37:00,2026-07-21 12:06:00,Allgemein,Zuständigkeit,Web,high,closed,Service Desk,Carla,Nord,Privat,78,2,False,neutral,29,240,False,4,487,15.59
+T-0054,2026-05-03 14:27:00,,Abrechnung,Rechnung,App,medium,in_progress,Service Desk,Hassan,Nord,Privat,26,1,True,positiv,117,480,False,,664,41.01
+T-0055,2026-01-26 09:54:00,2026-01-26 13:28:00,Antrag,Nachreichung,E-Mail,medium,closed,Fachteam B,Hassan,Mitte,Privat,70,1,False,neutral,214,480,False,4,122,99.81
+T-0056,2026-01-22 09:27:00,,Technik,Upload,Web,medium,open,Platform,Hassan,Nord,Privat,60,4,False,neutral,264,480,False,,445,149.95
+T-0057,2026-05-28 16:13:00,,Technik,Verbindung,Telefon,high,open,Service Desk,Jonas,West,Privat,53,4,True,neutral,175,240,False,,464,92.69
+T-0058,2026-07-15 12:58:00,,Allgemein,Öffnungszeiten,E-Mail,medium,in_progress,Service Desk,Aylin,Süd,Privat,21,2,False,neutral,44,480,False,,568,14.81
+T-0059,2026-08-15 08:09:00,2026-08-15 11:57:00,Technik,Verbindung,Web,medium,closed,Service Desk,Farid,Mitte,Privat,74,4,True,neutral,228,480,False,3,378,115.13
+T-0060,2026-06-03 08:00:00,2026-06-03 10:53:00,Abrechnung,Gutschrift,E-Mail,medium,closed,Service Desk,Aylin,Süd,Privat,81,4,False,neutral,173,480,False,3,745,78.21
+T-0061,2026-01-20 13:36:00,2026-01-20 16:23:00,Technik,Upload,Telefon,low,closed,Platform,Greta,Nord,Privat,39,3,True,neutral,167,720,False,4,395,105.68
+T-0062,2026-02-26 13:49:00,2026-02-26 16:00:00,Zugang,Passwort,E-Mail,low,closed,Identity,Greta,West,Organisation,36,3,False,negativ,131,720,False,3,641,49.64
+T-0063,2026-04-25 17:41:00,,Zugang,Passwort,Telefon,low,in_progress,Service Desk,Hassan,Mitte,Organisation,,1,False,positiv,83,720,False,,335,39.58
+T-0064,2026-08-01 12:04:00,2026-08-01 12:34:00,Termin,Vereinbarung,Web,medium,closed,Fachteam A,Hassan,Nord,Privat,23,1,False,neutral,30,480,False,5,354,16.82
+T-0065,2026-01-11 11:45:00,2026-01-11 12:39:00,Antrag,Unterlagen,E-Mail,critical,closed,Fachteam B,Ben,Mitte,Privat,70,2,True,neutral,54,120,False,4,671,17.33
+T-0066,2026-06-18 17:55:00,2026-06-19 00:25:00,Antrag,Neuantrag,E-Mail,medium,closed,Fachteam B,Eva,West,Organisation,68,2,False,neutral,390,480,False,5,597,130.22
+T-0067,2026-04-19 16:23:00,,Technik,Upload,Telefon,high,waiting,Backend,Ina,Nord,Privat,35,3,True,neutral,188,240,False,,327,68.05
+T-0068,2026-04-07 10:10:00,2026-04-07 11:05:00,Allgemein,Öffnungszeiten,E-Mail,medium,closed,Service Desk,Farid,Mitte,Privat,,3,False,neutral,55,480,False,5,650,37.83
+T-0069,2026-05-27 15:29:00,2026-05-27 19:27:00,Technik,Verbindung,Web,low,closed,Service Desk,Deniz,West,Privat,35,1,True,positiv,238,720,False,2,405,117.15
+T-0070,2026-03-11 15:57:00,2026-03-11 18:00:00,Antrag,Neuantrag,E-Mail,medium,closed,Fachteam A,Eva,Nord,Organisation,21,2,False,neutral,123,480,False,4,420,55.3
+T-0071,2026-03-15 15:44:00,2026-03-15 16:53:00,Allgemein,Zuständigkeit,Web,low,closed,Service Desk,Farid,Süd,Privat,,1,False,negativ,69,720,False,3,648,46.65
+T-0072,2026-07-23 17:29:00,2026-07-23 20:40:00,Abrechnung,Rechnung,Web,high,closed,Finance,Aylin,Süd,Privat,36,3,False,neutral,191,240,False,1,609,84.26
+T-0073,2026-05-10 16:01:00,2026-05-10 18:06:00,Technik,Fehlermeldung,Web,medium,closed,Backend,Ina,Mitte,Organisation,,3,False,positiv,125,480,False,4,668,74.15
+T-0074,2026-05-03 10:51:00,,Zugang,Konto gesperrt,Web,low,in_progress,Service Desk,Carla,Ost,Partner,23,3,True,positiv,145,720,False,,342,61.8
+T-0075,2026-01-13 13:17:00,,Abrechnung,Bankdaten,Telefon,low,in_progress,Finance,Eva,West,Organisation,41,3,False,negativ,208,720,False,,534,103.68
+T-0076,2026-02-16 16:18:00,2026-02-16 18:21:00,Technik,Upload,Telefon,high,closed,Platform,Greta,Mitte,Partner,74,3,True,neutral,123,240,False,2,386,79.71
+T-0077,2026-07-25 10:01:00,,Antrag,Status,App,low,open,Fachteam A,Ben,Ost,Privat,64,3,True,positiv,557,720,False,,605,247.79
+T-0078,2026-05-16 13:25:00,,Zugang,2FA,App,medium,waiting,Service Desk,Hassan,Nord,Privat,33,3,True,positiv,79,480,False,,291,31.97
+T-0079,2026-01-19 15:11:00,2026-01-19 20:00:00,Antrag,Unterlagen,Web,critical,closed,Fachteam B,Deniz,Nord,Privat,62,1,False,negativ,289,120,True,2,332,120.27
+T-0080,2026-05-07 08:23:00,,Allgemein,Kontakt,E-Mail,high,open,Service Desk,Deniz,Süd,Privat,57,1,False,neutral,19,240,False,,759,8.73
+T-0081,2026-04-26 15:43:00,,Antrag,Status,Telefon,medium,open,Fachteam A,Carla,West,Privat,34,2,False,neutral,294,480,False,,81,139.08
+T-0082,2026-08-05 09:16:00,2026-08-05 11:11:00,Termin,Verschiebung,Web,low,closed,Service Desk,Farid,Mitte,Organisation,39,5,False,neutral,115,720,False,4,664,42.38
+T-0083,2026-07-17 17:16:00,2026-07-17 19:40:00,Antrag,Nachreichung,E-Mail,high,closed,Fachteam A,Ben,Nord,Partner,55,1,False,neutral,144,240,False,4,726,57.3
+T-0084,2026-03-29 17:09:00,2026-03-29 20:15:00,Technik,Verbindung,Web,low,closed,Service Desk,Greta,Ost,Privat,65,4,False,negativ,186,720,False,2,150,73.79
+T-0085,2026-08-10 10:52:00,2026-08-10 13:58:00,Technik,Performance,Web,low,closed,Service Desk,Jonas,Ost,Privat,81,4,False,neutral,186,720,False,4,427,62.5
+T-0086,2026-08-04 15:18:00,2026-08-04 16:40:00,Abrechnung,Zahlung,Web,low,closed,Finance,Eva,Ost,Privat,64,1,False,neutral,82,720,False,,600,26.28
+T-0087,2026-01-31 10:06:00,2026-01-31 12:22:00,Technik,Upload,E-Mail,low,closed,Backend,Eva,Mitte,Privat,69,4,False,neutral,136,720,False,2,366,48.25
+T-0088,2026-04-11 17:47:00,2026-04-11 19:40:00,Termin,Ort,App,low,closed,Service Desk,Farid,Mitte,Privat,78,1,False,neutral,113,720,False,4,451,64.36
+T-0089,2026-05-15 17:49:00,2026-05-16 00:27:00,Antrag,Neuantrag,Web,medium,closed,Fachteam A,Aylin,Mitte,Privat,20,1,True,negativ,398,480,False,4,233,185.14
+T-0090,2026-03-25 15:33:00,2026-03-25 15:55:00,Technik,Verbindung,Telefon,high,closed,Platform,Carla,Mitte,Privat,51,5,False,neutral,22,240,False,3,596,8.77
+T-0091,2026-05-24 12:18:00,2026-05-24 15:41:00,Technik,Upload,Telefon,high,closed,Backend,Hassan,West,Privat,36,4,False,neutral,203,240,False,3,379,118.89
+T-0092,2026-06-07 17:15:00,2026-06-07 18:01:00,Allgemein,Zuständigkeit,Web,medium,closed,Service Desk,Ina,West,Privat,78,3,False,positiv,46,480,False,,30,27.98
+T-0093,2026-03-15 13:18:00,2026-03-15 13:42:00,Allgemein,Kontakt,App,medium,closed,Service Desk,Hassan,Süd,Organisation,22,1,False,neutral,24,480,False,3,205,15.67
+T-0094,2026-01-03 12:36:00,2026-01-03 12:46:00,Allgemein,Öffnungszeiten,E-Mail,critical,closed,Service Desk,Carla,West,Organisation,35,1,False,neutral,10,120,False,4,140,3.77
+T-0095,2026-07-13 11:11:00,2026-07-13 13:02:00,Technik,Verbindung,Telefon,medium,closed,Platform,Farid,West,Privat,30,2,True,neutral,111,480,False,3,279,47.67
+T-0096,2026-01-03 12:41:00,2026-01-03 14:18:00,Zugang,Benutzername,Telefon,low,closed,Service Desk,Eva,Mitte,Organisation,57,2,False,positiv,97,720,False,4,401,65.6
+T-0097,2026-05-21 15:48:00,2026-05-21 15:58:00,Antrag,Unterlagen,E-Mail,critical,closed,Fachteam B,Jonas,West,Privat,28,1,True,neutral,10,120,False,4,602,4.45
+T-0098,2026-02-22 17:31:00,,Zugang,2FA,Web,medium,open,Service Desk,Ina,Ost,Privat,25,2,False,neutral,121,480,False,,713,63.35
+T-0099,2026-03-30 09:34:00,2026-03-30 11:50:00,Termin,Vereinbarung,Telefon,medium,closed,Service Desk,Jonas,Nord,Privat,35,2,False,positiv,136,480,False,5,455,75.94
+T-0100,2026-06-19 16:08:00,2026-06-19 18:34:00,Technik,Verbindung,App,medium,closed,Service Desk,Greta,Nord,Privat,46,2,False,neutral,146,480,False,5,499,100.94
+T-0101,2026-02-18 09:02:00,2026-02-18 15:49:00,Antrag,Status,Telefon,medium,closed,Fachteam A,Hassan,West,Privat,30,1,False,positiv,407,480,False,4,74,231.51
+T-0102,2026-03-16 11:52:00,2026-03-16 16:03:00,Technik,Fehlermeldung,Web,medium,closed,Platform,Aylin,Süd,Privat,36,2,False,neutral,251,480,False,4,306,116.82
+T-0103,2026-06-21 14:50:00,2026-06-21 15:31:00,Zugang,2FA,E-Mail,medium,closed,Service Desk,Aylin,West,Partner,48,1,False,positiv,41,480,False,4,499,23.9
+T-0104,2026-03-26 09:59:00,2026-03-26 10:09:00,Allgemein,Information,E-Mail,critical,closed,Service Desk,Greta,Süd,Privat,23,2,False,positiv,10,120,False,3,766,6.05
+T-0105,2026-02-18 09:47:00,2026-02-18 18:10:00,Antrag,Unterlagen,Telefon,medium,closed,Fachteam B,Eva,Nord,Privat,59,2,False,neutral,503,480,True,2,392,258.27
+T-0106,2026-04-05 13:26:00,2026-04-05 18:26:00,Technik,Upload,E-Mail,medium,closed,Platform,Hassan,West,Partner,71,3,True,neutral,300,480,False,3,608,117.6
+T-0107,2026-06-14 15:29:00,2026-06-14 17:06:00,Termin,Ort,App,medium,closed,Fachteam A,Eva,Ost,Partner,25,4,False,neutral,97,480,False,5,709,31.98
+T-0108,2026-05-10 15:23:00,,Zugang,Passwort,Telefon,medium,in_progress,Identity,Ben,Süd,Privat,,2,False,neutral,131,480,False,,446,67.19
+T-0109,2026-05-15 10:15:00,,Zugang,Konto gesperrt,Web,medium,open,Service Desk,Carla,Nord,Partner,69,3,False,neutral,103,480,False,,274,49.81
+T-0110,2026-04-07 16:30:00,2026-04-07 17:28:00,Allgemein,Kontakt,Telefon,low,closed,Service Desk,Aylin,Nord,Privat,30,2,False,neutral,58,720,False,5,733,22.73
+T-0111,2026-02-15 13:01:00,2026-02-15 14:17:00,Allgemein,Information,App,low,closed,Service Desk,Ina,Mitte,Privat,,1,False,neutral,76,720,False,3,423,48.17
+T-0112,2026-04-22 11:53:00,2026-04-22 20:25:00,Antrag,Nachreichung,Telefon,medium,closed,Fachteam A,Ina,West,Privat,52,2,False,negativ,512,480,True,2,591,200.32
+T-0113,2026-03-05 09:05:00,,Allgemein,Information,E-Mail,low,open,Service Desk,Ben,Mitte,Privat,29,3,True,neutral,54,720,False,,340,16.31
+T-0114,2026-04-15 09:01:00,2026-04-15 12:48:00,Abrechnung,Gutschrift,Web,low,closed,Service Desk,Hassan,Mitte,Privat,,3,False,negativ,227,720,False,5,597,133.92
+T-0115,2026-03-10 15:09:00,2026-03-10 16:09:00,Allgemein,Kontakt,Web,medium,closed,Service Desk,Carla,Süd,Privat,49,2,False,positiv,60,480,False,4,493,32.8
+T-0116,2026-07-28 17:08:00,2026-07-28 18:47:00,Zugang,Konto gesperrt,E-Mail,low,closed,Service Desk,Farid,Ost,Privat,58,3,False,positiv,99,720,False,5,614,49.14
+T-0117,2026-02-21 17:34:00,2026-02-21 19:08:00,Termin,Absage,Telefon,medium,closed,Fachteam A,Farid,Nord,Partner,55,4,False,negativ,94,480,False,2,443,60.08
+T-0118,2026-06-03 15:37:00,,Antrag,Unterlagen,Web,medium,in_progress,Fachteam A,Greta,Ost,Privat,64,3,False,neutral,238,480,False,,574,138.2
+T-0119,2026-06-15 14:48:00,2026-06-15 20:27:00,Antrag,Neuantrag,Web,low,closed,Fachteam B,Carla,Mitte,Privat,46,4,True,positiv,339,720,False,4,627,206.43
+T-0120,2026-01-22 09:53:00,2026-01-22 16:57:00,Antrag,Unterlagen,Web,medium,closed,Fachteam A,Eva,Ost,Partner,78,1,True,positiv,424,480,False,,488,249.65
+T-0121,2026-02-12 11:33:00,2026-02-12 15:35:00,Technik,Upload,Telefon,low,closed,Platform,Farid,Nord,Privat,41,3,False,positiv,242,720,False,4,780,110.89
+T-0122,2026-06-30 09:36:00,2026-06-30 19:01:00,Antrag,Unterlagen,E-Mail,medium,closed,Fachteam A,Deniz,Süd,Privat,80,3,True,negativ,565,480,True,3,650,304.42
+T-0123,2026-06-01 09:43:00,2026-06-01 13:04:00,Technik,Fehlermeldung,Telefon,medium,closed,Backend,Carla,West,Partner,71,3,True,neutral,201,480,False,4,523,94.31
+T-0124,2026-06-08 08:55:00,2026-06-08 14:43:00,Antrag,Unterlagen,E-Mail,medium,closed,Fachteam A,Carla,West,Organisation,81,2,False,negativ,348,480,False,4,479,203.25
+T-0125,2026-05-18 12:10:00,2026-05-18 14:42:00,Abrechnung,Rechnung,Telefon,medium,closed,Finance,Eva,Nord,Privat,52,1,False,neutral,152,480,False,5,799,67.91
+T-0126,2026-01-09 15:16:00,2026-01-09 16:12:00,Zugang,Benutzername,App,medium,closed,Identity,Deniz,West,Organisation,62,3,False,neutral,56,480,False,4,655,26.39
+T-0127,2026-02-13 13:45:00,,Zugang,2FA,Telefon,high,waiting,Service Desk,Ina,West,Privat,35,3,False,negativ,56,240,False,,446,38.37
+T-0128,2026-08-01 11:48:00,2026-08-01 12:30:00,Allgemein,Zuständigkeit,Web,high,closed,Service Desk,Deniz,Süd,Privat,27,1,False,neutral,42,240,False,5,552,14.16
+T-0129,2026-06-28 13:54:00,2026-06-28 15:38:00,Termin,Absage,E-Mail,medium,closed,Service Desk,Ben,Ost,Privat,54,2,False,positiv,104,480,False,4,521,54.75
+T-0130,2026-02-10 15:29:00,2026-02-10 18:08:00,Termin,Vereinbarung,E-Mail,low,closed,Fachteam A,Aylin,Nord,Partner,38,2,False,positiv,159,720,False,5,394,53.64
+T-0131,2026-07-13 11:27:00,2026-07-13 13:32:00,Technik,Upload,E-Mail,medium,closed,Platform,Greta,West,Organisation,74,1,False,positiv,125,480,False,,148,72.28
+T-0132,2026-01-27 09:20:00,2026-01-27 09:56:00,Allgemein,Information,E-Mail,medium,closed,Service Desk,Greta,Nord,Organisation,36,2,False,negativ,36,480,False,,649,18.91
+T-0133,2026-08-09 11:05:00,2026-08-09 18:00:00,Antrag,Status,Web,medium,closed,Fachteam A,Greta,Mitte,Privat,35,1,False,neutral,415,480,False,4,640,165.7
+T-0134,2026-02-18 14:18:00,,Antrag,Nachreichung,Telefon,high,open,Fachteam B,Deniz,Mitte,Privat,27,1,True,neutral,136,240,False,,37,69.54
+T-0135,2026-07-15 15:49:00,2026-07-15 17:04:00,Allgemein,Zuständigkeit,Telefon,low,closed,Service Desk,Farid,Mitte,Privat,68,2,False,negativ,75,720,False,4,450,37.53
+T-0136,2026-05-11 11:51:00,2026-05-11 15:10:00,Abrechnung,Bankdaten,E-Mail,low,closed,Finance,Eva,Nord,Privat,57,3,False,neutral,199,720,False,5,84,127.08
+T-0137,2026-07-01 10:44:00,2026-07-01 15:42:00,Technik,Verbindung,E-Mail,low,closed,Platform,Eva,Süd,Privat,65,3,False,neutral,298,720,False,5,145,121.44
+T-0138,2026-05-08 15:32:00,2026-05-08 16:27:00,Termin,Vereinbarung,E-Mail,medium,closed,Service Desk,Eva,Mitte,Privat,32,3,False,positiv,55,480,False,4,37,17.47
+T-0139,2026-07-02 14:14:00,2026-07-02 16:45:00,Technik,Verbindung,App,medium,closed,Platform,Aylin,Mitte,Organisation,82,4,True,positiv,151,480,False,2,553,58.78
+T-0140,2026-04-27 08:23:00,2026-04-27 09:25:00,Allgemein,Information,E-Mail,low,closed,Service Desk,Eva,West,Privat,81,3,False,neutral,62,720,False,5,584,36.77
+T-0141,2026-08-03 08:21:00,,Termin,Verschiebung,App,low,open,Service Desk,Deniz,Mitte,Privat,48,2,False,positiv,132,720,False,,86,61.77
+T-0142,2026-04-06 15:47:00,2026-04-06 16:38:00,Allgemein,Kontakt,Web,medium,closed,Service Desk,Ina,Ost,Privat,73,2,False,positiv,51,480,False,3,347,21.25
+T-0143,2026-02-21 10:49:00,2026-02-21 11:34:00,Allgemein,Information,Telefon,medium,closed,Service Desk,Hassan,West,Privat,63,1,False,neutral,45,480,False,3,296,19.05
+T-0144,2026-07-02 11:22:00,2026-07-02 12:14:00,Allgemein,Öffnungszeiten,Telefon,low,closed,Service Desk,Deniz,West,Privat,75,2,False,positiv,52,720,False,4,129,17.57
+T-0145,2026-04-06 09:37:00,2026-04-06 10:20:00,Termin,Verschiebung,Web,low,closed,Service Desk,Carla,Süd,Organisation,34,1,False,positiv,43,720,False,,364,27.47
+T-0146,2026-06-24 14:11:00,2026-06-24 15:21:00,Zugang,Benutzername,App,low,closed,Service Desk,Greta,Ost,Privat,49,4,False,positiv,70,720,False,4,515,45.72
+T-0147,2026-07-20 13:30:00,,Zugang,Konto gesperrt,E-Mail,medium,in_progress,Identity,Ina,Nord,Partner,58,1,False,neutral,55,480,False,,55,29.64
+T-0148,2026-01-26 11:42:00,,Allgemein,Zuständigkeit,App,low,open,Service Desk,Jonas,Süd,Partner,67,3,False,neutral,57,720,False,,202,25.19
+T-0149,2026-05-25 11:53:00,2026-05-25 14:05:00,Zugang,Konto gesperrt,Telefon,high,closed,Identity,Farid,Mitte,Privat,47,2,False,neutral,132,240,False,1,364,64.84
+T-0150,2026-05-31 10:49:00,2026-05-31 11:37:00,Allgemein,Kontakt,Web,high,closed,Service Desk,Farid,Nord,Privat,30,3,True,neutral,48,240,False,4,774,33.14
+T-0151,2026-04-07 12:46:00,2026-04-07 13:27:00,Allgemein,Information,Web,medium,closed,Service Desk,Deniz,Mitte,Organisation,22,1,False,negativ,41,480,False,4,651,25.56
+T-0152,2026-03-23 10:40:00,2026-03-23 13:15:00,Technik,Fehlermeldung,Web,high,closed,Backend,Ben,Süd,Privat,51,2,False,negativ,155,240,False,5,135,68.23
+T-0153,2026-03-31 16:24:00,,Antrag,Neuantrag,Telefon,medium,in_progress,Fachteam A,Greta,Ost,Organisation,27,3,False,neutral,475,480,False,,59,294.35
+T-0154,2026-01-20 16:57:00,,Technik,Upload,Web,low,waiting,Service Desk,Carla,Ost,Privat,39,2,False,neutral,281,720,False,,469,152.56
+T-0155,2026-03-14 12:15:00,2026-03-14 14:10:00,Zugang,Passwort,App,medium,closed,Service Desk,Ina,Mitte,Privat,,2,False,positiv,115,480,False,,665,72.4
+T-0156,2026-03-20 14:30:00,2026-03-20 18:55:00,Antrag,Unterlagen,Web,low,closed,Fachteam B,Ben,Ost,Organisation,65,2,False,positiv,265,720,False,2,294,126.11
+T-0157,2026-07-26 16:26:00,2026-07-26 20:48:00,Technik,Upload,Web,medium,closed,Backend,Ben,Nord,Privat,78,2,False,neutral,262,480,False,3,429,109.92
+T-0158,2026-02-12 11:51:00,2026-02-12 12:37:00,Allgemein,Öffnungszeiten,App,medium,closed,Service Desk,Ben,Ost,Privat,36,2,False,positiv,46,480,False,3,93,30.56
+T-0159,2026-07-20 14:07:00,2026-07-20 15:21:00,Zugang,Benutzername,Telefon,medium,closed,Service Desk,Aylin,Mitte,Privat,30,2,False,negativ,74,480,False,5,445,48.25
+T-0160,2026-06-05 14:02:00,2026-06-05 15:19:00,Technik,Verbindung,E-Mail,medium,closed,Platform,Eva,Ost,Privat,65,4,True,neutral,77,480,False,,335,48.28
+T-0161,2026-04-24 13:17:00,2026-04-24 15:20:00,Technik,Verbindung,Telefon,high,closed,Platform,Carla,West,Partner,80,1,True,negativ,123,240,False,5,552,77.29
+T-0162,2026-02-19 11:53:00,2026-02-19 13:33:00,Termin,Vereinbarung,E-Mail,low,closed,Service Desk,Ina,Mitte,Privat,77,2,False,positiv,100,720,False,4,56,34.95
+T-0163,2026-02-11 12:47:00,2026-02-11 16:00:00,Technik,Verbindung,Web,medium,closed,Service Desk,Jonas,Mitte,Privat,45,2,True,negativ,193,480,False,4,300,110.22
+T-0164,2026-06-03 08:14:00,2026-06-03 12:40:00,Antrag,Neuantrag,App,high,closed,Fachteam A,Hassan,Süd,Privat,66,4,False,negativ,266,240,True,2,334,103.02
+T-0165,2026-03-18 09:30:00,2026-03-18 21:16:00,Antrag,Status,Web,medium,closed,Fachteam B,Ina,Mitte,Privat,56,3,False,neutral,706,480,True,2,83,279.66
+T-0166,2026-04-18 14:24:00,,Termin,Ort,Telefon,medium,waiting,Service Desk,Hassan,West,Privat,78,1,False,neutral,72,480,False,,712,47.71
+T-0167,2026-02-02 12:46:00,2026-02-02 15:39:00,Technik,Upload,Telefon,high,closed,Backend,Carla,West,Privat,63,1,False,neutral,173,240,False,5,364,81.0
+T-0168,2026-01-19 15:56:00,2026-01-19 19:06:00,Technik,Upload,Web,medium,closed,Platform,Jonas,Mitte,Partner,37,3,False,neutral,190,480,False,3,608,88.1
+T-0169,2026-02-15 13:40:00,2026-02-15 14:52:00,Allgemein,Information,Telefon,low,closed,Service Desk,Ben,Ost,Privat,29,2,False,neutral,72,720,False,4,464,33.97
+T-0170,2026-05-16 11:01:00,2026-05-16 11:47:00,Allgemein,Information,E-Mail,low,closed,Service Desk,Aylin,West,Organisation,67,1,False,neutral,46,720,False,4,71,15.0
+T-0171,2026-02-04 13:57:00,2026-02-04 15:12:00,Technik,Upload,E-Mail,medium,closed,Backend,Farid,Ost,Organisation,,3,False,neutral,75,480,False,5,47,28.84
+T-0172,2026-06-09 08:38:00,2026-06-09 19:13:00,Antrag,Unterlagen,Telefon,low,closed,Fachteam A,Greta,West,Organisation,66,2,True,neutral,635,720,False,3,235,368.77
+T-0173,2026-04-18 09:32:00,2026-04-18 16:49:00,Antrag,Neuantrag,Telefon,low,closed,Fachteam B,Jonas,Mitte,Privat,51,1,True,positiv,437,720,False,5,444,193.66
+T-0174,2026-01-04 09:58:00,2026-01-04 14:01:00,Technik,Fehlermeldung,App,medium,closed,Backend,Hassan,West,Privat,,4,False,neutral,243,480,False,5,492,135.53
+T-0175,2026-06-23 13:27:00,2026-06-23 14:22:00,Allgemein,Zuständigkeit,Web,low,closed,Service Desk,Aylin,West,Privat,39,1,True,negativ,55,720,False,5,299,37.51
+T-0176,2026-03-11 14:44:00,2026-03-11 15:45:00,Allgemein,Öffnungszeiten,Web,medium,closed,Service Desk,Greta,Ost,Partner,25,1,False,positiv,61,480,False,5,629,20.83
+T-0177,2026-08-14 10:30:00,2026-08-14 13:46:00,Abrechnung,Bankdaten,Web,low,closed,Service Desk,Jonas,Nord,Organisation,46,1,True,positiv,196,720,False,4,560,85.32
+T-0178,2026-07-31 16:57:00,2026-07-31 23:39:00,Antrag,Neuantrag,Telefon,medium,closed,Fachteam B,Farid,Ost,Privat,39,2,True,negativ,402,480,False,,271,199.66
+T-0179,2026-01-21 15:28:00,,Technik,Upload,Web,low,in_progress,Backend,Greta,Ost,Organisation,20,1,True,positiv,246,720,False,,447,83.9
+T-0180,2026-06-21 15:21:00,2026-06-21 16:21:00,Zugang,Passwort,Telefon,high,closed,Service Desk,Ina,Mitte,Privat,78,2,False,neutral,60,240,False,4,124,28.86
+T-0181,2026-01-28 08:57:00,2026-01-28 10:38:00,Termin,Verschiebung,Web,low,closed,Fachteam A,Ina,Mitte,Privat,42,2,False,positiv,101,720,False,5,220,39.01
+T-0182,2026-05-10 10:31:00,2026-05-10 19:56:00,Antrag,Neuantrag,Web,medium,closed,Fachteam A,Hassan,Ost,Privat,40,2,True,negativ,565,480,True,1,131,353.75
+T-0183,2026-03-29 12:28:00,2026-03-29 15:39:00,Technik,Upload,E-Mail,medium,closed,Backend,Deniz,West,Privat,58,2,False,neutral,191,480,False,5,230,105.63
+T-0184,2026-06-13 13:45:00,2026-06-13 17:28:00,Technik,Upload,App,medium,closed,Platform,Carla,Mitte,Privat,54,3,False,neutral,223,480,False,4,134,68.04
+T-0185,2026-02-07 08:44:00,2026-02-07 10:41:00,Zugang,2FA,Web,low,closed,Service Desk,Carla,West,Privat,46,1,False,neutral,117,720,False,4,737,46.22
+T-0186,2026-07-10 12:12:00,,Technik,Fehlermeldung,E-Mail,high,in_progress,Backend,Farid,Mitte,Privat,65,1,False,negativ,55,240,False,,584,33.11
+T-0187,2026-01-20 10:11:00,2026-01-20 14:35:00,Antrag,Unterlagen,App,high,closed,Fachteam B,Hassan,Süd,Partner,50,1,True,neutral,264,240,True,,183,128.44
+T-0188,2026-01-19 13:33:00,2026-01-19 15:06:00,Zugang,Konto gesperrt,Telefon,medium,closed,Service Desk,Hassan,Mitte,Privat,29,2,False,neutral,93,480,False,5,364,52.58
+T-0189,2026-03-30 15:15:00,2026-03-30 17:56:00,Technik,Performance,E-Mail,critical,closed,Service Desk,Ina,Nord,Privat,32,2,False,negativ,161,120,True,2,554,66.51
+T-0190,2026-02-19 13:32:00,,Termin,Absage,E-Mail,medium,waiting,Fachteam A,Aylin,West,Organisation,44,2,False,neutral,85,480,False,,243,48.29
+T-0191,2026-07-03 13:02:00,,Allgemein,Information,Web,high,open,Service Desk,Ben,Süd,Privat,51,2,False,neutral,38,240,False,,486,17.6
+T-0192,2026-06-08 09:48:00,,Antrag,Status,E-Mail,low,open,Fachteam A,Ina,Nord,Privat,56,1,True,neutral,449,720,False,,313,243.64
+T-0193,2026-02-04 14:50:00,,Termin,Ort,Telefon,medium,waiting,Service Desk,Hassan,Süd,Privat,65,1,True,neutral,84,480,False,,36,57.37
+T-0194,2026-03-20 11:47:00,2026-03-20 19:06:00,Antrag,Unterlagen,Web,low,closed,Fachteam B,Ina,Mitte,Partner,41,1,False,negativ,439,720,False,5,210,165.82
+T-0195,2026-01-18 12:06:00,,Antrag,Neuantrag,App,high,waiting,Fachteam B,Ina,Nord,Privat,54,3,True,negativ,323,240,True,,223,176.94
+T-0196,2026-04-04 13:27:00,,Technik,Verbindung,E-Mail,medium,open,Backend,Jonas,Süd,Privat,64,4,False,neutral,206,480,False,,775,72.87
+T-0197,2026-06-15 17:05:00,2026-06-15 21:12:00,Technik,Verbindung,Web,medium,closed,Service Desk,Hassan,Mitte,Privat,27,1,False,positiv,247,480,False,5,671,158.04
+T-0198,2026-05-19 15:41:00,2026-05-19 17:15:00,Zugang,Benutzername,Web,medium,closed,Identity,Ina,West,Privat,77,1,False,neutral,94,480,False,2,35,41.88
+T-0199,2026-06-18 10:47:00,2026-06-18 16:13:00,Antrag,Unterlagen,Web,medium,closed,Fachteam A,Carla,Mitte,Partner,47,1,False,positiv,326,480,False,,394,124.76
+T-0200,2026-05-14 12:53:00,2026-05-14 15:03:00,Technik,Verbindung,Web,high,closed,Backend,Farid,Nord,Privat,27,1,True,neutral,130,240,False,4,553,86.18
+T-0201,2026-04-23 10:14:00,2026-04-23 14:34:00,Technik,Upload,E-Mail,medium,closed,Backend,Aylin,Mitte,Organisation,33,3,True,neutral,260,480,False,4,141,112.34
+T-0202,2026-05-27 17:10:00,,Abrechnung,Bankdaten,E-Mail,medium,in_progress,Service Desk,Aylin,Süd,Privat,69,3,True,positiv,178,480,False,,602,96.07
+T-0203,2026-04-16 17:09:00,2026-04-16 22:43:00,Antrag,Nachreichung,Web,high,closed,Fachteam B,Hassan,Süd,Privat,61,1,False,neutral,334,240,True,3,412,109.4
+T-0204,2026-02-15 15:57:00,,Technik,Fehlermeldung,E-Mail,low,open,Backend,Greta,Süd,Privat,34,2,False,positiv,211,720,False,,577,139.43
+T-0205,2026-07-25 15:50:00,,Termin,Ort,Web,medium,open,Service Desk,Ina,Ost,Privat,72,1,False,negativ,77,480,False,,513,27.22
+T-0206,2026-07-10 08:36:00,2026-07-10 09:38:00,Termin,Vereinbarung,Telefon,low,closed,Fachteam A,Eva,Süd,Privat,31,1,False,neutral,62,720,False,4,573,24.89
+T-0207,2026-05-23 15:11:00,2026-05-23 16:48:00,Abrechnung,Gutschrift,App,medium,closed,Service Desk,Deniz,Ost,Privat,35,3,True,neutral,97,480,False,4,482,58.12
+T-0208,2026-06-30 08:10:00,,Termin,Verschiebung,E-Mail,low,open,Fachteam A,Ina,Mitte,Privat,29,3,False,neutral,65,720,False,,252,21.17
+T-0209,2026-06-02 08:49:00,2026-06-02 12:27:00,Technik,Fehlermeldung,App,medium,closed,Service Desk,Jonas,Mitte,Privat,54,1,True,neutral,218,480,False,5,740,109.92
+T-0210,2026-03-12 14:22:00,2026-03-12 16:50:00,Technik,Performance,Web,medium,closed,Backend,Aylin,Süd,Privat,54,2,True,neutral,148,480,False,4,380,78.91
+T-0211,2026-02-14 14:32:00,2026-02-14 15:33:00,Allgemein,Zuständigkeit,App,low,closed,Service Desk,Greta,Mitte,Privat,50,2,False,neutral,61,720,False,5,274,32.04
+T-0212,2026-04-08 11:43:00,2026-04-08 12:43:00,Termin,Ort,App,medium,closed,Service Desk,Hassan,Nord,Privat,51,1,False,neutral,60,480,False,2,375,34.17
+T-0213,2026-02-21 11:47:00,2026-02-21 13:18:00,Zugang,2FA,Web,medium,closed,Service Desk,Carla,Süd,Privat,31,3,False,negativ,91,480,False,,704,30.16
+T-0214,2026-05-07 17:55:00,2026-05-07 20:10:00,Abrechnung,Rechnung,E-Mail,medium,closed,Finance,Hassan,West,Privat,34,2,False,neutral,135,480,False,,514,83.66
+T-0215,2026-04-28 13:44:00,2026-04-28 14:52:00,Allgemein,Öffnungszeiten,E-Mail,medium,closed,Service Desk,Hassan,Nord,Privat,41,2,True,neutral,68,480,False,3,652,33.22
+T-0216,2026-03-13 15:11:00,2026-03-13 15:32:00,Technik,Performance,Web,medium,closed,Backend,Farid,West,Organisation,73,1,False,neutral,21,480,False,3,781,13.02
+T-0217,2026-08-08 17:03:00,2026-08-08 18:16:00,Zugang,Passwort,E-Mail,low,closed,Service Desk,Hassan,West,Privat,75,3,False,neutral,73,720,False,3,595,32.42
+T-0218,2026-06-16 16:11:00,2026-06-16 17:08:00,Allgemein,Zuständigkeit,E-Mail,medium,closed,Service Desk,Jonas,Süd,Privat,28,2,False,neutral,57,480,False,3,173,31.5
+T-0219,2026-02-28 13:20:00,2026-02-28 13:50:00,Allgemein,Zuständigkeit,E-Mail,medium,closed,Service Desk,Ben,Nord,Privat,64,1,False,negativ,30,480,False,4,196,14.4
+T-0220,2026-01-27 09:04:00,2026-01-27 13:54:00,Technik,Fehlermeldung,Web,low,closed,Service Desk,Ben,Süd,Privat,31,2,False,neutral,290,720,False,3,424,162.96
+T-0221,2026-01-08 08:42:00,,Technik,Performance,E-Mail,medium,in_progress,Platform,Carla,Mitte,Organisation,74,5,False,negativ,92,480,False,,739,32.57
+T-0222,2026-03-30 15:34:00,2026-03-30 17:57:00,Abrechnung,Bankdaten,E-Mail,medium,closed,Service Desk,Ina,Mitte,Privat,,2,True,positiv,143,480,False,5,318,50.7
+T-0223,2026-07-24 12:38:00,2026-07-24 14:58:00,Abrechnung,Rechnung,E-Mail,medium,closed,Service Desk,Eva,Nord,Organisation,38,2,True,neutral,140,480,False,4,250,88.39
+T-0224,2026-05-17 12:26:00,2026-05-17 15:35:00,Technik,Verbindung,E-Mail,medium,closed,Backend,Eva,West,Privat,80,3,True,neutral,189,480,False,1,572,60.45
+T-0225,2026-01-04 15:13:00,,Zugang,Passwort,Web,low,open,Service Desk,Aylin,Süd,Privat,60,3,False,neutral,97,720,False,,793,32.21
+T-0226,2026-03-06 14:53:00,2026-03-06 16:31:00,Allgemein,Öffnungszeiten,E-Mail,low,closed,Service Desk,Carla,Süd,Organisation,22,2,False,negativ,98,720,False,5,706,33.08
+T-0227,2026-05-21 16:07:00,2026-05-21 16:51:00,Allgemein,Information,App,medium,closed,Service Desk,Carla,Nord,Organisation,32,3,False,negativ,44,480,False,4,307,13.47
+T-0228,2026-02-09 13:49:00,2026-02-09 19:21:00,Antrag,Status,Web,high,closed,Fachteam A,Jonas,Ost,Privat,25,2,False,negativ,332,240,True,,743,185.2
+T-0229,2026-04-07 13:46:00,2026-04-07 17:50:00,Abrechnung,Rechnung,Web,low,closed,Service Desk,Hassan,Süd,Privat,42,4,True,neutral,244,720,False,4,504,104.79
+T-0230,2026-01-01 16:24:00,2026-01-01 19:55:00,Technik,Performance,Web,low,closed,Service Desk,Eva,Mitte,Privat,26,1,True,neutral,211,720,False,4,561,96.0
+T-0231,2026-01-18 08:53:00,2026-01-18 16:06:00,Antrag,Unterlagen,Web,medium,closed,Fachteam B,Ben,Nord,Privat,,1,True,positiv,433,480,False,4,663,214.75
+T-0232,2026-08-26 09:29:00,2026-08-26 17:13:00,Antrag,Nachreichung,Web,low,closed,Fachteam A,Aylin,Süd,Privat,25,1,False,neutral,464,720,False,3,97,146.75
+T-0233,2026-02-18 11:33:00,,Termin,Vereinbarung,App,high,in_progress,Service Desk,Ben,Süd,Privat,63,1,False,neutral,37,240,False,,744,21.08
+T-0234,2026-05-17 17:28:00,2026-05-18 05:06:00,Antrag,Neuantrag,Web,low,closed,Fachteam B,Ina,West,Privat,73,1,False,negativ,698,720,False,4,583,276.61
+T-0235,2026-06-02 08:33:00,2026-06-02 13:00:00,Technik,Upload,E-Mail,medium,closed,Service Desk,Aylin,Nord,Partner,53,4,False,positiv,267,480,False,4,610,141.05
+T-0236,2026-03-07 12:05:00,2026-03-07 12:58:00,Zugang,Passwort,Web,medium,closed,Service Desk,Farid,Mitte,Privat,80,1,True,neutral,53,480,False,5,122,28.12
+T-0237,2026-03-27 13:56:00,,Antrag,Nachreichung,Telefon,low,in_progress,Fachteam B,Ben,Nord,Partner,19,1,False,positiv,503,720,False,,672,278.44
+T-0238,2026-02-26 10:03:00,,Technik,Upload,Web,medium,waiting,Backend,Carla,West,Privat,73,1,False,neutral,79,480,False,,428,32.86
+T-0239,2026-04-13 16:27:00,2026-04-13 18:21:00,Zugang,Konto gesperrt,E-Mail,low,closed,Identity,Ina,Ost,Privat,43,1,False,neutral,114,720,False,5,273,58.11
+T-0240,2026-03-31 11:20:00,2026-03-31 12:24:00,Zugang,Benutzername,App,medium,closed,Identity,Ben,Ost,Privat,74,3,True,neutral,64,480,False,4,264,42.86
+T-0241,2026-06-08 10:55:00,2026-06-08 15:05:00,Technik,Upload,Telefon,low,closed,Platform,Ben,Nord,Privat,60,2,False,neutral,250,720,False,4,560,95.38
+T-0242,2026-05-15 08:16:00,,Termin,Ort,App,medium,open,Service Desk,Greta,Mitte,Partner,19,3,False,positiv,85,480,False,,701,27.76
+T-0243,2026-05-11 09:57:00,2026-05-11 11:21:00,Technik,Upload,Web,high,closed,Backend,Greta,Süd,Partner,20,5,True,neutral,84,240,False,,337,56.19
+T-0244,2026-03-02 16:17:00,,Technik,Verbindung,Web,medium,in_progress,Backend,Farid,West,Privat,,1,False,neutral,213,480,False,,311,111.18
+T-0245,2026-06-06 11:26:00,,Technik,Upload,E-Mail,high,waiting,Platform,Greta,Mitte,Partner,44,3,False,neutral,137,240,False,,619,76.86
+T-0246,2026-05-25 10:20:00,2026-05-25 17:11:00,Antrag,Unterlagen,Web,high,closed,Fachteam A,Greta,Süd,Privat,21,2,True,negativ,411,240,True,4,446,191.37
+T-0247,2026-06-06 17:17:00,2026-06-06 19:53:00,Technik,Upload,Web,low,closed,Platform,Carla,Nord,Organisation,,2,True,positiv,156,720,False,3,505,99.6
+T-0248,2026-01-09 14:48:00,,Antrag,Nachreichung,E-Mail,low,waiting,Fachteam B,Carla,Süd,Privat,44,1,True,negativ,731,720,True,,474,238.64
+T-0249,2026-06-05 14:46:00,2026-06-05 15:22:00,Allgemein,Information,Telefon,medium,closed,Service Desk,Greta,Ost,Organisation,22,3,False,neutral,36,480,False,4,68,22.71
+T-0250,2026-06-11 08:12:00,2026-06-11 08:52:00,Allgemein,Kontakt,E-Mail,medium,closed,Service Desk,Ina,Ost,Privat,24,3,False,neutral,40,480,False,5,686,19.42
+T-0251,2026-01-07 10:29:00,2026-01-07 12:18:00,Abrechnung,Rechnung,E-Mail,low,closed,Finance,Greta,Ost,Privat,38,1,True,positiv,109,720,False,3,485,37.68
+T-0252,2026-07-16 10:58:00,,Antrag,Neuantrag,E-Mail,medium,in_progress,Fachteam A,Greta,Mitte,Privat,24,4,True,positiv,229,480,False,,341,107.13
+T-0253,2026-03-06 08:29:00,,Antrag,Status,Web,low,open,Fachteam A,Deniz,Nord,Privat,78,2,False,neutral,301,720,False,,477,144.93
+T-0254,2026-06-17 13:02:00,2026-06-17 14:59:00,Zugang,Passwort,E-Mail,low,closed,Identity,Aylin,Süd,Privat,31,2,False,neutral,117,720,False,3,650,66.55
+T-0255,2026-03-24 13:57:00,2026-03-24 16:22:00,Antrag,Unterlagen,Telefon,critical,closed,Fachteam B,Aylin,Nord,Organisation,53,2,False,neutral,145,120,True,2,239,55.67
+T-0256,2026-06-30 12:27:00,2026-06-30 17:01:00,Antrag,Neuantrag,App,medium,closed,Fachteam A,Hassan,Mitte,Partner,81,1,False,neutral,274,480,False,4,209,136.18
+T-0257,2026-07-23 09:47:00,,Allgemein,Kontakt,App,medium,waiting,Service Desk,Ben,Nord,Privat,45,1,False,neutral,61,480,False,,231,18.58
+T-0258,2026-03-29 14:46:00,,Antrag,Nachreichung,Web,high,open,Fachteam B,Aylin,Nord,Privat,79,1,True,negativ,10,240,False,,61,6.66
+T-0259,2026-01-15 16:19:00,2026-01-15 20:54:00,Antrag,Status,E-Mail,low,closed,Fachteam B,Hassan,Ost,Partner,63,1,True,neutral,275,720,False,,56,98.92
+T-0260,2026-01-30 12:45:00,2026-01-30 16:47:00,Technik,Verbindung,Telefon,medium,closed,Backend,Jonas,Ost,Privat,56,1,True,negativ,242,480,False,4,63,83.46
+T-0261,2026-08-25 15:46:00,2026-08-25 17:16:00,Termin,Vereinbarung,Web,medium,closed,Fachteam A,Ina,Süd,Privat,34,1,False,positiv,90,480,False,1,559,40.95
+T-0262,2026-01-27 16:49:00,2026-01-27 17:41:00,Zugang,Konto gesperrt,Telefon,high,closed,Identity,Farid,Ost,Organisation,42,1,False,negativ,52,240,False,4,712,31.67
+T-0263,2026-03-23 12:09:00,2026-03-23 14:54:00,Zugang,2FA,Web,low,closed,Identity,Deniz,Mitte,Privat,74,1,True,neutral,165,720,False,,716,51.41
+T-0264,2026-06-26 15:39:00,2026-06-26 17:14:00,Zugang,Benutzername,E-Mail,low,closed,Identity,Jonas,Mitte,Privat,,3,False,neutral,95,720,False,5,120,50.08
+T-0265,2026-02-06 17:16:00,2026-02-06 19:12:00,Termin,Ort,Web,low,closed,Fachteam A,Hassan,Süd,Partner,76,1,False,neutral,116,720,False,2,515,40.04
+T-0266,2026-07-02 09:20:00,2026-07-02 11:57:00,Abrechnung,Zahlung,Web,low,closed,Finance,Ina,Nord,Privat,49,2,False,neutral,157,720,False,5,373,71.2
+T-0267,2026-06-21 09:47:00,2026-06-21 13:16:00,Technik,Verbindung,E-Mail,high,closed,Service Desk,Ina,Süd,Privat,74,2,False,neutral,209,240,False,5,136,68.52
+T-0268,2026-08-16 17:57:00,2026-08-17 00:04:00,Antrag,Status,E-Mail,medium,closed,Fachteam A,Ben,Süd,Organisation,75,1,False,neutral,367,480,False,5,608,156.58
+T-0269,2026-05-11 14:54:00,2026-05-11 16:05:00,Termin,Absage,App,high,closed,Fachteam A,Ben,Mitte,Privat,63,2,False,positiv,71,240,False,,56,29.31
+T-0270,2026-06-19 10:30:00,,Technik,Verbindung,Telefon,medium,open,Service Desk,Greta,Ost,Privat,34,4,True,neutral,231,480,False,,98,81.71
+T-0271,2026-07-26 14:55:00,2026-07-26 17:21:00,Antrag,Unterlagen,E-Mail,medium,closed,Fachteam B,Carla,Nord,Privat,75,2,True,positiv,146,480,False,3,32,68.61
+T-0272,2026-06-30 13:07:00,2026-06-30 14:25:00,Antrag,Unterlagen,Web,medium,closed,Fachteam B,Aylin,Nord,Privat,53,1,False,neutral,78,480,False,2,115,51.17
+T-0273,2026-03-29 16:49:00,,Technik,Fehlermeldung,E-Mail,medium,in_progress,Backend,Eva,Mitte,Privat,55,3,False,neutral,249,480,False,,61,103.51
+T-0274,2026-01-14 12:51:00,2026-01-14 18:48:00,Antrag,Nachreichung,E-Mail,medium,closed,Fachteam A,Hassan,Mitte,Privat,50,1,True,positiv,357,480,False,3,39,229.6
+T-0275,2026-06-29 11:31:00,2026-06-29 12:40:00,Termin,Verschiebung,Telefon,high,closed,Fachteam A,Farid,Süd,Privat,37,3,False,negativ,69,240,False,5,417,32.1
+T-0276,2026-07-13 09:03:00,2026-07-13 12:34:00,Technik,Verbindung,Web,medium,closed,Backend,Farid,Nord,Privat,66,4,False,neutral,211,480,False,4,568,85.47
+T-0277,2026-01-11 09:58:00,,Allgemein,Öffnungszeiten,Telefon,low,open,Service Desk,Farid,Mitte,Privat,52,1,False,neutral,41,720,False,,125,16.68
+T-0278,2026-06-23 10:20:00,,Technik,Verbindung,Telefon,medium,open,Platform,Jonas,Süd,Privat,75,2,True,positiv,90,480,False,,767,39.65
+T-0279,2026-06-13 09:45:00,2026-06-13 13:55:00,Technik,Performance,E-Mail,low,closed,Platform,Jonas,Süd,Partner,41,2,True,neutral,250,720,False,5,503,100.33
+T-0280,2026-07-19 09:17:00,2026-07-19 15:37:00,Antrag,Neuantrag,App,medium,closed,Fachteam B,Greta,West,Privat,74,1,True,negativ,380,480,False,,230,262.87
+T-0281,2026-08-22 15:45:00,2026-08-22 21:43:00,Antrag,Unterlagen,Web,medium,closed,Fachteam B,Deniz,Mitte,Privat,,2,False,neutral,358,480,False,4,63,107.52
+T-0282,2026-08-29 15:30:00,,Antrag,Nachreichung,Web,low,open,Fachteam B,Jonas,Nord,Privat,,3,False,neutral,226,720,False,,518,154.06
+T-0283,2026-03-29 09:53:00,2026-03-29 10:30:00,Zugang,Konto gesperrt,Web,medium,closed,Identity,Ben,West,Privat,42,2,True,positiv,37,480,False,4,730,12.68
+T-0284,2026-07-04 17:15:00,2026-07-04 19:07:00,Technik,Fehlermeldung,E-Mail,high,closed,Platform,Carla,Nord,Privat,75,3,True,neutral,112,240,False,1,370,48.8
+T-0285,2026-03-01 09:02:00,2026-03-01 10:14:00,Termin,Vereinbarung,Web,medium,closed,Fachteam A,Ina,Süd,Organisation,34,1,False,neutral,72,480,False,,339,39.82
+T-0286,2026-07-24 17:14:00,2026-07-24 18:45:00,Termin,Vereinbarung,Web,medium,closed,Service Desk,Ben,Nord,Privat,33,2,False,neutral,91,480,False,4,243,32.3
+T-0287,2026-05-22 10:28:00,2026-05-22 11:44:00,Termin,Verschiebung,Web,medium,closed,Service Desk,Greta,Süd,Privat,38,3,False,neutral,76,480,False,,31,37.6
+T-0288,2026-02-22 10:40:00,2026-02-22 12:05:00,Zugang,Passwort,E-Mail,medium,closed,Service Desk,Greta,Ost,Privat,81,3,True,neutral,85,480,False,2,333,53.6
+T-0289,2026-07-14 16:32:00,2026-07-14 19:52:00,Technik,Fehlermeldung,Web,medium,closed,Backend,Ben,Mitte,Privat,78,5,True,positiv,200,480,False,3,80,133.81
+T-0290,2026-08-25 16:11:00,2026-08-25 23:57:00,Antrag,Nachreichung,Web,low,closed,Fachteam B,Aylin,Nord,Organisation,59,2,True,positiv,466,720,False,5,260,307.26
+T-0291,2026-01-19 15:37:00,2026-01-19 16:15:00,Termin,Absage,Web,low,closed,Fachteam A,Deniz,Ost,Organisation,35,2,False,neutral,38,720,False,3,301,16.85
+T-0292,2026-04-28 14:10:00,2026-04-28 17:57:00,Technik,Performance,E-Mail,low,closed,Service Desk,Carla,Nord,Organisation,39,2,True,neutral,227,720,False,4,446,88.96
+T-0293,2026-04-20 11:15:00,,Allgemein,Information,Web,high,in_progress,Service Desk,Hassan,West,Privat,18,3,False,positiv,24,240,False,,70,11.21
+T-0294,2026-07-24 09:28:00,2026-07-24 10:44:00,Zugang,Benutzername,E-Mail,medium,closed,Service Desk,Ina,Ost,Privat,63,2,False,neutral,76,480,False,4,516,25.56
+T-0295,2026-08-12 14:11:00,2026-08-12 20:41:00,Antrag,Unterlagen,Telefon,medium,closed,Fachteam A,Hassan,Ost,Organisation,,1,False,negativ,390,480,False,4,461,122.1
+T-0296,2026-06-22 13:56:00,2026-06-22 15:16:00,Termin,Verschiebung,Web,high,closed,Fachteam A,Aylin,Mitte,Partner,26,2,True,neutral,80,240,False,5,367,28.43
+T-0297,2026-08-18 12:32:00,2026-08-18 15:10:00,Technik,Fehlermeldung,Telefon,medium,closed,Backend,Deniz,Süd,Privat,33,2,True,neutral,158,480,False,4,324,99.56
+T-0298,2026-04-11 10:18:00,2026-04-11 12:21:00,Abrechnung,Gutschrift,App,high,closed,Finance,Deniz,Ost,Privat,44,2,True,positiv,123,240,False,4,723,51.32
+T-0299,2026-08-12 11:53:00,2026-08-12 20:44:00,Antrag,Unterlagen,E-Mail,medium,closed,Fachteam A,Eva,Süd,Privat,74,1,True,negativ,531,480,True,3,338,350.1
+T-0300,2026-04-27 10:39:00,2026-04-27 13:15:00,Zugang,Konto gesperrt,Web,low,closed,Service Desk,Aylin,Süd,Privat,37,1,False,negativ,156,720,False,2,613,108.81
+T-0301,2026-04-25 16:10:00,2026-04-25 17:24:00,Zugang,Konto gesperrt,Web,medium,closed,Identity,Farid,West,Privat,58,2,False,neutral,74,480,False,5,544,38.37
+T-0302,2026-08-25 15:21:00,,Technik,Upload,Web,medium,in_progress,Backend,Carla,Mitte,Organisation,69,1,True,neutral,141,480,False,,250,77.13
+T-0303,2026-08-28 12:12:00,2026-08-28 15:32:00,Abrechnung,Rechnung,E-Mail,medium,closed,Finance,Jonas,Mitte,Privat,42,2,False,positiv,200,480,False,4,82,100.92
+T-0304,2026-03-14 13:22:00,2026-03-14 14:00:00,Allgemein,Zuständigkeit,Telefon,medium,closed,Service Desk,Farid,Ost,Privat,71,3,False,negativ,38,480,False,3,459,23.65
+T-0305,2026-08-11 16:21:00,2026-08-12 04:43:00,Antrag,Status,E-Mail,low,closed,Fachteam A,Carla,Süd,Privat,71,3,True,neutral,742,720,True,2,165,391.16
+T-0306,2026-07-09 15:14:00,2026-07-09 19:03:00,Technik,Verbindung,E-Mail,low,closed,Service Desk,Jonas,West,Privat,54,3,False,negativ,229,720,False,4,275,131.71
+T-0307,2026-08-11 12:40:00,,Zugang,Konto gesperrt,App,medium,open,Service Desk,Jonas,Ost,Privat,,1,False,neutral,56,480,False,,620,22.61
+T-0308,2026-04-18 13:03:00,,Zugang,Konto gesperrt,Telefon,medium,in_progress,Service Desk,Carla,Nord,Privat,30,3,False,neutral,80,480,False,,196,43.16
+T-0309,2026-05-29 13:52:00,2026-05-29 19:04:00,Antrag,Nachreichung,Telefon,high,closed,Fachteam B,Eva,West,Privat,38,2,False,neutral,312,240,True,,251,112.89
+T-0310,2026-03-21 13:08:00,2026-03-21 14:45:00,Termin,Vereinbarung,App,medium,closed,Service Desk,Carla,Nord,Privat,21,1,False,neutral,97,480,False,2,735,34.09
+T-0311,2026-07-18 15:48:00,2026-07-18 17:21:00,Zugang,2FA,Web,low,closed,Identity,Greta,Nord,Privat,50,2,False,neutral,93,720,False,,35,39.12
+T-0312,2026-02-07 12:37:00,2026-02-07 13:24:00,Termin,Vereinbarung,Web,high,closed,Service Desk,Carla,West,Privat,30,2,False,positiv,47,240,False,5,757,24.04
+T-0313,2026-08-06 15:23:00,2026-08-06 18:55:00,Technik,Upload,Telefon,low,closed,Platform,Ben,Süd,Partner,72,2,True,negativ,212,720,False,3,346,73.17
+T-0314,2026-01-22 13:31:00,2026-01-22 15:20:00,Zugang,Passwort,E-Mail,medium,closed,Service Desk,Eva,Mitte,Organisation,70,2,False,negativ,109,480,False,5,96,40.93
+T-0315,2026-05-14 09:07:00,2026-05-14 09:50:00,Allgemein,Information,Web,high,closed,Service Desk,Hassan,Nord,Privat,26,3,True,negativ,43,240,False,3,438,16.34
+T-0316,2026-06-04 14:31:00,2026-06-04 15:43:00,Zugang,Benutzername,Web,medium,closed,Service Desk,Greta,West,Privat,35,2,True,neutral,72,480,False,,94,42.85
+T-0317,2026-01-25 09:42:00,,Abrechnung,Rechnung,E-Mail,critical,open,Service Desk,Carla,West,Privat,51,1,True,neutral,70,120,False,,578,36.19
+T-0318,2026-04-07 15:29:00,2026-04-07 19:45:00,Antrag,Neuantrag,App,critical,closed,Fachteam A,Greta,Ost,Privat,73,2,False,negativ,256,120,True,3,137,126.72
+T-0319,2026-05-10 08:25:00,2026-05-10 14:10:00,Antrag,Status,Telefon,medium,closed,Fachteam B,Hassan,Mitte,Organisation,25,3,False,neutral,345,480,False,,400,109.73
+T-0320,2026-04-02 14:22:00,2026-04-02 18:06:00,Technik,Fehlermeldung,E-Mail,medium,closed,Service Desk,Ben,Ost,Privat,57,3,True,positiv,224,480,False,,576,82.41
+T-0321,2026-05-01 17:01:00,2026-05-01 21:02:00,Technik,Verbindung,E-Mail,medium,closed,Backend,Greta,West,Privat,44,2,False,neutral,241,480,False,4,372,146.04
+T-0322,2026-03-09 08:19:00,2026-03-09 10:20:00,Zugang,Konto gesperrt,E-Mail,medium,closed,Service Desk,Ben,Mitte,Privat,30,2,False,positiv,121,480,False,3,568,63.72
+T-0323,2026-05-19 13:12:00,2026-05-19 14:59:00,Abrechnung,Zahlung,Web,medium,closed,Service Desk,Ina,West,Privat,41,2,False,neutral,107,480,False,3,785,73.28
+T-0324,2026-04-04 15:09:00,2026-04-04 15:44:00,Allgemein,Zuständigkeit,E-Mail,high,closed,Service Desk,Jonas,Nord,Privat,26,4,False,neutral,35,240,False,5,318,14.24
+T-0325,2026-03-04 12:29:00,2026-03-04 12:39:00,Antrag,Nachreichung,Web,medium,closed,Fachteam A,Ben,Süd,Privat,21,2,False,positiv,10,480,False,5,205,5.63
+T-0326,2026-03-18 09:57:00,2026-03-18 17:14:00,Antrag,Neuantrag,E-Mail,critical,closed,Fachteam A,Aylin,Nord,Privat,35,1,False,neutral,437,120,True,3,148,218.54
+T-0327,2026-07-08 14:51:00,2026-07-08 17:10:00,Abrechnung,Gutschrift,Web,medium,closed,Finance,Farid,West,Organisation,74,1,True,positiv,139,480,False,5,571,44.81
+T-0328,2026-08-28 10:23:00,2026-08-28 13:08:00,Technik,Fehlermeldung,E-Mail,low,closed,Backend,Deniz,West,Organisation,,3,False,negativ,165,720,False,5,712,53.11
+T-0329,2026-08-08 15:24:00,,Technik,Verbindung,App,low,in_progress,Service Desk,Ben,Mitte,Organisation,48,3,False,neutral,385,720,False,,189,161.3
+T-0330,2026-07-30 15:30:00,2026-07-30 16:00:00,Allgemein,Zuständigkeit,Telefon,high,closed,Service Desk,Aylin,West,Organisation,38,1,False,negativ,30,240,False,4,641,13.22
+T-0331,2026-02-04 08:25:00,2026-02-04 14:58:00,Antrag,Nachreichung,Web,medium,closed,Fachteam A,Carla,Ost,Organisation,34,3,True,positiv,393,480,False,5,352,242.5
+T-0332,2026-04-05 10:25:00,,Abrechnung,Zahlung,Telefon,low,in_progress,Service Desk,Eva,Süd,Privat,47,1,True,negativ,259,720,False,,498,171.65
+T-0333,2026-04-05 10:36:00,2026-04-05 15:35:00,Technik,Performance,E-Mail,low,closed,Backend,Eva,Süd,Privat,33,4,False,neutral,299,720,False,3,297,202.85
+T-0334,2026-03-14 11:26:00,2026-03-14 15:13:00,Technik,Verbindung,E-Mail,medium,closed,Platform,Jonas,Süd,Partner,49,5,False,positiv,227,480,False,5,35,109.7
+T-0335,2026-03-07 09:06:00,,Abrechnung,Gutschrift,E-Mail,critical,in_progress,Finance,Greta,Ost,Organisation,23,2,False,neutral,54,120,False,,541,16.32
+T-0336,2026-03-08 10:32:00,2026-03-08 11:37:00,Antrag,Nachreichung,Telefon,critical,closed,Fachteam A,Ina,Nord,Privat,51,2,True,neutral,65,120,False,,155,20.65
+T-0337,2026-08-26 12:33:00,2026-08-26 14:13:00,Abrechnung,Gutschrift,App,medium,closed,Service Desk,Eva,Mitte,Organisation,74,4,False,neutral,100,480,False,,260,35.94
+T-0338,2026-04-02 16:31:00,2026-04-02 19:46:00,Technik,Verbindung,Telefon,low,closed,Service Desk,Ben,Ost,Privat,54,3,True,neutral,195,720,False,3,304,98.18
+T-0339,2026-05-08 09:56:00,,Antrag,Unterlagen,App,medium,waiting,Fachteam A,Greta,Nord,Privat,31,3,True,neutral,311,480,False,,182,197.42
+T-0340,2026-03-26 08:41:00,,Zugang,Benutzername,E-Mail,high,in_progress,Service Desk,Eva,Mitte,Privat,34,1,False,negativ,42,240,False,,74,16.15
+T-0341,2026-04-13 12:11:00,2026-04-13 13:28:00,Termin,Absage,Web,medium,closed,Service Desk,Ina,Mitte,Privat,69,4,True,positiv,77,480,False,5,148,43.25
+T-0342,2026-01-25 13:32:00,2026-01-25 16:53:00,Technik,Verbindung,App,medium,closed,Backend,Jonas,Süd,Privat,72,4,True,neutral,201,480,False,4,461,95.2
+T-0343,2026-05-15 09:18:00,,Zugang,Konto gesperrt,Telefon,critical,open,Identity,Hassan,Mitte,Privat,56,2,False,negativ,32,120,False,,560,20.37
+T-0344,2026-04-29 17:52:00,2026-04-29 20:11:00,Abrechnung,Rechnung,App,medium,closed,Finance,Ina,Ost,Privat,40,3,False,positiv,139,480,False,5,451,44.22
+T-0345,2026-08-24 10:13:00,2026-08-24 11:19:00,Allgemein,Zuständigkeit,Telefon,low,closed,Service Desk,Jonas,West,Privat,18,4,False,positiv,66,720,False,1,496,37.11
+T-0346,2026-02-04 08:12:00,,Antrag,Status,Telefon,low,waiting,Fachteam B,Greta,West,Privat,48,2,False,positiv,467,720,False,,666,221.51
+T-0347,2026-02-12 10:47:00,2026-02-12 11:31:00,Allgemein,Kontakt,Telefon,low,closed,Service Desk,Hassan,Ost,Privat,68,1,False,neutral,44,720,False,,670,13.34
+T-0348,2026-05-12 17:46:00,,Allgemein,Information,Telefon,critical,open,Service Desk,Aylin,Ost,Privat,72,1,False,neutral,10,120,False,,591,5.31
+T-0349,2026-03-15 11:30:00,2026-03-15 12:24:00,Zugang,Benutzername,Web,high,closed,Service Desk,Hassan,Ost,Privat,77,2,False,neutral,54,240,False,3,451,31.57
+T-0350,2026-07-11 09:42:00,2026-07-11 10:22:00,Termin,Absage,Telefon,high,closed,Service Desk,Jonas,Süd,Privat,81,2,False,neutral,40,240,False,3,43,12.75
+T-0351,2026-01-30 17:14:00,2026-01-30 20:46:00,Technik,Upload,Web,medium,closed,Backend,Aylin,Nord,Privat,,3,True,neutral,212,480,False,3,731,76.42
+T-0352,2026-07-20 17:39:00,,Allgemein,Öffnungszeiten,App,medium,open,Service Desk,Hassan,Nord,Partner,44,1,True,positiv,52,480,False,,185,34.55
+T-0353,2026-02-05 09:54:00,2026-02-05 17:33:00,Antrag,Status,E-Mail,medium,closed,Fachteam A,Carla,West,Privat,54,5,True,negativ,459,480,False,2,797,206.08
+T-0354,2026-04-16 14:57:00,,Technik,Performance,Telefon,low,open,Service Desk,Deniz,Süd,Organisation,19,3,True,positiv,105,720,False,,554,61.64
+T-0355,2026-01-10 10:57:00,,Allgemein,Öffnungszeiten,E-Mail,medium,waiting,Service Desk,Greta,Nord,Privat,71,1,False,negativ,10,480,False,,722,4.61
+T-0356,2026-06-06 10:44:00,,Antrag,Nachreichung,Web,medium,in_progress,Fachteam B,Aylin,West,Partner,62,3,False,neutral,210,480,False,,689,137.56
+T-0357,2026-07-09 10:33:00,2026-07-09 13:39:00,Technik,Performance,Web,high,closed,Backend,Farid,Ost,Organisation,38,3,False,neutral,186,240,False,,577,122.04
+T-0358,2026-08-04 13:16:00,2026-08-04 16:23:00,Antrag,Unterlagen,Web,high,closed,Fachteam B,Ina,Nord,Organisation,18,1,False,positiv,187,240,False,5,620,116.34
+T-0359,2026-01-27 13:33:00,2026-01-27 16:09:00,Antrag,Unterlagen,Web,medium,closed,Fachteam A,Greta,Mitte,Organisation,28,1,True,neutral,156,480,False,,158,73.31
+T-0360,2026-04-12 12:37:00,2026-04-12 14:40:00,Abrechnung,Bankdaten,Telefon,low,closed,Service Desk,Jonas,Mitte,Privat,38,2,False,neutral,123,720,False,3,157,71.89
+T-0361,2026-01-31 17:54:00,2026-01-31 18:32:00,Allgemein,Öffnungszeiten,E-Mail,medium,closed,Service Desk,Carla,Mitte,Privat,65,2,True,positiv,38,480,False,4,170,23.43
+T-0362,2026-05-06 08:07:00,2026-05-06 09:31:00,Termin,Ort,App,low,closed,Fachteam A,Deniz,Süd,Organisation,61,2,False,neutral,84,720,False,4,645,49.39
+T-0363,2026-03-25 09:51:00,2026-03-25 10:49:00,Zugang,2FA,E-Mail,medium,closed,Service Desk,Hassan,Süd,Organisation,,1,False,neutral,58,480,False,4,115,23.84
+T-0364,2026-01-22 11:39:00,,Allgemein,Öffnungszeiten,Telefon,medium,waiting,Service Desk,Ina,Nord,Privat,20,1,False,neutral,19,480,False,,569,6.61
+T-0365,2026-04-13 17:02:00,2026-04-13 17:41:00,Zugang,Passwort,Web,low,closed,Service Desk,Ben,Mitte,Privat,66,2,False,positiv,39,720,False,2,197,13.25
+T-0366,2026-03-25 10:01:00,2026-03-25 13:33:00,Technik,Performance,Web,low,closed,Service Desk,Greta,Süd,Privat,33,2,True,negativ,212,720,False,,636,83.92
+T-0367,2026-05-22 14:04:00,2026-05-22 17:55:00,Antrag,Status,E-Mail,medium,closed,Fachteam A,Eva,Nord,Privat,30,2,False,positiv,231,480,False,4,336,141.85
+T-0368,2026-02-13 11:34:00,2026-02-14 00:11:00,Antrag,Status,E-Mail,low,closed,Fachteam A,Carla,West,Privat,55,1,True,negativ,757,720,True,1,518,245.32
+T-0369,2026-03-14 08:10:00,2026-03-14 10:19:00,Technik,Upload,E-Mail,high,closed,Service Desk,Deniz,Mitte,Organisation,53,1,True,positiv,129,240,False,3,350,64.75
+T-0370,2026-03-24 13:13:00,2026-03-24 13:37:00,Allgemein,Zuständigkeit,App,medium,closed,Service Desk,Eva,Süd,Privat,,2,False,neutral,24,480,False,5,448,13.66
+T-0371,2026-07-28 15:43:00,2026-07-29 01:43:00,Antrag,Status,E-Mail,medium,closed,Fachteam A,Ina,Nord,Organisation,19,4,False,neutral,600,480,True,2,34,226.32
+T-0372,2026-06-07 12:51:00,2026-06-07 15:41:00,Technik,Fehlermeldung,Telefon,medium,closed,Backend,Farid,Süd,Privat,44,2,True,neutral,170,480,False,,678,117.93
+T-0373,2026-06-04 17:11:00,2026-06-04 20:41:00,Technik,Upload,E-Mail,medium,closed,Backend,Deniz,Mitte,Privat,53,3,True,neutral,210,480,False,4,734,146.32
+T-0374,2026-03-24 14:54:00,2026-03-24 22:34:00,Antrag,Nachreichung,App,medium,closed,Fachteam A,Greta,Nord,Organisation,46,2,False,neutral,460,480,False,,570,306.98
+T-0375,2026-08-23 11:12:00,2026-08-23 13:53:00,Abrechnung,Rechnung,Web,medium,closed,Finance,Deniz,Ost,Partner,60,3,True,neutral,161,480,False,3,373,78.8
+T-0376,2026-01-25 15:37:00,,Termin,Absage,Web,medium,in_progress,Service Desk,Jonas,Mitte,Privat,34,4,False,negativ,125,480,False,,477,40.6
+T-0377,2026-06-08 14:14:00,2026-06-08 16:43:00,Zugang,Benutzername,Telefon,low,closed,Identity,Eva,Ost,Privat,30,1,False,neutral,149,720,False,5,489,91.36
+T-0378,2026-02-02 16:16:00,2026-02-02 18:36:00,Abrechnung,Zahlung,Web,low,closed,Finance,Jonas,Süd,Partner,,3,True,positiv,140,720,False,4,692,70.74
+T-0379,2026-03-29 12:23:00,2026-03-29 14:09:00,Termin,Absage,E-Mail,medium,closed,Service Desk,Carla,Ost,Privat,24,1,True,positiv,106,480,False,3,231,40.3
+T-0380,2026-05-25 13:39:00,2026-05-25 15:05:00,Termin,Absage,E-Mail,low,closed,Fachteam A,Jonas,West,Organisation,18,3,False,negativ,86,720,False,5,243,41.85
+T-0381,2026-01-19 13:01:00,2026-01-19 14:43:00,Technik,Upload,Web,high,closed,Service Desk,Carla,Nord,Privat,21,2,False,negativ,102,240,False,3,293,39.53
+T-0382,2026-08-22 09:01:00,2026-08-22 14:04:00,Antrag,Nachreichung,Web,high,closed,Fachteam A,Aylin,Süd,Organisation,76,1,False,neutral,303,240,True,4,564,171.0
+T-0383,2026-04-07 13:20:00,2026-04-07 13:30:00,Allgemein,Information,Web,high,closed,Service Desk,Carla,Süd,Privat,55,1,True,neutral,10,240,False,4,311,3.21
+T-0384,2026-04-10 16:23:00,2026-04-10 17:01:00,Allgemein,Information,Web,low,closed,Service Desk,Jonas,Nord,Privat,81,2,False,neutral,38,720,False,4,622,21.1
+T-0385,2026-08-16 14:36:00,2026-08-17 00:19:00,Antrag,Unterlagen,Web,low,closed,Fachteam A,Greta,Süd,Privat,63,4,True,neutral,583,720,False,2,369,294.36
+T-0386,2026-02-15 15:14:00,,Abrechnung,Bankdaten,Web,medium,in_progress,Service Desk,Farid,West,Privat,28,2,True,neutral,138,480,False,,258,84.78
+T-0387,2026-07-10 12:12:00,,Zugang,Passwort,E-Mail,medium,waiting,Service Desk,Deniz,West,Privat,19,1,False,neutral,59,480,False,,313,35.87
+T-0388,2026-02-08 14:14:00,2026-02-08 15:16:00,Termin,Ort,Telefon,high,closed,Service Desk,Hassan,Mitte,Partner,77,4,False,neutral,62,240,False,2,464,39.58
+T-0389,2026-02-02 12:47:00,,Termin,Ort,E-Mail,low,open,Service Desk,Farid,Süd,Privat,69,2,False,neutral,141,720,False,,732,85.32
+T-0390,2026-03-26 17:40:00,2026-03-26 20:32:00,Abrechnung,Gutschrift,E-Mail,medium,closed,Finance,Carla,Süd,Partner,26,1,True,neutral,172,480,False,3,608,59.07
+T-0391,2026-02-17 11:04:00,2026-02-17 12:13:00,Allgemein,Zuständigkeit,Web,low,closed,Service Desk,Aylin,Mitte,Privat,65,1,False,neutral,69,720,False,3,445,44.43
+T-0392,2026-08-10 11:08:00,,Technik,Fehlermeldung,E-Mail,low,open,Backend,Ben,Ost,Partner,57,2,False,positiv,262,720,False,,539,140.17
+T-0393,2026-06-04 11:33:00,2026-06-04 17:45:00,Antrag,Status,Web,low,closed,Fachteam A,Hassan,Nord,Organisation,76,3,False,positiv,372,720,False,5,425,229.5
+T-0394,2026-02-16 17:06:00,2026-02-16 19:07:00,Antrag,Unterlagen,Web,medium,closed,Fachteam B,Hassan,Ost,Partner,55,3,False,positiv,121,480,False,2,247,71.46
+T-0395,2026-07-19 13:26:00,2026-07-19 13:37:00,Allgemein,Information,E-Mail,critical,closed,Service Desk,Ben,Nord,Privat,77,2,False,positiv,11,120,False,5,431,7.07
+T-0396,2026-01-22 16:42:00,2026-01-22 18:38:00,Zugang,Konto gesperrt,App,low,closed,Service Desk,Hassan,Ost,Privat,20,5,False,negativ,116,720,False,3,784,40.56
+T-0397,2026-02-25 08:57:00,2026-02-25 11:37:00,Technik,Fehlermeldung,Web,medium,closed,Service Desk,Carla,Ost,Privat,31,2,False,neutral,160,480,False,4,29,51.35
+T-0398,2026-04-18 08:00:00,2026-04-18 09:19:00,Zugang,Benutzername,App,medium,closed,Service Desk,Deniz,Süd,Privat,39,2,False,negativ,79,480,False,2,359,39.9
+T-0399,2026-01-28 13:20:00,2026-01-28 16:49:00,Technik,Performance,App,medium,closed,Service Desk,Greta,Nord,Privat,,4,True,neutral,209,480,False,4,93,93.55
+T-0400,2026-01-25 17:20:00,2026-01-25 18:40:00,Allgemein,Information,E-Mail,low,closed,Service Desk,Ina,Mitte,Privat,58,1,False,neutral,80,720,False,4,43,26.16
+T-0401,2026-01-04 11:01:00,2026-01-04 13:41:00,Antrag,Status,E-Mail,medium,closed,Fachteam A,Ina,Mitte,Privat,25,1,False,neutral,160,480,False,4,409,60.93
+T-0402,2026-06-14 08:33:00,,Technik,Fehlermeldung,Telefon,low,open,Service Desk,Farid,Süd,Privat,61,1,False,positiv,241,720,False,,577,95.65
+T-0403,2026-02-16 15:40:00,2026-02-16 17:51:00,Zugang,2FA,Telefon,high,closed,Identity,Jonas,Ost,Privat,44,2,False,neutral,131,240,False,3,234,68.06
+T-0404,2026-06-05 11:19:00,2026-06-05 14:03:00,Technik,Fehlermeldung,E-Mail,medium,closed,Platform,Deniz,Süd,Privat,64,4,True,neutral,164,480,False,3,542,78.15
+T-0405,2026-01-22 12:38:00,2026-01-22 16:02:00,Antrag,Status,Telefon,medium,closed,Fachteam B,Aylin,Ost,Privat,79,1,True,neutral,204,480,False,,505,72.35
+T-0406,2026-04-17 14:47:00,2026-04-17 17:40:00,Technik,Performance,Telefon,low,closed,Backend,Farid,Ost,Privat,,4,False,neutral,173,720,False,4,223,91.04
+T-0407,2026-04-05 08:41:00,2026-04-05 09:16:00,Termin,Absage,Telefon,high,closed,Fachteam A,Ina,Ost,Privat,21,3,False,negativ,35,240,False,4,491,14.16
+T-0408,2026-06-14 14:25:00,2026-06-14 15:09:00,Allgemein,Kontakt,E-Mail,low,closed,Service Desk,Aylin,Nord,Organisation,72,1,False,negativ,44,720,False,4,699,30.23
+T-0409,2026-03-30 10:17:00,2026-03-30 11:01:00,Allgemein,Zuständigkeit,Telefon,medium,closed,Service Desk,Ben,Mitte,Organisation,18,1,False,negativ,44,480,False,,452,26.82
+T-0410,2026-02-16 16:07:00,2026-02-16 17:01:00,Abrechnung,Gutschrift,Web,medium,closed,Service Desk,Carla,Süd,Privat,51,2,True,positiv,54,480,False,5,664,25.72
+T-0411,2026-05-30 11:30:00,2026-05-30 12:29:00,Zugang,2FA,Web,low,closed,Identity,Eva,Nord,Privat,23,2,False,negativ,59,720,False,,32,30.03
+T-0412,2026-06-24 13:20:00,2026-06-24 16:36:00,Technik,Upload,E-Mail,high,closed,Service Desk,Jonas,Ost,Privat,60,1,True,positiv,196,240,False,1,436,127.05
+T-0413,2026-06-25 15:32:00,,Antrag,Unterlagen,Web,low,waiting,Fachteam B,Deniz,West,Privat,,2,False,neutral,380,720,False,,71,168.75
+T-0414,2026-03-31 14:59:00,2026-03-31 16:00:00,Allgemein,Zuständigkeit,Web,medium,closed,Service Desk,Greta,Mitte,Organisation,42,1,False,positiv,61,480,False,5,758,39.68
+T-0415,2026-05-04 16:15:00,,Abrechnung,Zahlung,Web,medium,in_progress,Service Desk,Carla,Ost,Partner,21,2,False,positiv,141,480,False,,359,51.34
+T-0416,2026-06-12 15:05:00,2026-06-12 16:05:00,Allgemein,Zuständigkeit,Web,low,closed,Service Desk,Ben,Süd,Partner,,1,False,negativ,60,720,False,5,767,35.83
+T-0417,2026-03-29 17:59:00,2026-03-29 21:10:00,Technik,Verbindung,Web,high,closed,Platform,Eva,Nord,Privat,18,5,True,neutral,191,240,False,4,422,71.81
+T-0418,2026-01-28 14:00:00,2026-01-28 14:16:00,Allgemein,Zuständigkeit,Telefon,high,closed,Service Desk,Ina,Mitte,Privat,76,1,False,negativ,16,240,False,3,744,9.58
+T-0419,2026-08-01 11:31:00,2026-08-01 13:02:00,Zugang,Konto gesperrt,App,low,closed,Identity,Eva,Mitte,Privat,46,5,False,positiv,91,720,False,2,208,58.8
+T-0420,2026-04-19 15:22:00,2026-04-19 16:19:00,Allgemein,Information,Telefon,low,closed,Service Desk,Aylin,Mitte,Privat,68,1,False,neutral,57,720,False,,619,24.47
+T-0421,2026-06-28 15:18:00,,Allgemein,Öffnungszeiten,Telefon,high,open,Service Desk,Carla,Mitte,Privat,31,1,False,neutral,42,240,False,,176,24.0
+T-0422,2026-02-15 08:07:00,2026-02-15 12:37:00,Technik,Verbindung,Web,medium,closed,Platform,Ben,West,Partner,22,2,False,neutral,270,480,False,,334,123.84
+T-0423,2026-06-17 15:23:00,2026-06-17 22:25:00,Antrag,Unterlagen,Web,medium,closed,Fachteam A,Hassan,Ost,Privat,79,2,False,negativ,422,480,False,5,210,260.69
+T-0424,2026-07-28 08:25:00,,Technik,Verbindung,Web,low,open,Service Desk,Ben,Mitte,Privat,33,2,False,neutral,151,720,False,,237,90.81
+T-0425,2026-03-22 09:02:00,2026-03-22 10:05:00,Allgemein,Öffnungszeiten,E-Mail,low,closed,Service Desk,Aylin,Mitte,Privat,,2,False,negativ,63,720,False,4,582,28.06
+T-0426,2026-05-06 13:33:00,2026-05-06 16:55:00,Zugang,Passwort,Web,low,closed,Service Desk,Ina,Ost,Privat,23,1,False,neutral,202,720,False,3,245,84.82
+T-0427,2026-04-08 10:25:00,2026-04-08 10:35:00,Allgemein,Kontakt,Web,medium,closed,Service Desk,Ben,Mitte,Privat,52,2,False,positiv,10,480,False,5,406,3.77
+T-0428,2026-03-05 09:17:00,2026-03-05 16:00:00,Antrag,Unterlagen,Web,medium,closed,Fachteam B,Greta,Nord,Partner,60,2,True,neutral,403,480,False,3,305,249.55
+T-0429,2026-08-13 12:37:00,2026-08-13 13:37:00,Zugang,Benutzername,Web,critical,closed,Identity,Ben,Süd,Privat,30,1,False,negativ,60,120,False,3,423,40.72
+T-0430,2026-02-06 14:36:00,2026-02-06 17:34:00,Technik,Verbindung,Web,medium,closed,Platform,Ina,Süd,Privat,71,2,False,neutral,178,480,False,3,504,123.62
+T-0431,2026-04-15 13:54:00,2026-04-15 15:20:00,Abrechnung,Gutschrift,E-Mail,critical,closed,Finance,Eva,Nord,Partner,,2,False,positiv,86,120,False,4,35,42.75
+T-0432,2026-06-23 16:44:00,2026-06-23 17:30:00,Allgemein,Information,App,medium,closed,Service Desk,Hassan,Ost,Privat,62,2,False,positiv,46,480,False,5,565,31.3
+T-0433,2026-02-04 16:22:00,2026-02-05 00:28:00,Antrag,Neuantrag,App,medium,closed,Fachteam A,Carla,Nord,Privat,49,1,True,neutral,486,480,True,4,322,312.56
+T-0434,2026-03-20 16:52:00,,Technik,Upload,Web,low,in_progress,Backend,Jonas,Ost,Privat,,1,False,positiv,340,720,False,,330,164.61
+T-0435,2026-05-06 11:05:00,2026-05-06 11:52:00,Technik,Fehlermeldung,Telefon,medium,closed,Service Desk,Farid,Nord,Privat,50,2,False,positiv,47,480,False,4,463,19.73
+T-0436,2026-04-22 08:22:00,2026-04-22 09:36:00,Allgemein,Zuständigkeit,E-Mail,low,closed,Service Desk,Carla,Süd,Privat,60,1,False,positiv,74,720,False,3,515,28.09
+T-0437,2026-07-19 14:32:00,,Allgemein,Zuständigkeit,E-Mail,low,open,Service Desk,Carla,West,Organisation,34,1,True,negativ,52,720,False,,537,18.84
+T-0438,2026-03-16 12:31:00,2026-03-16 14:52:00,Zugang,2FA,Telefon,low,closed,Service Desk,Jonas,Nord,Privat,32,2,False,positiv,141,720,False,5,464,56.25
+T-0439,2026-02-08 11:07:00,,Technik,Fehlermeldung,E-Mail,medium,waiting,Platform,Deniz,Mitte,Privat,29,3,False,neutral,191,480,False,,414,123.34
+T-0440,2026-05-11 14:41:00,2026-05-11 18:09:00,Technik,Upload,App,medium,closed,Platform,Farid,Ost,Privat,24,3,False,neutral,208,480,False,1,354,117.35
+T-0441,2026-04-04 13:19:00,2026-04-04 18:15:00,Technik,Verbindung,E-Mail,low,closed,Service Desk,Carla,West,Partner,64,4,False,positiv,296,720,False,4,268,160.4
+T-0442,2026-05-31 11:12:00,2026-05-31 15:51:00,Antrag,Unterlagen,Web,medium,closed,Fachteam A,Carla,Mitte,Privat,43,1,False,neutral,279,480,False,3,453,97.97
+T-0443,2026-01-31 14:04:00,,Antrag,Nachreichung,Telefon,high,waiting,Fachteam B,Farid,Ost,Privat,34,2,False,positiv,117,240,False,,604,48.66
+T-0444,2026-04-09 16:49:00,2026-04-09 17:45:00,Zugang,2FA,E-Mail,medium,closed,Identity,Carla,Ost,Organisation,19,3,True,neutral,56,480,False,5,749,27.0
+T-0445,2026-01-12 16:15:00,,Antrag,Nachreichung,Web,low,in_progress,Fachteam B,Ina,Nord,Privat,24,3,True,positiv,403,720,False,,279,224.46
+T-0446,2026-06-30 16:16:00,2026-06-30 16:58:00,Allgemein,Kontakt,Web,medium,closed,Service Desk,Jonas,West,Privat,63,1,False,positiv,42,480,False,5,41,15.57
+T-0447,2026-04-24 11:20:00,,Abrechnung,Rechnung,Telefon,medium,open,Service Desk,Jonas,Mitte,Privat,73,3,False,positiv,132,480,False,,515,59.06
+T-0448,2026-07-06 10:41:00,,Zugang,2FA,Telefon,medium,in_progress,Identity,Deniz,Mitte,Privat,36,3,False,neutral,84,480,False,,276,27.62
+T-0449,2026-01-06 09:52:00,,Abrechnung,Bankdaten,E-Mail,low,in_progress,Finance,Jonas,Nord,Privat,19,2,True,neutral,266,720,False,,34,164.11
+T-0450,2026-05-25 15:52:00,2026-05-25 16:44:00,Allgemein,Öffnungszeiten,Telefon,medium,closed,Service Desk,Deniz,Süd,Privat,33,3,True,neutral,52,480,False,,582,16.53
+T-0451,2026-04-01 12:14:00,2026-04-01 17:23:00,Technik,Verbindung,App,low,closed,Platform,Deniz,Ost,Privat,32,2,False,negativ,309,720,False,5,103,127.53
+T-0452,2026-04-20 16:21:00,2026-04-20 19:46:00,Antrag,Neuantrag,App,medium,closed,Fachteam A,Aylin,Mitte,Privat,62,1,False,neutral,205,480,False,3,402,102.44
+T-0453,2026-04-25 15:52:00,,Allgemein,Öffnungszeiten,Telefon,high,waiting,Service Desk,Carla,West,Privat,41,2,False,positiv,52,240,False,,386,31.56
+T-0454,2026-06-17 11:24:00,2026-06-17 13:19:00,Technik,Verbindung,App,medium,closed,Backend,Farid,Süd,Organisation,71,3,False,neutral,115,480,False,5,249,71.82
+T-0455,2026-02-04 09:03:00,,Antrag,Unterlagen,Web,medium,open,Fachteam A,Farid,Mitte,Privat,71,1,False,positiv,461,480,False,,254,183.02
+T-0456,2026-04-19 13:03:00,2026-04-19 14:41:00,Zugang,2FA,Telefon,low,closed,Identity,Greta,Nord,Privat,,1,False,negativ,98,720,False,2,607,32.42
+T-0457,2026-07-04 13:28:00,2026-07-04 15:09:00,Termin,Ort,Web,low,closed,Service Desk,Ina,West,Privat,,1,True,negativ,101,720,False,4,458,30.74
+T-0458,2026-03-11 09:33:00,2026-03-11 11:50:00,Antrag,Status,Telefon,medium,closed,Fachteam B,Deniz,Ost,Partner,27,4,True,positiv,137,480,False,4,682,58.26
+T-0459,2026-01-27 09:23:00,2026-01-27 11:30:00,Technik,Verbindung,Telefon,low,closed,Backend,Greta,Süd,Privat,,1,True,neutral,127,720,False,5,589,53.8
+T-0460,2026-07-22 15:02:00,2026-07-22 19:13:00,Technik,Fehlermeldung,Web,low,closed,Backend,Jonas,Nord,Privat,82,3,False,neutral,251,720,False,5,157,148.16
+T-0461,2026-07-23 14:30:00,2026-07-23 16:59:00,Antrag,Neuantrag,App,medium,closed,Fachteam A,Ina,Süd,Privat,29,1,True,neutral,149,480,False,3,722,57.55
+T-0462,2026-04-03 17:54:00,2026-04-03 21:27:00,Antrag,Unterlagen,E-Mail,critical,closed,Fachteam B,Hassan,Süd,Privat,27,2,False,neutral,213,120,True,3,124,148.62
+T-0463,2026-02-13 12:10:00,2026-02-13 13:56:00,Termin,Verschiebung,Web,medium,closed,Service Desk,Hassan,Nord,Privat,78,2,True,neutral,106,480,False,5,168,50.54
+T-0464,2026-02-03 15:23:00,2026-02-03 15:57:00,Allgemein,Information,Telefon,low,closed,Service Desk,Greta,Mitte,Partner,23,2,True,neutral,34,720,False,4,275,20.28
+T-0465,2026-01-19 11:24:00,2026-01-19 21:05:00,Antrag,Neuantrag,Web,low,closed,Fachteam B,Carla,Mitte,Privat,31,1,False,neutral,581,720,False,,431,344.37
+T-0466,2026-07-09 15:07:00,2026-07-09 16:20:00,Termin,Verschiebung,Web,medium,closed,Fachteam A,Jonas,Ost,Privat,22,2,False,neutral,73,480,False,5,395,23.72
+T-0467,2026-02-15 09:09:00,2026-02-15 11:07:00,Termin,Ort,Web,low,closed,Service Desk,Greta,West,Privat,51,2,False,negativ,118,720,False,2,463,77.64
+T-0468,2026-07-20 10:44:00,2026-07-20 12:20:00,Technik,Upload,Web,low,closed,Service Desk,Hassan,Ost,Privat,43,4,False,neutral,96,720,False,,656,54.45
+T-0469,2026-06-22 14:16:00,2026-06-22 16:05:00,Zugang,Konto gesperrt,App,low,closed,Identity,Hassan,West,Privat,30,2,False,positiv,109,720,False,,217,65.21
+T-0470,2026-04-05 13:01:00,,Abrechnung,Zahlung,Web,medium,open,Finance,Deniz,Mitte,Partner,70,3,True,neutral,126,480,False,,385,58.48
+T-0471,2026-02-15 16:38:00,2026-02-15 18:07:00,Termin,Ort,Telefon,medium,closed,Service Desk,Carla,Ost,Privat,30,3,False,neutral,89,480,False,5,690,30.4
+T-0472,2026-01-09 12:54:00,2026-01-09 14:26:00,Zugang,Benutzername,Telefon,low,closed,Identity,Hassan,Mitte,Privat,33,2,False,positiv,92,720,False,5,685,44.67
+T-0473,2026-06-18 12:19:00,2026-06-18 21:47:00,Antrag,Status,Web,low,closed,Fachteam A,Ina,West,Privat,19,1,True,negativ,568,720,False,,556,350.0
+T-0474,2026-02-19 17:41:00,,Termin,Absage,App,medium,in_progress,Fachteam A,Deniz,Mitte,Partner,40,2,False,negativ,68,480,False,,350,31.36
+T-0475,2026-07-20 14:53:00,,Abrechnung,Bankdaten,Telefon,low,open,Finance,Ina,Nord,Privat,21,1,True,neutral,183,720,False,,668,86.92
+T-0476,2026-07-07 10:29:00,2026-07-07 11:32:00,Termin,Verschiebung,Telefon,low,closed,Service Desk,Jonas,Ost,Privat,49,1,False,positiv,63,720,False,5,291,28.43
+T-0477,2026-08-26 17:07:00,,Antrag,Nachreichung,Web,low,in_progress,Fachteam A,Jonas,Nord,Privat,44,2,True,neutral,530,720,False,,527,241.85
+T-0478,2026-03-22 15:51:00,,Termin,Ort,App,low,in_progress,Service Desk,Deniz,Ost,Privat,33,3,False,neutral,105,720,False,,380,72.49
+T-0479,2026-01-06 16:32:00,2026-01-06 19:29:00,Abrechnung,Rechnung,Telefon,low,closed,Finance,Deniz,Mitte,Privat,28,1,False,positiv,177,720,False,5,518,72.05
+T-0480,2026-04-13 11:16:00,,Technik,Fehlermeldung,E-Mail,medium,in_progress,Service Desk,Hassan,Ost,Privat,57,4,True,neutral,224,480,False,,235,82.04
+T-0481,2026-04-09 14:12:00,2026-04-09 14:43:00,Allgemein,Information,E-Mail,medium,closed,Service Desk,Farid,Mitte,Privat,,1,True,positiv,31,480,False,4,685,12.94
+T-0482,2026-01-19 11:42:00,2026-01-19 12:20:00,Allgemein,Zuständigkeit,Web,medium,closed,Service Desk,Greta,Süd,Privat,45,2,True,neutral,38,480,False,5,600,25.06
+T-0483,2026-08-15 09:36:00,2026-08-15 11:31:00,Zugang,Konto gesperrt,E-Mail,medium,closed,Identity,Ina,West,Privat,81,1,False,neutral,115,480,False,5,152,53.88
+T-0484,2026-08-08 17:00:00,,Abrechnung,Gutschrift,Web,medium,open,Finance,Eva,Nord,Privat,23,1,True,negativ,174,480,False,,41,75.68
+T-0485,2026-04-13 09:35:00,2026-04-13 10:48:00,Zugang,Passwort,E-Mail,high,closed,Service Desk,Eva,West,Organisation,33,1,False,negativ,73,240,False,5,254,24.9
+T-0486,2026-07-05 13:52:00,,Zugang,Passwort,App,low,in_progress,Service Desk,Deniz,Süd,Privat,32,1,False,positiv,190,720,False,,336,60.65
+T-0487,2026-05-30 15:07:00,2026-05-30 17:20:00,Zugang,Konto gesperrt,Telefon,medium,closed,Service Desk,Eva,Süd,Partner,75,3,False,negativ,133,480,False,4,514,52.7
+T-0488,2026-07-02 09:22:00,2026-07-02 11:23:00,Antrag,Nachreichung,Telefon,medium,closed,Fachteam A,Ben,West,Organisation,,1,False,positiv,121,480,False,2,246,36.94
+T-0489,2026-03-22 12:45:00,2026-03-22 15:12:00,Abrechnung,Bankdaten,Web,low,closed,Finance,Jonas,Mitte,Privat,75,2,False,positiv,147,720,False,4,217,89.97
+T-0490,2026-07-10 09:15:00,2026-07-10 11:42:00,Zugang,Benutzername,Web,low,closed,Identity,Carla,Ost,Organisation,33,2,False,neutral,147,720,False,2,179,69.47
+T-0491,2026-04-08 14:12:00,2026-04-08 16:54:00,Technik,Verbindung,Web,medium,closed,Service Desk,Farid,Nord,Privat,24,4,False,neutral,162,480,False,5,79,62.83
+T-0492,2026-04-14 14:25:00,,Allgemein,Zuständigkeit,E-Mail,low,in_progress,Service Desk,Deniz,Mitte,Privat,62,3,False,positiv,76,720,False,,747,42.16
+T-0493,2026-06-24 09:10:00,2026-06-24 18:23:00,Antrag,Neuantrag,E-Mail,low,closed,Fachteam B,Eva,Süd,Privat,40,4,True,neutral,553,720,False,5,34,203.66
+T-0494,2026-01-05 17:43:00,2026-01-06 03:41:00,Antrag,Status,E-Mail,medium,closed,Fachteam A,Hassan,Nord,Privat,56,2,True,neutral,598,480,True,2,384,296.77
+T-0495,2026-03-27 16:49:00,,Allgemein,Zuständigkeit,Web,medium,open,Service Desk,Aylin,West,Privat,20,1,False,positiv,28,480,False,,445,10.06
+T-0496,2026-02-19 14:40:00,2026-02-19 15:34:00,Allgemein,Kontakt,Web,medium,closed,Service Desk,Farid,Süd,Organisation,40,2,False,negativ,54,480,False,4,425,35.38
+T-0497,2026-04-27 17:50:00,,Antrag,Nachreichung,Web,low,waiting,Fachteam B,Jonas,Nord,Privat,37,1,False,neutral,477,720,False,,321,242.92
+T-0498,2026-03-14 17:07:00,2026-03-15 02:18:00,Antrag,Unterlagen,Web,low,closed,Fachteam B,Aylin,Ost,Privat,62,2,False,positiv,551,720,False,5,599,275.94
+T-0499,2026-03-16 11:02:00,,Zugang,Passwort,Web,medium,open,Identity,Greta,Mitte,Partner,30,2,False,neutral,60,480,False,,334,39.43
+T-0500,2026-02-21 12:08:00,2026-02-21 16:55:00,Antrag,Unterlagen,Telefon,medium,closed,Fachteam B,Jonas,Süd,Privat,41,2,True,negativ,287,480,False,5,166,136.26
+T-0026,2026-04-11 17:36:00,2026-04-11 20:22:00,Technik,Verbindung,Telefon,medium,closed,Platform,Jonas,Mitte,Privat,59,2,False,positiv,166,480,False,4,413,100.35
+T-0027,2026-03-31 11:41:00,2026-03-31 17:49:00,Technik,Verbindung,Web,low,closed,Platform,Ina,Nord,Partner,37,4,True,positiv,368,720,False,4,248,127.24
+T-0028,2026-01-07 12:36:00,2026-01-07 14:01:00,Abrechnung,Gutschrift,Web,medium,closed,Finance,Carla,West,Privat,49,1,False,positiv,85,480,False,,725,51.76
+T-0029,2026-04-05 09:32:00,2026-04-05 13:49:00,Antrag,Neuantrag,E-Mail,high,closed,Fachteam A,Farid,Mitte,Privat,76,2,False,neutral,257,240,True,2,691,152.53
+T-0030,2026-08-01 09:17:00,2026-08-01 12:51:00,Technik,Verbindung,Telefon,medium,closed,Backend,Eva,West,Organisation,,2,False,neutral,214,480,False,3,289,82.36

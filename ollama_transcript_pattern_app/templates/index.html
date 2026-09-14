@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transcript Pattern Analyzer</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    textarea { width: 100%; min-height: 220px; }
+    button { padding: 10px 16px; margin-top: 10px; cursor: pointer; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 14px; margin: 10px 0; }
+    .muted { color: #666; }
+    pre { white-space: pre-wrap; word-break: break-word; }
+    @media (max-width: 800px) { .row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>Transcript Pattern Analyzer</h1>
+  <p class="muted">Das Interview aus <code>data/interview.txt</code> wird lokal mit Ollama nach Mustern durchsucht.</p>
+
+  <div class="row">
+    <section>
+      <h2>Interview-Transkript</h2>
+      <textarea id="transcript" readonly placeholder="Transkript wird geladen..."></textarea>
+      <br />
+      <button onclick="analyzeInterview()">Interview analysieren</button>
+    </section>
+  </div>
+
+  <h2>Ergebnis</h2>
+  <div id="status" class="muted"></div>
+  <div id="results"></div>
+
+<script>
+function setStatus(text) {
+  document.getElementById('status').textContent = text;
+}
+
+function render(data) {
+  const container = document.getElementById('results');
+  container.innerHTML = '';
+
+  const transcript = document.createElement('div');
+  transcript.className = 'card';
+  transcript.innerHTML = '<strong>Transkript</strong><pre></pre>';
+  transcript.querySelector('pre').textContent = data.transcript;
+  container.appendChild(transcript);
+
+  if (!data.matches || data.matches.length === 0) {
+    container.innerHTML += '<div class="card">Keine Muster gefunden.</div>';
+    return;
+  }
+
+  data.matches.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <strong>${escapeHtml(m.pattern)}</strong>
+      <div><b>Treffer:</b> ${escapeHtml(m.evidence)}</div>
+      <div><b>Warum:</b> ${escapeHtml(m.explanation)}</div>
+      <div><b>Confidence:</b> ${(m.confidence * 100).toFixed(0)}%</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function escapeHtml(value) {
+  const div = document.createElement('div');
+  div.textContent = String(value);
+  return div.innerHTML;
+}
+
+async function loadTranscript() {
+  const response = await fetch('/transcript');
+  const data = await response.json();
+  if (!response.ok) {
+    setStatus(data.detail || 'Transkript konnte nicht geladen werden.');
+    return;
+  }
+  document.getElementById('transcript').value = data.transcript;
+}
+
+async function analyzeInterview() {
+  setStatus('Analysiere Interview...');
+  const response = await fetch('/analyze-interview', {
+    method: 'POST'
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    setStatus(data.detail || 'Fehler');
+    return;
+  }
+  setStatus(`Fertig. Modell: ${data.model}`);
+  render(data);
+}
+
+loadTranscript().catch(() => setStatus('Transkript konnte nicht geladen werden.'));
+</script>
+</body>
+</html>
