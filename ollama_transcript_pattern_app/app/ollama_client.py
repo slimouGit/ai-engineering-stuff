@@ -12,10 +12,13 @@ OLLAMA_MAX_OUTPUT_TOKENS = int(os.getenv("OLLAMA_MAX_OUTPUT_TOKENS", "2048"))
 
 
 class OllamaError(RuntimeError):
+    """Diese Klasse beschreibt einen Fehler bei der Kommunikation mit Ollama."""
+
     pass
 
 
 def chat_json(system_prompt: str, user_prompt: str) -> Dict[str, Any]:
+    # Sendet den Analyseprompt an Ollama und erwartet eine JSON-Antwort.
     payload = {
         "model": OLLAMA_MODEL,
         "stream": False,
@@ -50,6 +53,7 @@ def chat_json(system_prompt: str, user_prompt: str) -> Dict[str, Any]:
 
 
 def health() -> Dict[str, Any]:
+    # Prüft Ollama ohne eine Analyse zu starten.
     try:
         response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
         response.raise_for_status()

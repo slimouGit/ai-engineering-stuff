@@ -91,67 +91,14 @@ http://127.0.0.1:8000/docs
 
 Die Browser-Oberfläche lädt automatisch `data/interview.txt`. Mit **Interview analysieren** wird genau dieses Transkript nach den definierten Mustern durchsucht.
 
-## Text-API testen
-
-```bash
-curl -X POST http://127.0.0.1:8000/analyze-text \
-  -H "Content-Type: application/json" \
-  -d '{
-    "transcript": "Seit drei Tagen habe ich starke Rückenschmerzen. Medikamente nehme ich keine."
-  }'
-```
-
-Beispielantwort:
-
-```json
-{
-  "transcript": "Seit drei Tagen habe ich starke Rückenschmerzen. Medikamente nehme ich keine.",
-  "matches": [
-    {
-      "pattern": "beschwerden_symptome",
-      "evidence": "starke Rückenschmerzen",
-      "explanation": "Es wird ein konkretes Symptom genannt.",
-      "confidence": 0.98
-    },
-    {
-      "pattern": "zeitangabe_verlauf",
-      "evidence": "Seit drei Tagen",
-      "explanation": "Die Dauer der Beschwerden wird beschrieben.",
-      "confidence": 0.99
-    }
-  ],
-  "model": "qwen2.5:7b"
-}
-```
-
-## Eigene Muster übergeben
-
-`POST /analyze-text` akzeptiert optional eigene Muster:
-
-```json
-{
-  "transcript": "...",
-  "patterns": [
-    {
-      "name": "bearbeitungsdauer",
-      "description": "Aussagen über lange Warte- oder Bearbeitungszeiten"
-    },
-    {
-      "name": "fehlende_unterlagen",
-      "description": "Aussagen über fehlende Dokumente oder Nachweise"
-    }
-  ]
-}
-```
-
-Damit kannst du die medizinischen Übungsmuster später durch BAMF-nahe Muster ersetzen.
+Die API stellt zusätzlich `GET /health` und `GET /transcript` bereit. Die Analyse wird über `POST /analyze-interview` gestartet.
 
 ## Wichtige Dateien
 
 - `app/main.py` – FastAPI-Endpunkte
 - `app/ollama_client.py` – Ollama-Anbindung
 - `app/analyzer.py` – Prompt und Musterlogik
-- `app/schemas.py` – Pydantic-Datenmodelle
+- `app/schemas.py` – Ergebnis-Datenmodelle
 - `templates/index.html` – einfache Browser-Oberfläche
 
 ## Hinweis für echte Interviewdaten

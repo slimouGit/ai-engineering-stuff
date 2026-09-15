@@ -1,18 +1,17 @@
-from typing import List, Optional
+from typing import List
 from pydantic import BaseModel, Field
 
 
 class PatternDefinition(BaseModel):
+    """Diese Klasse speichert den Namen und die Beschreibung eines Suchmusters."""
+
     name: str
     description: str
 
 
-class TextAnalysisRequest(BaseModel):
-    transcript: str = Field(min_length=1)
-    patterns: Optional[List[PatternDefinition]] = None
-
-
 class Match(BaseModel):
+    """Diese Klasse speichert einen Treffer mit Textbeleg und Confidence-Wert."""
+
     pattern: str
     evidence: str
     explanation: str
@@ -20,6 +19,8 @@ class Match(BaseModel):
 
 
 class AnalysisResponse(BaseModel):
+    """Diese Klasse speichert das vollständige Ergebnis der Interviewanalyse."""
+
     transcript: str
     matches: List[Match]
     model: str

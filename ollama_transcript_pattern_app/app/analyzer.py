@@ -1,11 +1,11 @@
 import json
-from typing import Iterable, List
 
 from .ollama_client import OLLAMA_MODEL, chat_json
 from .schemas import AnalysisResponse, Match, PatternDefinition
 
 
 DEFAULT_PATTERNS = [
+    # Diese Muster werden an Ollama übergeben und im Interview gesucht.
     PatternDefinition(
         name="beschwerden_symptome",
         description="Aussagen über Beschwerden, Symptome, Schmerzen oder körperliche Probleme.",
@@ -54,14 +54,10 @@ Wenn kein Muster gefunden wird, gib {"matches": []} zurück.
 """
 
 
-def analyze_transcript(
-    transcript: str,
-    patterns: Iterable[PatternDefinition] | None = None,
-) -> AnalysisResponse:
-    selected_patterns: List[PatternDefinition] = list(patterns or DEFAULT_PATTERNS)
-
+def analyze_transcript(transcript: str) -> AnalysisResponse:
+    # Baut den Prompt, ruft Ollama auf und filtert unbekannte Muster heraus.
     pattern_text = "\n".join(
-        f"- {p.name}: {p.description}" for p in selected_patterns
+        f"- {pattern.name}: {pattern.description}" for pattern in DEFAULT_PATTERNS
     )
 
     user_prompt = f"""MUSTER:
@@ -78,7 +74,7 @@ Halte evidence und explanation jeweils kurz.
     raw = chat_json(SYSTEM_PROMPT, user_prompt)
     matches = [Match.model_validate(item) for item in raw.get("matches", [])]
 
-    allowed = {p.name for p in selected_patterns}
+    allowed = {pattern.name for pattern in DEFAULT_PATTERNS}
     matches = [m for m in matches if m.pattern in allowed]
 
     return AnalysisResponse(
