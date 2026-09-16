@@ -1,14 +1,9 @@
 import json
-import os
 from typing import Any, Dict
 
 import requests
 
-
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "granite3.3:8b")
-OLLAMA_TIMEOUT = float(os.getenv("OLLAMA_TIMEOUT", "300"))
-OLLAMA_MAX_OUTPUT_TOKENS = int(os.getenv("OLLAMA_MAX_OUTPUT_TOKENS", "2048"))
+from .config import OLLAMA_MAX_OUTPUT_TOKENS, OLLAMA_MODEL, OLLAMA_TIMEOUT, OLLAMA_URL
 
 
 class OllamaError(RuntimeError):
