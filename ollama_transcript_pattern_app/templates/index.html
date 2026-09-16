@@ -41,16 +41,10 @@ function setStatus(text) {
   document.getElementById('status').textContent = text;
 }
 
-// Baut aus der API-Antwort die Transcript- und Trefferkarten.
+// Baut aus der API-Antwort die Trefferkarten für das Ergebnis.
 function render(data) {
   const container = document.getElementById('results');
   container.innerHTML = '';
-
-  const transcript = document.createElement('div');
-  transcript.className = 'card';
-  transcript.innerHTML = '<strong>Transkript</strong><pre></pre>';
-  transcript.querySelector('pre').textContent = data.transcript;
-  container.appendChild(transcript);
 
   if (!data.matches || data.matches.length === 0) {
     container.innerHTML += '<div class="card">Keine Muster gefunden.</div>';
