@@ -77,12 +77,26 @@ def analyze_chunk(chunk: str) -> list[Match]:
         for pattern in DEFAULT_PATTERNS
     }
 
-    return filter_matches(matches, allowed)
+    return filter_matches(matches, allowed, chunk)
 
 
-def filter_matches(matches: list[Match], allowed: set[str]) -> list[Match]:
-    social_denial = re.compile(
-        r"nicht verheiratet|kein(?:e[nrms]?)? freund|single|beziehung|ehe",
+def filter_matches(
+    matches: list[Match],
+    allowed: set[str],
+    source_text: str = "",
+) -> list[Match]:
+    medical_context = re.compile(
+        r"schmerz|symptom|beschwer|atem|luft|fieber|übel|allerg|medikament|tablett|"
+        r"ibuprofen|therapie|behandlung|operation|krankheit|vorerkrank|drog|alkohol|"
+        r"rauchen|hirnblutung|schlaganfall|herzinfarkt|krebs",
+        re.IGNORECASE,
+    )
+    denial = re.compile(
+        r"\bnein\b|\bnicht\b|\bkeine[nrms]?\b|\bkein[e]?\b|\bnichts\b|\bohne\b",
+        re.IGNORECASE,
+    )
+    treatment = re.compile(
+        r"medikament|tablett|ibuprofen|paracetamol|therapie|behandlung|genommen|nehme|einnahme|dosier",
         re.IGNORECASE,
     )
 
@@ -90,13 +104,27 @@ def filter_matches(matches: list[Match], allowed: set[str]) -> list[Match]:
     for match in matches:
         if match.pattern not in allowed:
             continue
-        if match.pattern == "verneinung_ausschluss" and social_denial.search(
-            match.evidence
+        evidence = match.evidence.strip()
+        if not evidence or len(evidence) > 320:
+            continue
+        if source_text and not _evidence_in_source(evidence, source_text):
+            continue
+        if match.pattern == "medikamente_behandlung" and not treatment.search(
+            evidence
+        ):
+            continue
+        if match.pattern == "verneinung_ausschluss" and (
+            not denial.search(evidence) or not medical_context.search(evidence)
         ):
             continue
         filtered.append(match)
 
     return filtered
+
+
+def _evidence_in_source(evidence: str, source_text: str) -> bool:
+    normalize = lambda value: re.sub(r"\s+", " ", value.casefold()).strip()
+    return normalize(evidence) in normalize(source_text)
 
 
 def remove_duplicate_matches(
