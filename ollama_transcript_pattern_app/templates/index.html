@@ -35,10 +35,60 @@
   <div id="status" class="muted"></div>
   <div id="results"></div>
 
+  <h3>Evaluation</h3>
+  <div id="evaluation"></div>
+
 <script>
 // Zeigt Lade-, Erfolgs- oder Fehlermeldungen an.
 function setStatus(text) {
   document.getElementById('status').textContent = text;
+}
+
+function renderEvaluation(data) {
+  const container = document.getElementById('evaluation');
+  container.innerHTML = '';
+
+  if (!data || !data.evaluation) {
+    container.innerHTML = '<div class="card">Keine Evaluierung verfügbar.</div>';
+    return;
+  }
+
+  const summary = data.evaluation.summary || {};
+  const byPattern = data.evaluation.by_pattern || {};
+
+  const summaryCard = document.createElement('div');
+  summaryCard.className = 'card';
+  summaryCard.innerHTML = `
+    <strong>Gesamtmetriken</strong><br>
+    <div><b>Precision:</b> ${summary.precision ?? 'n/a'}</div>
+    <div><b>Recall:</b> ${summary.recall ?? 'n/a'}</div>
+    <div><b>F1:</b> ${summary.f1 ?? 'n/a'}</div>
+    <div><b>TP:</b> ${summary.tp ?? 0} | <b>FP:</b> ${summary.fp ?? 0} | <b>FN:</b> ${summary.fn ?? 0}</div>
+  `;
+  container.appendChild(summaryCard);
+
+  const patternList = document.createElement('div');
+  patternList.className = 'card';
+  patternList.innerHTML = '<strong>Nach Muster</strong>';
+
+  const entries = Object.entries(byPattern);
+  if (entries.length === 0) {
+    patternList.innerHTML += '<div>Keine Musterwerte vorhanden.</div>';
+    container.appendChild(patternList);
+    return;
+  }
+
+  entries.forEach(([name, values]) => {
+    const item = document.createElement('div');
+    item.style.marginTop = '8px';
+    item.innerHTML = `
+      <div><b>${escapeHtml(name)}</b></div>
+      <div>Precision: ${values.precision ?? 'n/a'}, Recall: ${values.recall ?? 'n/a'}, F1: ${values.f1 ?? 'n/a'}</div>
+    `;
+    patternList.appendChild(item);
+  });
+
+  container.appendChild(patternList);
 }
 
 // Baut aus der API-Antwort die Trefferkarten für das Ergebnis.
@@ -85,6 +135,8 @@ async function loadTranscript() {
 // Startet die Musteranalyse des vorhandenen Interviews.
 async function analyzeInterview() {
   setStatus('Analysiere Interview...');
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('evaluation').innerHTML = '<div class="card">Evaluation wird nach der Analyse gestartet.</div>';
   const response = await fetch('/analyze-interview', {
     method: 'POST'
   });
@@ -92,10 +144,22 @@ async function analyzeInterview() {
   const data = await response.json();
   if (!response.ok) {
     setStatus(data.detail || 'Fehler');
+    renderEvaluation(null);
     return;
   }
   setStatus(`Fertig. Modell: ${data.model}`);
   render(data);
+
+  setStatus('Analyse fertig. Werte werden evaluiert...');
+  const evaluationResponse = await fetch('/evaluate');
+  const evaluationData = await evaluationResponse.json();
+  if (evaluationResponse.ok) {
+    renderEvaluation(evaluationData);
+    setStatus(`Analyse und Evaluation fertig. Modell: ${data.model}`);
+  } else {
+    renderEvaluation(null);
+    setStatus(evaluationData.detail || 'Evaluation konnte nicht ausgeführt werden.');
+  }
 }
 
 // Lädt das Transcript direkt beim Öffnen der Seite.
