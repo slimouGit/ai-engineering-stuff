@@ -77,11 +77,26 @@ def analyze_chunk(chunk: str) -> list[Match]:
         for pattern in DEFAULT_PATTERNS
     }
 
-    return [
-        match
-        for match in matches
-        if match.pattern in allowed
-    ]
+    return filter_matches(matches, allowed)
+
+
+def filter_matches(matches: list[Match], allowed: set[str]) -> list[Match]:
+    social_denial = re.compile(
+        r"nicht verheiratet|kein(?:e[nrms]?)? freund|single|beziehung|ehe",
+        re.IGNORECASE,
+    )
+
+    filtered = []
+    for match in matches:
+        if match.pattern not in allowed:
+            continue
+        if match.pattern == "verneinung_ausschluss" and social_denial.search(
+            match.evidence
+        ):
+            continue
+        filtered.append(match)
+
+    return filtered
 
 
 def remove_duplicate_matches(

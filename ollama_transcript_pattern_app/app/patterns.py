@@ -22,8 +22,4 @@ DEFAULT_PATTERNS = [
         name="verneinung_ausschluss",
         description="Medizinisch relevante Verneinung oder Ausschluss eines Symptoms, einer Allergie, eines Medikaments oder einer Vorerkrankung. Beziehung, Familienstand oder soziale Angaben wie 'nicht verheiratet' sind niemals Treffer. Ein allgemeines nein reicht nicht.",
     ),
-    PatternDefinition(
-        name="frage_antwort_struktur",
-        description="Ein explizites Frage-Antwort-Paar mit einer Frage und einer direkt anschließenden inhaltlichen Antwort. Implizite Fragen, einzelne Antworten und Gesprächswechsel ohne klar erkennbare Frage nicht markieren.",
-    ),
 ]
