@@ -108,7 +108,7 @@ function render(data) {
       <strong>${escapeHtml(m.pattern)}</strong>
       <div><b>Treffer:</b> ${escapeHtml(m.evidence)}</div>
       <div><b>Warum:</b> ${escapeHtml(m.explanation)}</div>
-      <div><b>Confidence:</b> ${(m.confidence * 100).toFixed(0)}%</div>
+      <div><b>Confidence:</b> ${m.confidence == null ? 'nicht verfügbar' : `${(m.confidence * 100).toFixed(0)}%`}</div>
     `;
     container.appendChild(card);
   });

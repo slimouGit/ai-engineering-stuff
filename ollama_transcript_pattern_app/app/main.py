@@ -49,6 +49,7 @@ def transcript():
 def analyze_interview():
     # Analysiert das vorhandene Interview mit den Standardmustern.
     global latest_analysis
+    latest_analysis = None
     try:
         latest_analysis = analyze_transcript(read_transcript())
         return latest_analysis

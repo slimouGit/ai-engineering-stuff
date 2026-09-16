@@ -18,6 +18,11 @@ Antworte ausschließlich als JSON in exakt dieser Struktur:
 }
 
 confidence liegt zwischen 0 und 1.
+confidence ist Pflicht. Wenn du keine belastbare Confidence angeben kannst, gib den Treffer nicht aus.
+Vergib hohe Werte nur bei einer eindeutigen fachlichen Zuordnung.
+Ordne eine Textstelle nur einem einzigen Muster zu. Wenn mehrere Muster möglich erscheinen,
+wähle das fachlich passendste und gib keine zusätzlichen Treffer für dieselbe Textstelle aus.
+Für ein Muster darfst du mehrere unterschiedliche Textstellen zurückgeben.
 Wenn kein Muster gefunden wird, gib {"matches": []} zurück.
 """
 
@@ -34,8 +39,13 @@ def build_user_prompt(chunk: str) -> str:
 TRANSKRIPT:
 {chunk}
 
-Finde alle relevanten Treffer.
-Mehrere Treffer pro Muster sind erlaubt.
-Gib höchstens 3 der wichtigsten Treffer pro Muster zurück.
-Halte evidence und explanation jeweils kurz.
+Finde nur fachlich eindeutige Treffer.
+Gib höchstens 2 der wichtigsten Treffer pro Muster zurück.
+Verwende als evidence nur den kürzesten relevanten Originalausschnitt, nicht einen ganzen Dialog.
+Ordne Fragen, Namen von Ärzten und allgemeine Gesprächsanteile nicht automatisch Behandlungsmustern zu.
+Ordne Wörter wie "heute", "jetzt" oder "direkt" nur dann dem Verlauf zu, wenn sie den
+Beginn, die Dauer oder die Veränderung eines Symptoms beschreiben.
+Ordne "nicht" nur dann einer Verneinung zu, wenn tatsächlich ein medizinischer Sachverhalt
+verneint oder ausgeschlossen wird.
+Halte explanation kurz und begründe die konkrete Zuordnung.
 """
