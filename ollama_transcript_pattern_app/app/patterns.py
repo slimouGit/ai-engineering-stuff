@@ -16,7 +16,7 @@ DEFAULT_PATTERNS = [
     ),
     PatternDefinition(
         name="vorgeschichte_risikofaktoren",
-        description="Relevante eigene Vorerkrankungen, eigene Operationen oder persönliche Risikofaktoren der Patientin. Familienmitglieder zählen nur bei ausdrücklich relevantem familiärem Risiko.",
+        description="Relevante eigene Vorerkrankungen, eigene Operationen, persönliche Risikofaktoren oder ausdrücklich genannte familiäre Vorerkrankungen mit möglicher medizinischer Bedeutung, zum Beispiel Schlaganfall, Hirnblutung, Herzinfarkt oder Krebs in der Familie. Irrelevante Familieninformationen nicht markieren.",
     ),
     PatternDefinition(
         name="verneinung_ausschluss",

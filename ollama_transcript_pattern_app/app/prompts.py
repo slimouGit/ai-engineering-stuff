@@ -45,6 +45,9 @@ Verwende als evidence nur den kürzesten relevanten Originalausschnitt, nicht ei
 Ordne Fragen, Namen von Ärzten und allgemeine Gesprächsanteile nicht automatisch Behandlungsmustern zu.
 Ordne Wörter wie "heute", "jetzt" oder "direkt" nur dann dem Verlauf zu, wenn sie den
 Beginn, die Dauer oder die Veränderung eines Symptoms beschreiben.
+Familiäre Vorerkrankungen oder Risiken sind relevant, wenn eine Angehörige oder ein Angehöriger
+zusammen mit einer medizinisch relevanten Erkrankung genannt wird, zum Beispiel eine Hirnblutung
+der Großmutter. Familienbeziehungen ohne medizinische Information sind kein Treffer.
 Ordne "nicht" nur dann einer Verneinung zu, wenn tatsächlich ein medizinischer Sachverhalt
 verneint oder ausgeschlossen wird.
 Halte explanation kurz und begründe die konkrete Zuordnung.
