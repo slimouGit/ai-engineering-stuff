@@ -50,5 +50,10 @@ zusammen mit einer medizinisch relevanten Erkrankung genannt wird, zum Beispiel 
 der Großmutter. Familienbeziehungen ohne medizinische Information sind kein Treffer.
 Ordne "nicht" nur dann einer Verneinung zu, wenn tatsächlich ein medizinischer Sachverhalt
 verneint oder ausgeschlossen wird.
+Markiere niemals soziale oder private Verneinungen wie "nicht verheiratet", "kein Freund"
+oder "Single" als medizinische Verneinung.
+Markiere frage_antwort_struktur nur, wenn im evidence-Ausschnitt selbst eine explizite Frage
+mit Fragezeichen oder klarer Frageform und eine direkt zugehörige inhaltliche Antwort enthalten
+sind. Eine Antwort auf eine nur vermutete oder implizite Frage reicht nicht.
 Halte explanation kurz und begründe die konkrete Zuordnung.
 """
