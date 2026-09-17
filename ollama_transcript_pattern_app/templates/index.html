@@ -7,6 +7,8 @@
   <style>
     body { font-family: Arial, sans-serif; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
     textarea { width: 100%; min-height: 220px; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    select, input { width: 100%; box-sizing: border-box; padding: 8px; margin-top: 4px; }
     button { padding: 10px 16px; margin-top: 10px; cursor: pointer; }
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
     .card { border: 1px solid #ddd; border-radius: 8px; padding: 14px; margin: 10px 0; }
@@ -25,6 +27,13 @@
     <section>
       <h2>Interview-Transkript</h2>
       <textarea id="transcript" readonly placeholder="Transkript wird geladen..."></textarea>
+      <h3>Analyse-Einstellungen</h3>
+      <label for="model">Ollama-Modell</label>
+      <select id="model"><option value="">Standardmodell laden...</option></select>
+      <label for="timeout">Timeout in Sekunden</label>
+      <input id="timeout" type="number" min="5" max="600" step="1" value="180" />
+      <label for="chunkSize">Chunk-Größe in Zeichen</label>
+      <input id="chunkSize" type="number" min="500" max="20000" step="100" value="3000" />
       <br />
       <button onclick="analyzeInterview()">Interview analysieren</button>
     </section>
@@ -132,13 +141,37 @@ async function loadTranscript() {
   document.getElementById('transcript').value = data.transcript;
 }
 
+// Lädt ausschließlich lokal verfügbare Ollama-Modelle.
+async function loadModels() {
+  const response = await fetch('/models');
+  const data = await response.json();
+  const select = document.getElementById('model');
+  select.innerHTML = '';
+  if (!response.ok || !data.models || data.models.length === 0) {
+    select.innerHTML = '<option value="">Keine Modelle verfügbar</option>';
+    return;
+  }
+  data.models.forEach(model => {
+    const option = document.createElement('option');
+    option.value = model;
+    option.textContent = model;
+    select.appendChild(option);
+  });
+}
+
 // Startet die Musteranalyse des vorhandenen Interviews.
 async function analyzeInterview() {
   setStatus('Analysiere Interview...');
   document.getElementById('results').innerHTML = '';
   document.getElementById('evaluation').innerHTML = '<div class="card">Evaluation wird nach der Analyse gestartet.</div>';
   const response = await fetch('/analyze-interview', {
-    method: 'POST'
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: document.getElementById('model').value || null,
+      timeout: Number(document.getElementById('timeout').value),
+      chunk_size: Number(document.getElementById('chunkSize').value)
+    })
   });
 
   const data = await response.json();
@@ -163,7 +196,7 @@ async function analyzeInterview() {
 }
 
 // Lädt das Transcript direkt beim Öffnen der Seite.
-loadTranscript().catch(() => setStatus('Transkript konnte nicht geladen werden.'));
+Promise.all([loadTranscript(), loadModels()]).catch(() => setStatus('Einstellungen konnten nicht geladen werden.'));
 </script>
 </body>
 </html>

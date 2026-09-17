@@ -1,125 +1,176 @@
-# Ablauf der App: von Klick bis Ergebnis
+# Ablauf der App: vom Seitenaufruf bis zur Evaluation
 
-Dieses Dokument beschreibt den sequenziellen Ablauf der App, wenn der Nutzer auf den Button "Interview analysieren" klickt.
+Dieses Dokument beschreibt den aktuellen Ablauf der App. Analyse und Evaluation sind getrennt: Ollama wird nur während der Analyse aufgerufen. Die Evaluation arbeitet anschließend mit dem gespeicherten Analyseergebnis.
 
 ## 1. Seite wird geladen
 
-1. Der Browser ruft die Startseite auf:
-   - GET /
-2. FastAPI liefert die HTML-Datei aus:
-   - templates/index.html
-3. Die Seite enthält:
-   - ein readonly-Textfeld für das Interview-Transkript
-   - einen Button "Interview analysieren"
-   - einen Bereich für die Analyseergebnisse
+1. Der Browser ruft `GET /` auf.
+2. FastAPI liefert [templates/index.html](templates/index.html).
+3. Das Frontend startet parallel:
+   - `GET /transcript`
+   - `GET /models`
 
-## 2. Transkript wird beim Seitenaufruf geladen
+## 2. Transkript und Modelle laden
 
-1. Die JavaScript-Funktion `loadTranscript()` wird beim Öffnen der Seite ausgeführt.
-2. Sie sendet einen Request an den Backend-Endpunkt:
-   - GET /transcript
-3. In [app/main.py](app/main.py) läuft dabei:
-   - `transcript()` wird aufgerufen
-   - `read_transcript()` liest die Datei `data/interview.txt`
-   - Wenn die Datei existiert und nicht leer ist, wird ihr Inhalt zurückgegeben
-4. Der Browser setzt den Inhalt in das Textfeld `#transcript`.
+### Transkript
 
-## 3. Nutzer klickt auf "Interview analysieren"
+1. `GET /transcript` ruft in [app/main.py](app/main.py) `read_transcript()` auf.
+2. `data/interview.txt` wird gelesen.
+3. Das Frontend setzt den Inhalt in das readonly-Feld `#transcript`.
 
-1. Die Funktion `analyzeInterview()` im Frontend wird gestartet.
-2. Sie setzt den Status auf:
-   - "Analysiere Interview..."
-3. Danach wird ein HTTP-Request gesendet:
-   - POST /analyze-interview
+### Modelle
 
-## 4. Backend empfangt den Analyse-Request
+1. `GET /models` ruft `available_models()` auf.
+2. Der Backend-Client fragt Ollama über `GET /api/tags` ab.
+3. Die lokal installierten Modellnamen werden an das Frontend zurückgegeben.
+4. Das Frontend füllt damit die Modellauswahl.
 
-1. In [app/main.py](app/main.py) wird der Endpunkt `analyze_interview()` aufgerufen.
-2. Dieser ruft erneut `read_transcript()` auf.
-3. Das Transkript wird erneut aus `data/interview.txt` gelesen.
-4. Wenn das Transkript fehlt oder leer ist, entsteht ein HTTP-Fehler.
-5. Wenn alles okay ist, wird die eigentliche Analyse gestartet:
-   - `analyze_transcript(read_transcript())`
+## 3. Nutzer wählt Analyse-Einstellungen
 
-## 5. Analyse beginnt: Transkript wird in Abschnitte zerlegt
+Vor dem Start kann der Nutzer festlegen:
 
-1. In [app/analyzer.py](app/analyzer.py) wird `analyze_transcript(transcript)` aufgerufen.
-2. Die Funktion ruft `chunk_text(transcript)` auf.
-3. `split_sentences(text)` zerlegt den Text in Sätze.
-4. Dabei werden Abkürzungen wie "Dr." oder "z. B." geschützt, damit sie nicht fälschlich als Satzende interpretiert werden.
-5. `chunk_text()` baut aus den Sätzen größere Blöcke mit einer festen Maximalgröße und leichtem Overlap.
-6. Das Ziel ist:
-   - möglichst ganze Sinnabschnitte
-   - trotzdem keine zu großen Eingaben für das Modell
+- Ollama-Modell
+- Timeout in Sekunden
+- Chunk-Größe in Zeichen
 
-## 6. Für jeden Chunk wird eine Modellabfrage gestartet
+Die Werte gelten nur für den nächsten Analyseaufruf. Das Frontend führt keine Shell-Befehle aus.
 
-1. Für jeden Chunk wird `analyze_chunk(chunk)` ausgeführt.
-2. `build_user_prompt(chunk)` erzeugt aus den konfigurierten Musterdefinitionen den Prompt für Ollama.
-3. `chat_json(system_prompt, user_prompt)` in [app/ollama_client.py](app/ollama_client.py) stellt den Request an Ollama:
-   - POST /api/chat
-4. Dabei werden gesendet:
-   - das System-Prompt
-   - der User-Prompt mit dem aktuellen Chunk
-   - das gewählte Modell
-   - JSON-Format als Antwort erwartet
-5. Ollama liefert ein JSON zurück mit Einträgen in der Form:
-   - pattern
-   - evidence
-   - explanation
-   - confidence
+## 4. Analyse starten
 
-## 7. Treffer werden validiert
+Beim Klick auf "Interview analysieren" führt `analyzeInterview()` aus [templates/index.html](templates/index.html) folgende Schritte aus:
 
-1. Die Antwort wird geparst.
-2. In `analyze_chunk()` werden nur Treffer akzeptiert, deren `pattern` zu den erlaubten Mustern gehört.
-3. Das verhindert, dass fremde oder ungültige Muster aus der Modellantwort übernommen werden.
+1. Status auf "Analysiere Interview..." setzen.
+2. Alte Ergebnis- und Evaluationsanzeige leeren.
+3. Einen JSON-Request an `POST /analyze-interview` senden:
 
-## 8. Ergebnisse aus allen Chunks werden zusammengeführt
+```json
+{
+  "model": "qwen2.5:7b",
+   "timeout": 300,
+   "chunk_size": 2000
+}
+```
 
-1. In `analyze_transcript()` werden alle Treffer aus allen Chunks gesammelt.
-2. `remove_duplicate_matches()` entfernt doppelte Treffer.
-3. Das passiert anhand von:
-   - Mustername
-   - Textbeleg (normalisiert)
-4. Danach bleibt eine bereinigte Trefferliste übrig.
+Die Werte sind Beispiele für einen robusten Analyse-Lauf. Die Standardwerte in
+[app/config.py](app/config.py) sind ein Timeout von 120 Sekunden und eine Chunk-Größe von
+3000 Zeichen. Bei langsamen lokalen Modellen können ein höheres Timeout und kleinere Chunks
+verwendet werden.
 
-## 9. Antwort wird an das Frontend zurückgegeben
+## 5. Backend validiert die Optionen
 
-1. `AnalysisResponse` wird erzeugt mit:
-   - `transcript`
-   - `matches`
-   - `model`
-2. Der FastAPI-Endpunkt gibt diese Struktur als JSON zurück.
-3. Das Frontend erhält die Antwort.
+In [app/main.py](app/main.py) wird `AnalysisRequest` aus [app/schemas.py](app/schemas.py) verwendet:
 
-## 10. Frontend rendert das Ergebnis
+- `model` ist optional.
+- `timeout` liegt zwischen 5 und 600 Sekunden.
+- `chunk_size` liegt zwischen 500 und 20.000 Zeichen.
 
-1. `analyzeInterview()` prüft den HTTP-Status.
-2. Wenn kein Fehler vorliegt, setzt es den Status auf:
-   - "Fertig. Modell: ..."
-3. Danach ruft es `render(data)` auf.
-4. `render()` erzeugt für jeden Treffer eine Karte mit:
-   - Mustername
-   - Treffertext
-   - Erklärung
-   - Confidence in Prozent
-5. Die Ergebnisse werden in `#results` eingefügt.
+Nicht gesetzte Werte verwenden die Standardkonfiguration aus [app/config.py](app/config.py).
 
-## 11. Abschluss
+## 6. Transkript in Chunks aufteilen
 
-Damit ist der komplette Ablauf abgeschlossen:
+1. `read_transcript()` liest das Interview erneut.
+2. `analyze_transcript()` in [app/analyzer.py](app/analyzer.py) ruft `chunk_text()` auf.
+3. `split_sentences()` zerlegt das Transkript in Sätze und schützt Abkürzungen wie "Dr.".
+4. `chunk_text()` bildet Abschnitte entsprechend der gewählten Chunk-Größe.
 
-- Frontend klickt Button
-- Backend liest Transkript
-- Text wird in Chunks aufgeteilt
-- Ollama analysiert jeden Chunk
-- Treffer werden zusammengeführt und dedupliziert
-- JSON-Ergebnis wird zurückgegeben
-- Browser rendert die Matches im UI
+Eine größere Chunk-Größe reduziert die Anzahl der Ollama-Aufrufe, kann aber die Modellantwort verlangsamen. Eine kleinere Chunk-Größe erzeugt mehr, dafür kleinere Aufrufe.
+Die Chunks werden nacheinander vollständig verarbeitet. Standardmäßig gibt es keinen Satz-Overlap
+zwischen aufeinanderfolgenden Chunks.
+
+## 7. Jeden Chunk mit Ollama analysieren
+
+Für jeden Chunk läuft `analyze_chunk()`:
+
+1. `build_user_prompt()` erstellt den Prompt aus den Musterdefinitionen.
+2. `chat_json()` aus [app/ollama_client.py](app/ollama_client.py) sendet `POST /api/chat` an Ollama.
+3. Übergeben werden:
+   - System-Prompt
+   - Chunk als User-Prompt
+   - gewähltes Modell
+   - gewähltes Timeout
+   - JSON-Ausgabeformat
+   - maximal 2048 Ausgabetokens (`OLLAMA_MAX_OUTPUT_TOKENS`)
+4. Erwartete Trefferfelder sind:
+   - `pattern`
+   - `evidence`
+   - `explanation`
+   - `confidence`
+
+## 8. Modellantwort filtern
+
+Die Antwort wird in `Match`-Objekte validiert. Danach werden nur Treffer akzeptiert, die:
+
+- ein erlaubtes Muster verwenden,
+- einen kurzen Evidence-Text enthalten,
+- Evidence aus dem aktuellen Chunk enthalten,
+- keine unzulässige Länge überschreiten,
+- bei Medikamenten einen Einnahme-, Anwendungs-, Wirkungs- oder ausdrücklich verneinten
+   Medikamentenkontext enthalten,
+- bei Verneinungen einen erkennbaren medizinischen Ausschluss oder Antwortkontext enthalten.
+
+Aktuell werden sechs Muster verwendet, darunter `frage_antwort_struktur`. Die Musterdefinitionen
+stehen in [app/patterns.py](app/patterns.py). Der Prompt fordert eine systematische Prüfung aller
+Muster und erlaubt mehrere Treffer pro Muster sowie die Zuordnung einer Textstelle zu mehreren
+Mustern.
+
+Das Frage-Antwort-Muster ist aktuell deaktiviert, weil es für die vorhandene Ground Truth zu viele Fehlklassifikationen erzeugt.
+
+## 9. Treffer zusammenführen
+
+1. Treffer aus allen Chunks werden gesammelt.
+2. `remove_duplicate_matches()` normalisiert die Evidence-Texte.
+3. Identische oder vollständig überlappende Evidence wird entfernt. Dadurch können sehr ähnliche
+   Treffer zusammenfallen; die aktuelle Deduplizierung berücksichtigt dabei nicht den Pattern-Namen.
+4. Das Ergebnis wird als `AnalysisResponse` zurückgegeben.
+
+## 10. Analyse speichern und anzeigen
+
+1. Das Backend speichert das Ergebnis in `latest_analysis`.
+2. Die Antwort enthält:
+   - Transkript
+   - Trefferliste
+   - verwendetes Modell
+3. Das Frontend rendert jeden Treffer mit Muster, Evidence, Erklärung und Confidence.
+4. Fehlt die Confidence in der Modellantwort, wird "nicht verfügbar" angezeigt. Es wird kein künstlicher Wert wie 50 Prozent erzeugt.
+
+## 11. Evaluation nach abgeschlossener Analyse
+
+Erst wenn die Analyse erfolgreich war, ruft das Frontend `GET /evaluate` auf.
+
+1. Das Backend prüft, ob `latest_analysis` vorhanden ist.
+2. Falls nicht, wird `409` mit "Bitte zuerst die Analyse ausführen" zurückgegeben.
+3. Falls vorhanden, wird die Ground Truth aus `data/ground_truth.json` geladen.
+4. Die gespeicherten Analyse-Treffer werden mit der Ground Truth verglichen.
+5. `evaluate_matches()` berechnet:
+   - True Positives
+   - False Positives
+   - False Negatives
+   - Precision
+   - Recall
+   - F1
+6. Während der Evaluation wird kein Ollama-Aufruf gestartet.
+
+## 12. Fehlerfälle
+
+- Leeres oder fehlendes Transkript: HTTP-Fehler beim Lesen.
+- Nicht erreichbares Ollama oder Timeout: HTTP `503`; es werden keine Fallback-Treffer erzeugt.
+- Ungültige Einstellungen: Validierungsfehler durch `AnalysisRequest`.
+- Evaluation vor Analyse: HTTP `409`.
 
 ## Kurz gesagt
 
-Der gesamte Ablauf ist also:
-
-Frontend Button -> POST /analyze-interview -> read_transcript() -> chunk_text() -> analyze_chunk() -> Ollama /api/chat -> Matches validieren -> deduplizieren -> JSON-Ergebnis -> render() -> UI
+```text
+Seite laden
+-> /transcript und /models
+-> Nutzer wählt Modell, Timeout und Chunk-Größe
+-> POST /analyze-interview
+-> Optionen validieren
+-> Transkript lesen und chunken
+-> jeden Chunk an Ollama senden
+-> Treffer validieren und filtern
+-> Duplikate entfernen
+-> Analyse speichern und anzeigen
+-> GET /evaluate
+-> gespeicherte Treffer mit Ground Truth vergleichen
+-> Metriken anzeigen
+```

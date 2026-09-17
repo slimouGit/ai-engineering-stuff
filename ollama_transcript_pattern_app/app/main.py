@@ -5,8 +5,8 @@ from fastapi.responses import HTMLResponse
 
 from .analyzer import analyze_transcript
 from .evaluation import evaluate_matches, load_ground_truth
-from .ollama_client import OllamaError, health
-from .schemas import AnalysisResponse
+from .ollama_client import OllamaError, available_models, health
+from .schemas import AnalysisRequest, AnalysisResponse
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +39,14 @@ def health_check():
     return health()
 
 
+@app.get("/models")
+def models():
+    try:
+        return {"models": available_models()}
+    except OllamaError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+
 @app.get("/transcript")
 def transcript():
     # Stellt das Interview für die Oberfläche bereit.
@@ -46,12 +54,18 @@ def transcript():
 
 
 @app.post("/analyze-interview", response_model=AnalysisResponse)
-def analyze_interview():
-    # Analysiert das vorhandene Interview mit den Standardmustern.
+def analyze_interview(options: AnalysisRequest | None = None):
+    # Analysiert das Interview mit den Optionen dieses Laufs.
     global latest_analysis
     latest_analysis = None
+    options = options or AnalysisRequest()
     try:
-        latest_analysis = analyze_transcript(read_transcript())
+        latest_analysis = analyze_transcript(
+            read_transcript(),
+            model=options.model,
+            timeout=options.timeout,
+            chunk_size=options.chunk_size,
+        )
         return latest_analysis
     except OllamaError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc

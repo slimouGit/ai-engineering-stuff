@@ -57,10 +57,14 @@ def chunk_text(
     return chunks
 
 
-def analyze_chunk(chunk: str) -> list[Match]:
+def analyze_chunk(
+    chunk: str,
+    model: str | None = None,
+    timeout: float | None = None,
+) -> list[Match]:
     user_prompt = build_user_prompt(chunk)
 
-    raw = chat_json(SYSTEM_PROMPT, user_prompt)
+    raw = chat_json(SYSTEM_PROMPT, user_prompt, model=model, timeout=timeout)
 
     matches = []
     for item in raw.get("matches", []):
@@ -153,13 +157,18 @@ def remove_duplicate_matches(
     return unique_matches
 
 
-def analyze_transcript(transcript: str) -> AnalysisResponse:
-    chunks = chunk_text(transcript)
+def analyze_transcript(
+    transcript: str,
+    model: str | None = None,
+    timeout: float | None = None,
+    chunk_size: int | None = None,
+) -> AnalysisResponse:
+    chunks = chunk_text(transcript, max_chars=chunk_size or CHUNK_SIZE)
 
     all_matches = []
 
     for chunk in chunks:
-        all_matches.extend(analyze_chunk(chunk))
+        all_matches.extend(analyze_chunk(chunk, model=model, timeout=timeout))
 
     all_matches = remove_duplicate_matches(
         all_matches
@@ -168,5 +177,5 @@ def analyze_transcript(transcript: str) -> AnalysisResponse:
     return AnalysisResponse(
         transcript=transcript,
         matches=all_matches,
-        model=OLLAMA_MODEL,
+        model=model or OLLAMA_MODEL,
     )

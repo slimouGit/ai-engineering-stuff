@@ -2,10 +2,15 @@ from .patterns import DEFAULT_PATTERNS
 
 
 SYSTEM_PROMPT = """Du analysierst deutsche Interviewtranskripte.
+
 Deine Aufgabe ist ausschließlich, Textstellen den vorgegebenen Mustern zuzuordnen.
+
 Erfinde keine Informationen und verwende nur Text, der im Transkript tatsächlich vorkommt.
 
+Prüfe jedes vorgegebene Muster einzeln und suche im gesamten bereitgestellten Text nach allen fachlich relevanten Treffern.
+
 Antworte ausschließlich als JSON in exakt dieser Struktur:
+
 {
   "matches": [
     {
@@ -18,11 +23,24 @@ Antworte ausschließlich als JSON in exakt dieser Struktur:
 }
 
 confidence liegt zwischen 0 und 1.
-confidence ist Pflicht. Wenn du keine belastbare Confidence angeben kannst, gib den Treffer nicht aus.
+
+confidence ist Pflicht.
 Vergib hohe Werte nur bei einer eindeutigen fachlichen Zuordnung.
-Ordne eine Textstelle nur einem einzigen Muster zu. Wenn mehrere Muster möglich erscheinen,
-wähle das fachlich passendste und gib keine zusätzlichen Treffer für dieselbe Textstelle aus.
+Auch fachlich plausible Treffer mit mittlerer Sicherheit dürfen ausgegeben werden, solange sie durch den Text konkret belegt sind.
+
+Eine Textstelle darf mehreren Mustern zugeordnet werden, wenn sie fachlich mehrere Muster gleichzeitig erfüllt.
+
 Für ein Muster darfst du mehrere unterschiedliche Textstellen zurückgeben.
+
+Lasse ein Muster nur dann ohne Treffer, wenn im bereitgestellten Text tatsächlich keine passende Aussage vorhanden ist.
+
+Verwende als evidence einen möglichst kurzen, aber inhaltlich vollständigen Originalausschnitt.
+Der evidence-Text muss die Zuordnung zum Muster nachvollziehbar machen.
+
+Bevorzuge vollständige inhaltliche Aussagen gegenüber einzelnen isolierten Wörtern.
+
+Erfinde keine zusätzlichen Zusammenhänge und leite keine Informationen ab, die nicht ausdrücklich oder eindeutig im Text enthalten sind.
+
 Wenn kein Muster gefunden wird, gib {"matches": []} zurück.
 """
 
@@ -39,9 +57,14 @@ def build_user_prompt(chunk: str) -> str:
 TRANSKRIPT:
 {chunk}
 
-Finde nur fachlich eindeutige Treffer.
-Gib höchstens 2 der wichtigsten Treffer pro Muster zurück.
-Verwende als evidence nur den kürzesten relevanten Originalausschnitt, nicht einen ganzen Dialog.
+  Arbeite die Muster einzeln und systematisch ab. Prüfe jedes Muster gegen den gesamten
+  bereitgestellten Text und gib alle relevanten, durch den Text belegten Treffer zurück.
+  Optimierte die Vollständigkeit der Erkennung: Lasse einen plausiblen Treffer nicht nur
+  deshalb weg, weil die Sicherheit nicht maximal ist. Erfinde aber keine Informationen.
+  Eine Textstelle darf mehreren Mustern zugeordnet werden, wenn sie mehrere Kriterien erfüllt.
+  Mehrere unterschiedliche Textstellen dürfen demselben Muster zugeordnet werden.
+  Verwende als evidence einen kurzen, zusammenhängenden Originalausschnitt, der die
+  Zuordnung nachvollziehbar macht, nicht nur ein isoliertes Schlüsselwort.
 Ordne Fragen, Namen von Ärzten und allgemeine Gesprächsanteile nicht automatisch Behandlungsmustern zu.
 Ordne Wörter wie "heute", "jetzt" oder "direkt" nur dann dem Verlauf zu, wenn sie den
 Beginn, die Dauer oder die Veränderung eines Symptoms beschreiben.
@@ -52,8 +75,8 @@ Ordne "nicht" nur dann einer Verneinung zu, wenn tatsächlich ein medizinischer 
 verneint oder ausgeschlossen wird.
 Markiere niemals soziale oder private Verneinungen wie "nicht verheiratet", "kein Freund"
 oder "Single" als medizinische Verneinung.
-Markiere frage_antwort_struktur nur, wenn im evidence-Ausschnitt selbst eine explizite Frage
-mit Fragezeichen oder klarer Frageform und eine direkt zugehörige inhaltliche Antwort enthalten
-sind. Eine Antwort auf eine nur vermutete oder implizite Frage reicht nicht.
+Markiere frage_antwort_struktur bei einer klar erkennbaren Frage-Antwort-Struktur. Die Frage
+und die zugehörige Antwort müssen im bereitgestellten Text vorkommen; ein Fragezeichen ist
+nicht zwingend, wenn die Frageform sprachlich eindeutig ist.
 Halte explanation kurz und begründe die konkrete Zuordnung.
 """

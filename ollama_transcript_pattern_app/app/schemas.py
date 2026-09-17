@@ -24,3 +24,11 @@ class AnalysisResponse(BaseModel):
     transcript: str
     matches: List[Match]
     model: str
+
+
+class AnalysisRequest(BaseModel):
+    """Optionen für einen einzelnen Analyseaufruf."""
+
+    model: str | None = None
+    timeout: float | None = Field(default=None, ge=5, le=600)
+    chunk_size: int | None = Field(default=None, ge=500, le=20000)

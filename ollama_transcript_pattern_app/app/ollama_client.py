@@ -12,10 +12,15 @@ class OllamaError(RuntimeError):
     pass
 
 
-def chat_json(system_prompt: str, user_prompt: str) -> Dict[str, Any]:
+def chat_json(
+    system_prompt: str,
+    user_prompt: str,
+    model: str | None = None,
+    timeout: float | None = None,
+) -> Dict[str, Any]:
     # Sendet den Analyseprompt an Ollama und erwartet eine JSON-Antwort.
     payload = {
-        "model": OLLAMA_MODEL,
+        "model": model or OLLAMA_MODEL,
         "stream": False,
         "format": "json",
         "messages": [
@@ -32,7 +37,7 @@ def chat_json(system_prompt: str, user_prompt: str) -> Dict[str, Any]:
         response = requests.post(
             f"{OLLAMA_URL}/api/chat",
             json=payload,
-            timeout=OLLAMA_TIMEOUT,
+            timeout=timeout or OLLAMA_TIMEOUT,
         )
         response.raise_for_status()
     except requests.RequestException as exc:
@@ -55,3 +60,14 @@ def health() -> Dict[str, Any]:
         return {"ok": True, "model": OLLAMA_MODEL}
     except requests.RequestException as exc:
         return {"ok": False, "model": OLLAMA_MODEL, "detail": str(exc)}
+
+
+def available_models() -> list[str]:
+    """Liest die lokal installierten Ollama-Modelle."""
+    try:
+        response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
+        response.raise_for_status()
+        models = response.json().get("models", [])
+        return [item["name"] for item in models if item.get("name")]
+    except (requests.RequestException, TypeError, AttributeError, KeyError) as exc:
+        raise OllamaError(f"Ollama-Modelle konnten nicht geladen werden: {exc}") from exc
