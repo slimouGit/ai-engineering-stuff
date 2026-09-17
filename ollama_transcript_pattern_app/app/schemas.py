@@ -30,5 +30,6 @@ class AnalysisRequest(BaseModel):
     """Optionen für einen einzelnen Analyseaufruf."""
 
     model: str | None = None
+    device: str = Field(default="auto", pattern="^(auto|gpu|cpu)$")
     timeout: float | None = Field(default=None, ge=5, le=600)
     chunk_size: int | None = Field(default=None, ge=500, le=20000)

@@ -30,6 +30,7 @@ Dieses Dokument beschreibt den aktuellen Ablauf der App. Analyse und Evaluation 
 Vor dem Start kann der Nutzer festlegen:
 
 - Ollama-Modell
+- Verarbeitungsmodus: automatisch, GPU bevorzugen oder nur CPU
 - Timeout in Sekunden
 - Chunk-Größe in Zeichen
 
@@ -46,6 +47,7 @@ Beim Klick auf "Interview analysieren" führt `analyzeInterview()` aus [template
 ```json
 {
   "model": "qwen2.5:7b",
+   "device": "auto",
    "timeout": 300,
    "chunk_size": 2000
 }
@@ -65,6 +67,8 @@ In [app/main.py](app/main.py) wird `AnalysisRequest` aus [app/schemas.py](app/sc
 - `chunk_size` liegt zwischen 500 und 20.000 Zeichen.
 
 Nicht gesetzte Werte verwenden die Standardkonfiguration aus [app/config.py](app/config.py).
+Im Modus `auto` entscheidet Ollama selbst über GPU- und CPU-Nutzung. `gpu` setzt die
+GPU-Nutzung für die Modelllayer voraus, während `cpu` die GPU-Nutzung deaktiviert.
 
 ## 6. Transkript in Chunks aufteilen
 
@@ -95,6 +99,19 @@ Für jeden Chunk läuft `analyze_chunk()`:
    - `evidence`
    - `explanation`
    - `confidence`
+
+Die `PatternDefinition`-Einträge in [app/patterns.py](app/patterns.py) sind fachliche
+Beschreibungen, die in den Prompt übernommen werden. Sie prüfen den Text nicht selbst
+regelbasiert. Die eigentliche Zuordnung eines Textausschnitts zu einem Muster übernimmt
+Ollama. Die App prüft danach nur technisch und teilweise regelbasiert, ob:
+
+- der Pattern-Name erlaubt ist,
+- die Evidence im aktuellen Chunk vorkommt,
+- die Evidence nicht leer oder zu lang ist,
+- zusätzliche Filterregeln für Medikamente und Verneinungen erfüllt sind.
+
+Die gültigen Treffer aus allen Chunks werden gesammelt, anschließend teilweise dedupliziert
+und in `latest_analysis` gespeichert.
 
 ## 8. Modellantwort filtern
 

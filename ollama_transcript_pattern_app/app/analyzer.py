@@ -1,6 +1,12 @@
 import re
 
-from .config import ABBREVIATION_PATTERN, CHUNK_OVERLAP_SENTENCES, CHUNK_SIZE, PERIOD_MARKER
+from .config import (
+    ABBREVIATION_PATTERN,
+    CHUNK_OVERLAP_SENTENCES,
+    CHUNK_SIZE,
+    PERIOD_MARKER,
+    output_tokens_for_chunk,
+)
 from .ollama_client import OLLAMA_MODEL, chat_json
 from .patterns import DEFAULT_PATTERNS
 from .prompts import SYSTEM_PROMPT, build_user_prompt
@@ -61,10 +67,18 @@ def analyze_chunk(
     chunk: str,
     model: str | None = None,
     timeout: float | None = None,
+    device: str = "auto",
 ) -> list[Match]:
     user_prompt = build_user_prompt(chunk)
 
-    raw = chat_json(SYSTEM_PROMPT, user_prompt, model=model, timeout=timeout)
+    raw = chat_json(
+        SYSTEM_PROMPT,
+        user_prompt,
+        model=model,
+        timeout=timeout,
+        max_output_tokens=output_tokens_for_chunk(len(chunk)),
+        device=device,
+    )
 
     matches = []
     for item in raw.get("matches", []):
@@ -162,13 +176,16 @@ def analyze_transcript(
     model: str | None = None,
     timeout: float | None = None,
     chunk_size: int | None = None,
+    device: str = "auto",
 ) -> AnalysisResponse:
     chunks = chunk_text(transcript, max_chars=chunk_size or CHUNK_SIZE)
 
     all_matches = []
 
     for chunk in chunks:
-        all_matches.extend(analyze_chunk(chunk, model=model, timeout=timeout))
+        all_matches.extend(
+            analyze_chunk(chunk, model=model, timeout=timeout, device=device)
+        )
 
     all_matches = remove_duplicate_matches(
         all_matches

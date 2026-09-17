@@ -30,10 +30,17 @@
       <h3>Analyse-Einstellungen</h3>
       <label for="model">Ollama-Modell</label>
       <select id="model"><option value="">Standardmodell laden...</option></select>
+      <label for="device">Verarbeitung</label>
+      <select id="device">
+        <option value="auto" selected>Automatisch (GPU/CPU)</option>
+        <option value="gpu">GPU bevorzugen</option>
+        <option value="cpu">Nur CPU</option>
+      </select>
       <label for="timeout">Timeout in Sekunden</label>
       <input id="timeout" type="number" min="5" max="600" step="1" value="180" />
       <label for="chunkSize">Chunk-Größe in Zeichen</label>
       <input id="chunkSize" type="number" min="500" max="20000" step="100" value="3000" />
+      <div class="muted">Maximale Ausgabetokens: <span id="outputTokens">1500</span></div>
       <br />
       <button onclick="analyzeInterview()">Interview analysieren</button>
     </section>
@@ -51,6 +58,13 @@
 // Zeigt Lade-, Erfolgs- oder Fehlermeldungen an.
 function setStatus(text) {
   document.getElementById('status').textContent = text;
+}
+
+// Hält die sichtbare Schätzung mit dem Backend-Limit synchron.
+function updateOutputTokens() {
+  const chunkSize = Number(document.getElementById('chunkSize').value) || 0;
+  const outputTokens = Math.max(512, Math.min(2048, Math.floor(chunkSize / 2)));
+  document.getElementById('outputTokens').textContent = outputTokens;
 }
 
 function renderEvaluation(data) {
@@ -169,6 +183,7 @@ async function analyzeInterview() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: document.getElementById('model').value || null,
+      device: document.getElementById('device').value,
       timeout: Number(document.getElementById('timeout').value),
       chunk_size: Number(document.getElementById('chunkSize').value)
     })
@@ -194,6 +209,9 @@ async function analyzeInterview() {
     setStatus(evaluationData.detail || 'Evaluation konnte nicht ausgeführt werden.');
   }
 }
+
+document.getElementById('chunkSize').addEventListener('input', updateOutputTokens);
+updateOutputTokens();
 
 // Lädt das Transcript direkt beim Öffnen der Seite.
 Promise.all([loadTranscript(), loadModels()]).catch(() => setStatus('Einstellungen konnten nicht geladen werden.'));

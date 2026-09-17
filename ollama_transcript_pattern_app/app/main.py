@@ -65,6 +65,7 @@ def analyze_interview(options: AnalysisRequest | None = None):
             model=options.model,
             timeout=options.timeout,
             chunk_size=options.chunk_size,
+            device=options.device,
         )
         return latest_analysis
     except OllamaError as exc:

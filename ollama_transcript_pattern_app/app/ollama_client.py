@@ -3,7 +3,7 @@ from typing import Any, Dict
 
 import requests
 
-from .config import OLLAMA_MAX_OUTPUT_TOKENS, OLLAMA_MODEL, OLLAMA_TIMEOUT, OLLAMA_URL
+from .config import OLLAMA_MODEL, OLLAMA_TIMEOUT, OLLAMA_URL
 
 
 class OllamaError(RuntimeError):
@@ -17,8 +17,19 @@ def chat_json(
     user_prompt: str,
     model: str | None = None,
     timeout: float | None = None,
+    max_output_tokens: int = 2048,
+    device: str = "auto",
 ) -> Dict[str, Any]:
     # Sendet den Analyseprompt an Ollama und erwartet eine JSON-Antwort.
+    options: dict[str, Any] = {
+        "temperature": 0.1,
+        "num_predict": max_output_tokens,
+    }
+    if device == "cpu":
+        options["num_gpu"] = 0
+    elif device == "gpu":
+        options["num_gpu"] = -1
+
     payload = {
         "model": model or OLLAMA_MODEL,
         "stream": False,
@@ -27,10 +38,7 @@ def chat_json(
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ],
-        "options": {
-            "temperature": 0.1,
-            "num_predict": OLLAMA_MAX_OUTPUT_TOKENS,
-        },
+        "options": options,
     }
 
     try:
