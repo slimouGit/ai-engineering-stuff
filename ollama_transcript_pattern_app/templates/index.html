@@ -20,13 +20,15 @@
 <body>
   <!-- Die Seite zeigt das feste Interview und die Analyseergebnisse. -->
   <h1>Transcript Pattern Analyzer</h1>
-  <p class="muted">Das Interview aus <code>data/interview.txt</code> wird lokal mit Ollama nach Mustern durchsucht.</p>
+  <p class="muted">Wähle ein Transkript aus oder bearbeite den Text direkt vor der Analyse.</p>
 
   <!-- Bereich zum Anzeigen und Analysieren des geladenen Transcripts. -->
   <div class="row">
     <section>
       <h2>Interview-Transkript</h2>
-      <textarea id="transcript" readonly placeholder="Transkript wird geladen..."></textarea>
+      <label for="transcriptFile">Vorhandenes Transkript</label>
+      <select id="transcriptFile"><option value="">Transkripte werden geladen...</option></select>
+      <textarea id="transcript" placeholder="Transkript hier einfügen oder aus der Auswahl laden..."></textarea>
       <h3>Analyse-Einstellungen</h3>
       <label for="model">Ollama-Modell</label>
       <select id="model"><option value="">Standardmodell laden...</option></select>
@@ -144,15 +146,38 @@ function escapeHtml(value) {
   return div.innerHTML;
 }
 
-// Lädt das Interview aus data/interview.txt über die API.
-async function loadTranscript() {
-  const response = await fetch('/transcript');
+// Lädt ein ausgewähltes Transkript in die bearbeitbare Textarea.
+async function loadTranscript(filename) {
+  if (!filename) {
+    document.getElementById('transcript').value = '';
+    return;
+  }
+  const response = await fetch(`/transcripts/${encodeURIComponent(filename)}`);
   const data = await response.json();
   if (!response.ok) {
     setStatus(data.detail || 'Transkript konnte nicht geladen werden.');
     return;
   }
   document.getElementById('transcript').value = data.transcript;
+}
+
+// Lädt die verfügbaren Textdateien aus dem data-Ordner.
+async function loadTranscriptFiles() {
+  const response = await fetch('/transcripts');
+  const data = await response.json();
+  const select = document.getElementById('transcriptFile');
+  select.innerHTML = '';
+  if (!response.ok || !data.transcripts || data.transcripts.length === 0) {
+    select.innerHTML = '<option value="">Keine Transkripte verfügbar</option>';
+    return;
+  }
+  data.transcripts.forEach(filename => {
+    const option = document.createElement('option');
+    option.value = filename;
+    option.textContent = filename;
+    select.appendChild(option);
+  });
+  await loadTranscript(select.value);
 }
 
 // Lädt ausschließlich lokal verfügbare Ollama-Modelle.
@@ -182,6 +207,7 @@ async function analyzeInterview() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      transcript: document.getElementById('transcript').value,
       model: document.getElementById('model').value || null,
       device: document.getElementById('device').value,
       timeout: Number(document.getElementById('timeout').value),
@@ -211,10 +237,11 @@ async function analyzeInterview() {
 }
 
 document.getElementById('chunkSize').addEventListener('input', updateOutputTokens);
+document.getElementById('transcriptFile').addEventListener('change', event => loadTranscript(event.target.value));
 updateOutputTokens();
 
-// Lädt das Transcript direkt beim Öffnen der Seite.
-Promise.all([loadTranscript(), loadModels()]).catch(() => setStatus('Einstellungen konnten nicht geladen werden.'));
+// Lädt Dateien und Modelle direkt beim Öffnen der Seite.
+Promise.all([loadTranscriptFiles(), loadModels()]).catch(() => setStatus('Einstellungen konnten nicht geladen werden.'));
 </script>
 </body>
 </html>

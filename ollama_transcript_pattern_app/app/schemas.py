@@ -29,6 +29,7 @@ class AnalysisResponse(BaseModel):
 class AnalysisRequest(BaseModel):
     """Optionen für einen einzelnen Analyseaufruf."""
 
+    transcript: str
     model: str | None = None
     device: str = Field(default="auto", pattern="^(auto|gpu|cpu)$")
     timeout: float | None = Field(default=None, ge=5, le=600)

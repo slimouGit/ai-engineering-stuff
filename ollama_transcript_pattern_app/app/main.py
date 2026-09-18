@@ -11,6 +11,7 @@ from .schemas import AnalysisRequest, AnalysisResponse
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TRANSCRIPT_PATH = BASE_DIR / "data" / "interview.txt"
+DATA_DIR = BASE_DIR / "data"
 app = FastAPI(title="Transcript Pattern Analyzer", version="1.0.0")
 latest_analysis: AnalysisResponse | None = None
 
@@ -30,6 +31,25 @@ def read_transcript() -> str:
 
     if not transcript:
         raise HTTPException(status_code=422, detail="Das Interview-Transkript ist leer.")
+    return transcript
+
+
+def transcript_files() -> list[Path]:
+    return sorted(DATA_DIR.glob("*.txt"))
+
+
+def read_transcript_file(filename: str) -> str:
+    path = DATA_DIR / filename
+    if path.parent != DATA_DIR or path.suffix.lower() != ".txt" or not path.is_file():
+        raise HTTPException(status_code=404, detail="Transkript nicht gefunden.")
+
+    try:
+        transcript = path.read_text(encoding="utf-8").strip()
+    except OSError as exc:
+        raise HTTPException(status_code=500, detail="Das Transkript konnte nicht gelesen werden.") from exc
+
+    if not transcript:
+        raise HTTPException(status_code=422, detail="Das Transkript ist leer.")
     return transcript
 
 
@@ -53,15 +73,28 @@ def transcript():
     return {"transcript": read_transcript()}
 
 
+@app.get("/transcripts")
+def transcripts():
+    return {"transcripts": [path.name for path in transcript_files()]}
+
+
+@app.get("/transcripts/{filename}")
+def transcript_by_filename(filename: str):
+    return {"filename": filename, "transcript": read_transcript_file(filename)}
+
+
 @app.post("/analyze-interview", response_model=AnalysisResponse)
 def analyze_interview(options: AnalysisRequest | None = None):
     # Analysiert das Interview mit den Optionen dieses Laufs.
     global latest_analysis
     latest_analysis = None
     options = options or AnalysisRequest()
+    transcript_text = options.transcript.strip()
+    if not transcript_text:
+        raise HTTPException(status_code=422, detail="Das Transkript ist leer.")
     try:
         latest_analysis = analyze_transcript(
-            read_transcript(),
+            transcript_text,
             model=options.model,
             timeout=options.timeout,
             chunk_size=options.chunk_size,
