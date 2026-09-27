@@ -29,7 +29,7 @@ ollama pull nomic-embed-text
 ## Start
 
 ```bash
-python pandas-app.py
+python pandas-server.py
 ```
 
 Der MCP-Server wird vom Client über stdio als Subprozess gestartet.

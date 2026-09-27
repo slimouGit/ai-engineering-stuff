@@ -1,9 +1,11 @@
 import json
+import re
+import time
 from typing import Any, Dict
 
 import requests
 
-from .config import OLLAMA_MODEL, OLLAMA_TIMEOUT, OLLAMA_URL
+from .config import OLLAMA_MODEL, OLLAMA_RETRIES, OLLAMA_SEED, OLLAMA_TIMEOUT, OLLAMA_URL
 
 
 class OllamaError(RuntimeError):
@@ -22,7 +24,10 @@ def chat_json(
 ) -> Dict[str, Any]:
     # Sendet den Analyseprompt an Ollama und erwartet eine JSON-Antwort.
     options: dict[str, Any] = {
-        "temperature": 0.1,
+        "temperature": 0,
+        "seed": OLLAMA_SEED,
+        "top_k": 1,
+        "top_p": 1,
         "num_predict": max_output_tokens,
     }
     if device == "cpu":
@@ -41,23 +46,65 @@ def chat_json(
         "options": options,
     }
 
-    try:
-        response = requests.post(
-            f"{OLLAMA_URL}/api/chat",
-            json=payload,
-            timeout=timeout or OLLAMA_TIMEOUT,
-        )
-        response.raise_for_status()
-    except requests.RequestException as exc:
-        raise OllamaError(
-            f"Ollama ist nicht erreichbar: {exc}. Läuft 'ollama serve' und ist das Modell vorhanden?"
-        ) from exc
+    last_error: OllamaError | None = None
+    for attempt in range(OLLAMA_RETRIES + 1):
+        try:
+            response = requests.post(
+                f"{OLLAMA_URL}/api/chat",
+                json=payload,
+                timeout=timeout or OLLAMA_TIMEOUT,
+            )
+            response.raise_for_status()
+            content = response.json()["message"]["content"]
+            result = _parse_json_content(content)
+            if not isinstance(result.get("matches"), list):
+                raise OllamaError("Ollama-JSON enthält keine gültige 'matches'-Liste.")
+            return result
+        except requests.RequestException as exc:
+            last_error = OllamaError(
+                f"Ollama ist nicht erreichbar: {exc}. Läuft 'ollama serve' und ist das Modell vorhanden?"
+            )
+        except (KeyError, json.JSONDecodeError, TypeError) as exc:
+            last_error = OllamaError(
+                "Ollama hat keine gültige JSON-Antwort geliefert."
+            )
+        except OllamaError as exc:
+            last_error = exc
+
+        if attempt < OLLAMA_RETRIES:
+            time.sleep(0.5 * (attempt + 1))
+
+    raise last_error or OllamaError("Ollama-Aufruf fehlgeschlagen.")
+
+
+def _parse_json_content(content: str) -> Dict[str, Any]:
+    if not isinstance(content, str):
+        raise TypeError("Die Ollama-Antwort ist kein Text.")
+
+    cleaned = content.strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(
+            r"^```(?:json)?\s*|\s*```$", "", cleaned, flags=re.IGNORECASE
+        ).strip()
 
     try:
-        content = response.json()["message"]["content"]
-        return json.loads(content)
-    except (KeyError, json.JSONDecodeError, TypeError) as exc:
-        raise OllamaError("Ollama hat keine gültige JSON-Antwort geliefert.") from exc
+        result = json.loads(cleaned)
+    except json.JSONDecodeError:
+        decoder = json.JSONDecoder()
+        for position, character in enumerate(cleaned):
+            if character != "{":
+                continue
+            try:
+                result, _ = decoder.raw_decode(cleaned[position:])
+                break
+            except json.JSONDecodeError:
+                continue
+        else:
+            raise
+
+    if not isinstance(result, dict):
+        raise TypeError("Die Ollama-Antwort ist kein JSON-Objekt.")
+    return result
 
 
 def health() -> Dict[str, Any]:
@@ -76,6 +123,10 @@ def available_models() -> list[str]:
         response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
         response.raise_for_status()
         models = response.json().get("models", [])
-        return [item["name"] for item in models if item.get("name")]
+        return [
+            item["name"]
+            for item in models
+            if item.get("name") and "embed" not in item["name"].lower()
+        ]
     except (requests.RequestException, TypeError, AttributeError, KeyError) as exc:
         raise OllamaError(f"Ollama-Modelle konnten nicht geladen werden: {exc}") from exc

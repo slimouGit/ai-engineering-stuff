@@ -174,7 +174,7 @@ Falls du bereits ein eigenes Environment nutzt, installiere die Abhängigkeiten 
 ### Flask-Weboberfläche
 
 ```bash
-python pandas-app.py
+python pandas-server.py
 ```
 
 Danach läuft die Oberfläche standardmäßig auf `http://127.0.0.1:5000`.

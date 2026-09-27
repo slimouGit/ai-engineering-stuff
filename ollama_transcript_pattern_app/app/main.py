@@ -1,11 +1,13 @@
 from pathlib import Path
+from hashlib import sha256
+from threading import Lock
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 
 from .analyzer import analyze_transcript
 from .evaluation import evaluate_matches, load_ground_truth
-from .ollama_client import OllamaError, available_models, health
+from .ollama_client import OLLAMA_MODEL, OllamaError, available_models, health
 from .schemas import AnalysisRequest, AnalysisResponse
 
 
@@ -14,6 +16,9 @@ TRANSCRIPT_PATH = BASE_DIR / "data" / "interview.txt"
 DATA_DIR = BASE_DIR / "data"
 app = FastAPI(title="Transcript Pattern Analyzer", version="1.0.0")
 latest_analysis: AnalysisResponse | None = None
+analysis_cache: dict[str, AnalysisResponse] = {}
+analysis_lock = Lock()
+MAX_CACHE_ENTRIES = 32
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -83,6 +88,19 @@ def transcript_by_filename(filename: str):
     return {"filename": filename, "transcript": read_transcript_file(filename)}
 
 
+def analysis_cache_key(options: AnalysisRequest, transcript: str) -> str:
+    settings = "|".join(
+        [
+            transcript,
+            options.model or OLLAMA_MODEL,
+            options.device,
+            str(options.timeout),
+            str(options.chunk_size),
+        ]
+    )
+    return sha256(settings.encode("utf-8")).hexdigest()
+
+
 @app.post("/analyze-interview", response_model=AnalysisResponse)
 def analyze_interview(options: AnalysisRequest | None = None):
     # Analysiert das Interview mit den Optionen dieses Laufs.
@@ -92,17 +110,28 @@ def analyze_interview(options: AnalysisRequest | None = None):
     transcript_text = options.transcript.strip()
     if not transcript_text:
         raise HTTPException(status_code=422, detail="Das Transkript ist leer.")
-    try:
-        latest_analysis = analyze_transcript(
-            transcript_text,
-            model=options.model,
-            timeout=options.timeout,
-            chunk_size=options.chunk_size,
-            device=options.device,
-        )
+    cache_key = analysis_cache_key(options, transcript_text)
+    with analysis_lock:
+        cached_analysis = analysis_cache.get(cache_key)
+        if cached_analysis is not None:
+            latest_analysis = cached_analysis
+            return cached_analysis
+
+        try:
+            latest_analysis = analyze_transcript(
+                transcript_text,
+                model=options.model,
+                timeout=options.timeout,
+                chunk_size=options.chunk_size,
+                device=options.device,
+            )
+        except OllamaError as exc:
+            raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+        if len(analysis_cache) >= MAX_CACHE_ENTRIES:
+            analysis_cache.pop(next(iter(analysis_cache)))
+        analysis_cache[cache_key] = latest_analysis
         return latest_analysis
-    except OllamaError as exc:
-        raise HTTPException(status_code=503, detail=str(exc)) from exc
 
 
 @app.get("/evaluate")

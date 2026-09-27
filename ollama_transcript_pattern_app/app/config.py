@@ -6,6 +6,8 @@ OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5:7b")
 OLLAMA_TIMEOUT = float(os.getenv("OLLAMA_TIMEOUT", "120"))
 OLLAMA_MAX_OUTPUT_TOKENS = int(os.getenv("OLLAMA_MAX_OUTPUT_TOKENS", "2048"))
+OLLAMA_RETRIES = int(os.getenv("OLLAMA_RETRIES", "2"))
+OLLAMA_SEED = int(os.getenv("OLLAMA_SEED", "42"))
 MIN_OUTPUT_TOKENS = 512
 
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "3000"))

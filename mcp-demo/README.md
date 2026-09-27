@@ -52,7 +52,7 @@ Danach:
 ```bash
 pip install -r requirements.txt
 ollama pull qwen3:4b
-python pandas-app.py
+python pandas-server.py
 ```
 
 ## Beispielfragen
@@ -90,7 +90,7 @@ python app.py
 Linux/macOS:
 
 ```bash
-OLLAMA_MODEL=qwen3:8b python pandas-app.py
+OLLAMA_MODEL=qwen3:8b python pandas-server.py
 ```
 
 Das Modell muss Tool-Calling unterstützen.
