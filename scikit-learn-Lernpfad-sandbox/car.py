@@ -96,9 +96,13 @@ def predict_car(model, car):
 
     return model.predict(data)
 
-car = Car("low", "med", "4", "4", "small", "high")
+car1 = Car("low", "med", "4", "4", "big", "high")
 
-print(predict_car(model, car))
+print(predict_car(model, car1))
+
+car2 = Car("heigh", "med", "2", "4", "small", "high")
+
+print(predict_car(model, car2))
 
 
 
