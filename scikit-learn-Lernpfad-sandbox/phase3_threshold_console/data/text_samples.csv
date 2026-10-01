@@ -1,0 +1,31 @@
+text,label
+Ich habe heute einen neuen Wohnsitz gemeldet.,nicht_relevant
+Meine Telefonnummer hat sich geändert.,nicht_relevant
+Ich möchte einen Termin verschieben.,nicht_relevant
+Mein Ausweisdokument ist abgelaufen.,nicht_relevant
+Ich habe eine Frage zu den Öffnungszeiten.,nicht_relevant
+Ich möchte meine Adresse korrigieren lassen.,nicht_relevant
+Ich habe das Formular gestern abgeschickt.,nicht_relevant
+Ich brauche eine Kopie meiner Unterlagen.,nicht_relevant
+Ich möchte den Bearbeitungsstand wissen.,nicht_relevant
+Ich habe einen neuen Reisepass beantragt.,nicht_relevant
+Mein Bruder war beim Militär.,nicht_relevant
+In meiner Heimat gab es bewaffnete Auseinandersetzungen.,nicht_relevant
+"Ich kenne jemanden, der Soldat war.",nicht_relevant
+Ich bin vor Kämpfen geflohen.,nicht_relevant
+Ich wurde von unbekannten Männern bedroht.,nicht_relevant
+Ich hatte regelmäßig Kontakt zu einer bewaffneten Gruppe.,relevant
+"Mir wurde angeboten, Waffen für eine Gruppe zu transportieren.",relevant
+Ich habe an Treffen einer gewaltbereiten Organisation teilgenommen.,relevant
+Ein Bekannter wollte mich für eine bewaffnete Einheit anwerben.,relevant
+Ich stand mit Mitgliedern einer militanten Gruppe in Verbindung.,relevant
+Ich sollte Informationen für eine bewaffnete Organisation weitergeben.,relevant
+Ich habe Geld für eine gewaltbereite Gruppe gesammelt.,relevant
+"Ich wurde aufgefordert, Sprengstoff zu transportieren.",relevant
+Ich war für die Logistik einer bewaffneten Gruppe zuständig.,relevant
+"Ich hatte Kontakt zu Personen, die Anschläge planten.",relevant
+Ich traf mich mehrmals mit Mitgliedern der Gruppe.,relevant
+Ich sollte Pakete für die Gruppe weitergeben.,relevant
+Ich habe für die Organisation Nachrichten übermittelt.,relevant
+Ich habe regelmäßig Geld an die Gruppe weitergeleitet.,relevant
+Ich half der Gruppe bei Transporten.,relevant
