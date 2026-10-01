@@ -4,8 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
-from sklearn.metrics import classification_report
-
+from sklearn.metrics import classification_report, confusion_matrix
 
 # ============================================================
 # 1. BEISPIELDATEN ERSTELLEN
@@ -218,6 +217,17 @@ for seed in [1, 2, 3, 4, 5]:
     y_pred = model.predict(X_test)
     print("SEED:", seed)
     print(classification_report(y_test, y_pred))
+
+    # Zeigt, welche Klassen richtig bzw. falsch vorhergesagt wurden
+    matrix = confusion_matrix(y_test, y_pred)
+
+    print("Confusion Matrix:")
+    print(matrix)
+
+    #                   symptom medikament negation
+    #   Ist symptom         11      0        1
+    #   Ist medikament      1       11       0
+    #   Ist negation        0       0        12
 
 
 
