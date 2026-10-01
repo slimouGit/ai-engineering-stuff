@@ -167,26 +167,6 @@ X = df["text"]
 # y = richtige Klasse zu jedem Text.
 y = df["label"]
 
-
-# ============================================================
-# 3. TRAIN UND TEST AUFTEILEN
-# ============================================================
-
-# 70 % Training
-# 30 % Test
-#
-# stratify=y sorgt dafür, dass alle Klassen ungefähr
-# gleichmäßig auf Train und Test verteilt bleiben.
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.3,
-    random_state=42,
-    stratify=y
-)
-
-
 # ============================================================
 # 4. TF-IDF + LOGISTIC REGRESSION
 # ============================================================
@@ -217,6 +197,31 @@ model = Pipeline([
     )
 ])
 
+# ============================================================
+# 3. TRAIN UND TEST AUFTEILEN
+# ============================================================
+
+# 70 % Training
+# 30 % Test
+#
+# stratify=y sorgt dafür, dass alle Klassen ungefähr
+# gleichmäßig auf Train und Test verteilt bleiben.
+for seed in [1, 2, 3, 4, 5]:
+    X_train, X_test, y_train, y_test = train_test_split(
+    X,
+            y,
+        test_size=0.3,
+        random_state=seed,
+        stratify=y
+    )
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    print("SEED:", seed)
+    print(classification_report(y_test, y_pred))
+
+
+
+
 
 # ============================================================
 # 5. MODELL TRAINIEREN
@@ -226,14 +231,14 @@ model = Pipeline([
 # Danach lernt LogisticRegression die Zusammenhänge
 # zwischen Wörtern und Klassen.
 
-model.fit(X_train, y_train)
+# model.fit(X_train, y_train)
 
 
 # ============================================================
 # 6. TESTDATEN VORHERSAGEN
 # ============================================================
 
-y_pred = model.predict(X_test)
+#y_pred = model.predict(X_test)
 
 vergleich = pd.DataFrame({
     "Text": X_test,
