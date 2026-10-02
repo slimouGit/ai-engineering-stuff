@@ -36,5 +36,16 @@ model = Pipeline([
 
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
+print("TEST: ", model.predict(["Ich nehme morgens Metformin."]))
 
 print(classification_report(y_test, y_pred, zero_division=0))
+print("------------------------------------")
+# 1) "tfidf" nutzen: Vokabular/Features ansehen
+tfidf_step = model.named_steps["tfidf"]
+print(tfidf_step.get_feature_names_out()[:100])
+print(tfidf_step.get_feature_names_out()[3])
+
+# 2) "classifier" nutzen: Wahrscheinlichkeiten vom Naive Bayes Modell
+clf_step = model.named_steps["classifier"]
+proba = clf_step.predict_proba(tfidf_step.transform(["Ich habe Fieber"]))
+print(proba)

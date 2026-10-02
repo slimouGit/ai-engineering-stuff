@@ -229,6 +229,22 @@ for seed in [1, 2, 3, 4, 5]:
     #   Ist medikament      1       11       0
     #   Ist negation        0       0        12
 
+# TF-IDF-Vektoren für die Testdaten holen
+tfidf = model.named_steps["tfidf"]
+X_test_tfidf = tfidf.transform(X_test)
+
+# 1) Dichte Matrix (nur bei kleinen Datenmengen sinnvoll)
+print("TF-IDF Shape:", X_test_tfidf.shape)
+print(X_test_tfidf.toarray())
+
+# 2) Mit Spaltennamen als DataFrame (lesbarer)
+tfidf_df = pd.DataFrame(
+    X_test_tfidf.toarray(),
+    columns=tfidf.get_feature_names_out(),
+    index=X_test.index
+)
+print(tfidf_df.head())
+
 
 
 
