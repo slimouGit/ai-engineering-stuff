@@ -30,8 +30,11 @@ X_train, X_test, y_train, y_test = train_test_split(
     y,
     test_size=0.2,
     random_state=42,
-    stratify=y
+    stratify=y #sorgt dafür, dass die vier Klassen ungefähr im gleichen Verhältnis in Training und Test vorkommen
 )
+
+print("Trainingsdaten:", len(X_train))
+print("Testdaten:", len(X_test))
 
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import Pipeline
@@ -59,6 +62,16 @@ print("Testdaten:\n", X_test.head())
 
 # Die ersten 10 Vorhersagen anzeigen
 print(y_pred[:10])
+vergleich = pd.DataFrame({
+    "Tatsächlich": y_test,
+    "Vorhersage": y_pred
+})
+print("Precision, Recall und F1")
+from sklearn.metrics import classification_report
+print(classification_report(y_test, y_pred))
+
+
+print(vergleich.head(10))
 
 #Eigene vorhersagen machen
 new_car = pd.DataFrame([{
@@ -100,7 +113,7 @@ car1 = Car("low", "med", "4", "4", "big", "high")
 
 print(predict_car(model, car1))
 
-car2 = Car("heigh", "med", "2", "4", "small", "high")
+car2 = Car("high", "med", "2", "4", "small", "high")
 
 print(predict_car(model, car2))
 

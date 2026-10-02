@@ -25,3 +25,14 @@ df["cluster"] = model.fit_predict(X)
 
 print(df)
 print("\nCluster 0/1/2 sind nur technische Gruppennamen.")
+
+
+# single prediction after model was fitted
+sample = [[20, 23]]  # [alter, ausgaben]
+pred = model.predict([[20, 23]])
+print("Predicted cluster:", int(pred[0]))
+
+# or using a DataFrame with the same column names
+import pandas as pd
+sample_df = pd.DataFrame([[20, 23]], columns=["alter", "ausgaben"])
+print("Predicted cluster (from DataFrame):", int(model.predict(sample_df)[0]))
