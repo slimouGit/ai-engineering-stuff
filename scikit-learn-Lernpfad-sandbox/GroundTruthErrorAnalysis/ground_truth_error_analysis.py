@@ -11,7 +11,9 @@ Ziel:
 Benötigte Pakete:
     pip install pandas scikit-learn
 """
+from pathlib import Path
 
+import joblib
 import pandas as pd
 
 from sklearn.pipeline import Pipeline
@@ -346,4 +348,9 @@ Error Analysis:
 Genau daraus entstehen anschließend Verbesserungen
 für Daten, Labels, Features, Modell oder Threshold.
 """)
+
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_FILE = BASE_DIR / "model.joblib"
+joblib.dump(model, MODEL_FILE)
+print(f"\nModell gespeichert unter: {MODEL_FILE}")
 

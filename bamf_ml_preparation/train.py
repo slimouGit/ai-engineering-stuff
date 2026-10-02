@@ -76,3 +76,5 @@ else:
 
 joblib.dump(model, MODEL_FILE)
 print(f"\nModell gespeichert unter: {MODEL_FILE}")
+
+print("TEST ", model.predict(["Ich möchte einen neuen Antrag stellen"]))
