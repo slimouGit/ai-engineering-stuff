@@ -121,3 +121,15 @@ for text, prediction in zip(texte, vorhersagen):
     print(text)
     print("→", prediction)
     print()
+
+print("\n--- Wahrscheinlichkeíten ---")
+wahrscheinlichkeiten = model.predict_proba(texte)
+
+for text, probs in zip(texte, wahrscheinlichkeiten):
+    index = probs.argmax()
+    label = model.classes_[index]
+    sicherheit = probs[index]
+
+    print(text)
+    print("→", label if sicherheit >= 0.5 else "unsicher")
+    print("Wahrscheinlichkeit:", sicherheit)
