@@ -123,6 +123,7 @@ for text, prediction in zip(texte, vorhersagen):
     print()
 
 print("\n--- Wahrscheinlichkeíten ---")
+threshold = 0.5
 wahrscheinlichkeiten = model.predict_proba(texte)
 
 for text, probs in zip(texte, wahrscheinlichkeiten):
@@ -131,5 +132,5 @@ for text, probs in zip(texte, wahrscheinlichkeiten):
     sicherheit = probs[index]
 
     print(text)
-    print("→", label if sicherheit >= 0.5 else "unsicher")
+    print("→", label if sicherheit >= threshold else "unsicher")
     print("Wahrscheinlichkeit:", sicherheit)
