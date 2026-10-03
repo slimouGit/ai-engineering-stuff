@@ -1,0 +1,26 @@
+{
+  "test_data": [
+    ["Ich moechte meinen Termin verschieben.", "nicht_relevant"],
+    ["Meine Adresse hat sich geaendert.", "nicht_relevant"],
+    ["Ich musste Nachrichten zwischen Mitgliedern weitergeben.", "relevant"],
+    ["Ich sollte Dokumente fuer die Gruppe transportieren.", "relevant"],
+    ["Ich uebermittelte Informationen an mehrere Mitglieder.", "relevant"]
+  ],
+  "train_v1": [
+    ["Ich moechte einen Termin aendern.", "nicht_relevant"],
+    ["Ich brauche eine Kopie meiner Unterlagen.", "nicht_relevant"],
+    ["Ich moechte den Bearbeitungsstand wissen.", "nicht_relevant"],
+    ["Ich hatte Kontakt zu einer bewaffneten Gruppe.", "relevant"],
+    ["Ich nahm an Treffen der Organisation teil.", "relevant"],
+    ["Ich habe Geld fuer die Gruppe gesammelt.", "relevant"]
+  ],
+  "new_ground_truth": [
+    ["Ich gab Nachrichten an andere Mitglieder weiter.", "relevant"],
+    ["Ich uebermittelte Informationen zwischen mehreren Personen.", "relevant"],
+    ["Ich brachte Dokumente zu Mitgliedern der Gruppe.", "relevant"],
+    ["Ich war fuer die Weitergabe von Nachrichten verantwortlich.", "relevant"],
+    ["Ich moechte Informationen ueber meinen Termin erhalten.", "nicht_relevant"],
+    ["Ich habe Unterlagen an die Behoerde geschickt.", "nicht_relevant"]
+  ]
+}
+

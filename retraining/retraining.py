@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 import pandas as pd
 
 from sklearn.pipeline import Pipeline
@@ -8,55 +11,47 @@ from sklearn.metrics import classification_report, f1_score
 
 
 # ============================================================
-# 1. TESTDATEN
+# 1. DATEN AUS DATEI LADEN
+# ============================================================
+
+BASE_DIR = Path(__file__).resolve().parent
+DATA_FILE = BASE_DIR / "retraining_data.json"
+
+with DATA_FILE.open(encoding="utf-8") as file:
+    data = json.load(file)
+
+
+def section_to_dataframe(section_name):
+    """Liest einen Datensatz-Abschnitt aus der JSON-Datei und baut ein DataFrame."""
+    rows = data[section_name]
+    return pd.DataFrame(rows, columns=["text", "label"])
+
+
+# ============================================================
+# 2. TESTDATEN
 # ============================================================
 
 # WICHTIG:
 # Diese Testdaten bleiben für V1 und V2 identisch.
 # Sonst wäre der Vergleich unfair.
 
-test_data = [
-    ["Ich möchte meinen Termin verschieben.", "nicht_relevant"],
-    ["Meine Adresse hat sich geändert.", "nicht_relevant"],
-
-    ["Ich musste Nachrichten zwischen Mitgliedern weitergeben.", "relevant"],
-    ["Ich sollte Dokumente für die Gruppe transportieren.", "relevant"],
-    ["Ich übermittelte Informationen an mehrere Mitglieder.", "relevant"],
-]
-
-test_df = pd.DataFrame(
-    test_data,
-    columns=["text", "label"]
-)
+test_df = section_to_dataframe("test_data")
 
 X_test = test_df["text"]
 y_test = test_df["label"]
 
 
 # ============================================================
-# 2. TRAININGSDATEN FÜR MODELL V1
+# 3. TRAININGSDATEN FÜR MODELL V1
 # ============================================================
 
 # V1 kennt nur wenige Formulierungen.
 
-train_v1 = [
-    ["Ich möchte einen Termin ändern.", "nicht_relevant"],
-    ["Ich brauche eine Kopie meiner Unterlagen.", "nicht_relevant"],
-    ["Ich möchte den Bearbeitungsstand wissen.", "nicht_relevant"],
-
-    ["Ich hatte Kontakt zu einer bewaffneten Gruppe.", "relevant"],
-    ["Ich nahm an Treffen der Organisation teil.", "relevant"],
-    ["Ich habe Geld für die Gruppe gesammelt.", "relevant"],
-]
-
-df_v1 = pd.DataFrame(
-    train_v1,
-    columns=["text", "label"]
-)
+df_v1 = section_to_dataframe("train_v1")
 
 
 # ============================================================
-# 3. MODELL-FUNKTION
+# 4. MODELL-FUNKTION
 # ============================================================
 
 def create_model():
@@ -80,7 +75,7 @@ def create_model():
 
 
 # ============================================================
-# 4. MODELL V1 TRAINIEREN
+# 5. MODELL V1 TRAINIEREN
 # ============================================================
 
 model_v1 = create_model()
@@ -115,7 +110,7 @@ print("F1 V1:", round(f1_v1, 3))
 
 
 # ============================================================
-# 5. FEHLER VON V1 ANALYSIEREN
+# 6. FEHLER VON V1 ANALYSIEREN
 # ============================================================
 
 result_v1 = test_df.copy()
@@ -131,7 +126,7 @@ print(errors_v1)
 
 
 # ============================================================
-# 6. NEUE GROUND-TRUTH-DATEN
+# 7. NEUE GROUND-TRUTH-DATEN
 # ============================================================
 
 # Angenommen, bei der Error Analysis fällt auf:
@@ -143,26 +138,11 @@ print(errors_v1)
 #
 # Fachlich geprüfte neue Beispiele werden ergänzt.
 
-new_ground_truth = [
-    ["Ich gab Nachrichten an andere Mitglieder weiter.", "relevant"],
-    ["Ich übermittelte Informationen zwischen mehreren Personen.", "relevant"],
-    ["Ich brachte Dokumente zu Mitgliedern der Gruppe.", "relevant"],
-    ["Ich war für die Weitergabe von Nachrichten verantwortlich.", "relevant"],
-
-    # Auch neue Negativbeispiele ergänzen,
-    # damit das Modell nicht nur eine Seite lernt.
-    ["Ich möchte Informationen über meinen Termin erhalten.", "nicht_relevant"],
-    ["Ich habe Unterlagen an die Behörde geschickt.", "nicht_relevant"],
-]
-
-new_df = pd.DataFrame(
-    new_ground_truth,
-    columns=["text", "label"]
-)
+new_df = section_to_dataframe("new_ground_truth")
 
 
 # ============================================================
-# 7. TRAININGSDATEN FÜR V2
+# 8. TRAININGSDATEN FÜR V2
 # ============================================================
 
 # Alte Daten + neue geprüfte Daten
@@ -177,7 +157,7 @@ df_v2 = pd.concat(
 
 
 # ============================================================
-# 8. MODELL V2 TRAINIEREN
+# 9. MODELL V2 TRAINIEREN
 # ============================================================
 
 model_v2 = create_model()
@@ -188,6 +168,7 @@ model_v2.fit(
 )
 
 pred_v2 = model_v2.predict(X_test)
+
 
 
 print("\n==============================")
@@ -212,7 +193,7 @@ print("F1 V2:", round(f1_v2, 3))
 
 
 # ============================================================
-# 9. V1 UND V2 VERGLEICHEN
+# 10. V1 UND V2 VERGLEICHEN
 # ============================================================
 
 comparison = test_df.copy()
@@ -230,7 +211,7 @@ print("V2:", round(f1_v2, 3))
 
 
 # ============================================================
-# 10. INTERPRETATION
+# 11. INTERPRETATION
 # ============================================================
 
 if f1_v2 > f1_v1:
@@ -241,3 +222,12 @@ elif f1_v2 == f1_v1:
 
 else:
     print("\nV2 ist auf diesem Testset schlechter als V1.")
+
+
+print("PREDICT_PROBA MODEL1")
+print(model_v1.named_steps["classifier"].classes_)
+print(model_v1.predict_proba(X_test))
+
+print("PREDICT_PROBA MODEL2")
+print(model_v2.named_steps["classifier"].classes_)
+print(model_v2.predict_proba(X_test))

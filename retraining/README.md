@@ -2,6 +2,16 @@
 
 Diese Datei erklärt das Skript `retraining.py` für Anfänger.
 
+## Wo sind die Daten?
+
+Die Testdaten, V1-Trainingsdaten und neuen Ground-Truth-Daten liegen jetzt separat in:
+
+- `retraining_data.json`
+
+Vorteil:
+- Du kannst die drei Datensätze direkt nebeneinander vergleichen.
+- Du kannst Beispiele ändern, ohne den Python-Code umzubauen.
+
 ## Worum geht es?
 
 Die App zeigt, wie man ein Modell **nochmal besser trainiert**, wenn man neue gute Beispiele bekommt.
@@ -27,7 +37,7 @@ So wird es oft besser bei Dingen, die es vorher noch nicht gut konnte.
 
 ### 1. Testdaten anlegen
 
-Die Testdaten bleiben für beide Modelle gleich.
+Die Testdaten werden aus `retraining_data.json` geladen und bleiben für beide Modelle gleich.
 
 Das ist wichtig, damit der Vergleich fair ist.
 
@@ -35,13 +45,15 @@ Wenn man andere Testdaten nehmen würde, könnte man die Modelle nicht richtig v
 
 ### 2. Modell V1 trainieren
 
-`V1` lernt nur aus wenigen alten Beispielen.
+`V1` lernt nur aus wenigen alten Beispielen aus `train_v1`.
 
 Es kennt also noch nicht so viele Formulierungen.
 
 ### 3. Neue Ground-Truth-Daten hinzufügen
 
 Dann werden neue, geprüfte Beispiele ergänzt.
+
+Diese kommen aus `new_ground_truth` in `retraining_data.json`.
 
 Diese Beispiele wurden also bewusst überprüft und sind nicht einfach geraten.
 
