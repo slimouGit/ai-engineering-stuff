@@ -75,7 +75,49 @@ for seed in [1, 2, 3, 4, 5]:
         random_state=seed,
         stratify=y
     )
+    # ============================================================
+    # MODELL MIT AUFTEILUNG TRAINIEREN
+    # ============================================================
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
     print("SEED:", seed)
     print(classification_report(y_test, y_pred))
+
+# ============================================================
+# TESTDATEN VORHERSAGEN
+# ============================================================
+
+vergleich = pd.DataFrame({
+    "Text": X_test,
+    "Tatsächlich": y_test,
+    "Vorhersage": y_pred
+})
+
+print("\n--- Testdaten ---")
+print(vergleich)
+
+# ============================================================
+# MODELL AUSWERTEN
+# ============================================================
+
+print("\n--- Precision / Recall / F1 ---")
+print(classification_report(y_test, y_pred))
+
+# ============================================================
+# EIGENE TEXTE TESTEN
+# ============================================================
+
+texte = [
+    "Seit heute Morgen habe ich starke Schmerzen.",
+    "Ich nehme jeden Abend Aspirin.",
+    "Ich habe keine bekannten Allergien."
+]
+
+vorhersagen = model.predict(texte)
+
+print("\n--- Eigene Vorhersagen ---")
+
+for text, prediction in zip(texte, vorhersagen):
+    print(text)
+    print("→", prediction)
+    print()
