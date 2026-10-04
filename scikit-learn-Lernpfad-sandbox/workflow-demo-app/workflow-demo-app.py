@@ -1,91 +1,128 @@
 import pandas as pd
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
-from sklearn.model_selection import train_test_split
+from sklearn.svm import LinearSVC
+
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix
+)
+
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.pipeline import Pipeline
 
 from data import testdaten
 
 
 # ============================================================
-# Aus der Liste ein DataFrame erstellen.
+# 1. DATEN LADEN
 # ============================================================
+
 df = pd.DataFrame(
     testdaten,
     columns=["text", "label"]
 )
-print("\n--- Datensatz ---")
-print(df)
+
+X = df["text"]      # Eingabetexte
+y = df["label"]     # Ground Truth / richtige Klasse
+
 
 # ============================================================
-# X UND y DEFINIEREN
+# 2. TRAIN / TEST AUFTEILEN
 # ============================================================
 
-# X = Texte, aus denen das Modell lernen soll.
-X = df["text"]
+# Das Testset bleibt bis zur finalen Bewertung unangetastet.
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.3,
+    random_state=42,
+    stratify=y
+)
 
-# y = richtige Klasse zu jedem Text.
-y = df["label"]
 
 # ============================================================
-# TF-IDF + LOGISTIC REGRESSION
+# 3. PIPELINE
 # ============================================================
 
-# Ein ML-Modell kann mit normalen Sätzen nicht direkt rechnen.
-#
-# TF-IDF wandelt Wörter in Zahlen um.
-#
-# Vereinfacht:
-#
-# "Ich habe Kopfschmerzen"
-#
-# wird zu einem Zahlenvektor wie:
-#
-# [0.0, 0.4, 0.8, 0.0, ...]
-#
-# Wörter, die für bestimmte Texte besonders charakteristisch
-# sind, bekommen dabei ein höheres Gewicht.
-
-model = Pipeline([
-    (
-        "tfidf",
-        TfidfVectorizer()
-    ),
-    (
-        "classifier",
-        LogisticRegression(max_iter=1000)
-    )
+# Text -> TF-IDF -> Klassifikationsmodell
+pipeline = Pipeline([
+    ("tfidf", TfidfVectorizer()),
+    ("classifier", LogisticRegression())
 ])
 
-# ============================================================
-# TRAIN UND TEST AUFTEILEN
-# ============================================================
-
-# 70 % Training
-# 30 % Test
-#
-# stratify=y sorgt dafür, dass alle Klassen ungefähr
-# gleichmäßig auf Train und Test verteilt bleiben.
-for seed in [1, 2, 3, 4, 5]:
-    X_train, X_test, y_train, y_test = train_test_split(
-    X,
-            y,
-        test_size=0.3,
-        random_state=seed,
-        stratify=y
-    )
-    # ============================================================
-    # MODELL MIT AUFTEILUNG TRAINIEREN
-    # ============================================================
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-    print("SEED:", seed)
-    print(classification_report(y_test, y_pred))
 
 # ============================================================
-# TESTDATEN VORHERSAGEN
+# 4. MODELLE + HYPERPARAMETER
 # ============================================================
+
+# GridSearchCV vergleicht:
+# - Logistic Regression
+# - Linear SVC
+# - verschiedene C-Werte
+# - einzelne Wörter vs. Wörter + Wortpaare
+
+parameter_grid = [
+    {
+        "tfidf__ngram_range": [(1, 1), (1, 2)],
+        "classifier": [
+            LogisticRegression(
+                max_iter=1000,
+                random_state=42
+            )
+        ],
+        "classifier__C": [0.1, 1, 10]
+    },
+    {
+        "tfidf__ngram_range": [(1, 1), (1, 2)],
+        "classifier": [
+            LinearSVC(
+                random_state=42
+            )
+        ],
+        "classifier__C": [0.1, 1, 10]
+    }
+]
+
+
+# ============================================================
+# 5. CROSS-VALIDATION + MODELLVERGLEICH
+# ============================================================
+
+# Nur die Trainingsdaten werden für die Modellauswahl verwendet.
+grid_search = GridSearchCV(
+    pipeline,
+    parameter_grid,
+    cv=5,
+    scoring="f1_macro"
+)
+
+grid_search.fit(
+    X_train,
+    y_train
+)
+
+print("\n--- Bestes Setup ---")
+print("Parameter:", grid_search.best_params_)
+print("CV-F1:", round(grid_search.best_score_, 3))
+
+
+# ============================================================
+# 6. FINALES MODELL
+# ============================================================
+
+# GridSearchCV trainiert das beste Setup automatisch
+# noch einmal auf allen Trainingsdaten.
+best_model = grid_search.best_estimator_
+
+
+# ============================================================
+# 7. TESTSET VORHERSAGEN
+# ============================================================
+
+y_pred = best_model.predict(X_test)
 
 vergleich = pd.DataFrame({
     "Text": X_test,
@@ -94,17 +131,36 @@ vergleich = pd.DataFrame({
 })
 
 print("\n--- Testdaten ---")
-print(vergleich)
+print(vergleich.to_string(index=False))
+
 
 # ============================================================
-# MODELL AUSWERTEN
+# 8. MODELL VALIDIEREN
 # ============================================================
 
-print("\n--- Precision / Recall / F1 ---")
-print(classification_report(y_test, y_pred))
+print("\nAccuracy:")
+print(round(accuracy_score(y_test, y_pred), 3))
+
+print("\nPrecision / Recall / F1:")
+print(
+    classification_report(
+        y_test,
+        y_pred,
+        zero_division=0
+    )
+)
+
+print("\nConfusion Matrix:")
+print(
+    confusion_matrix(
+        y_test,
+        y_pred
+    )
+)
+
 
 # ============================================================
-# EIGENE TEXTE TESTEN
+# 9. EIGENE TEXTE VORHERSAGEN
 # ============================================================
 
 texte = [
@@ -113,24 +169,41 @@ texte = [
     "Ich habe keine bekannten Allergien."
 ]
 
-vorhersagen = model.predict(texte)
+vorhersagen = best_model.predict(texte)
 
 print("\n--- Eigene Vorhersagen ---")
 
 for text, prediction in zip(texte, vorhersagen):
     print(text)
     print("→", prediction)
-    print()
 
-print("\n--- Wahrscheinlichkeíten ---")
-threshold = 0.5
-wahrscheinlichkeiten = model.predict_proba(texte)
 
-for text, probs in zip(texte, wahrscheinlichkeiten):
-    index = probs.argmax()
-    label = model.classes_[index]
-    sicherheit = probs[index]
+# ============================================================
+# 10. CONFIDENCE
+# ============================================================
 
-    print(text)
-    print("→", label if sicherheit >= threshold else "unsicher")
-    print("Wahrscheinlichkeit:", sicherheit)
+# LogisticRegression hat predict_proba().
+# LinearSVC standardmäßig nicht.
+
+classifier = best_model.named_steps["classifier"]
+
+if hasattr(classifier, "predict_proba"):
+
+    wahrscheinlichkeiten = best_model.predict_proba(texte)
+    confidence_threshold = 0.5
+
+    print("\n--- Confidence ---")
+
+    for text, probs in zip(texte, wahrscheinlichkeiten):
+
+        index = probs.argmax()
+        label = best_model.classes_[index]
+        confidence = probs[index]
+
+        print("\n", text)
+        print("→", label if confidence >= confidence_threshold else "unsicher")
+        print("Confidence:", round(confidence, 3))
+
+else:
+
+    print("\nDas beste Modell unterstützt kein predict_proba().")
