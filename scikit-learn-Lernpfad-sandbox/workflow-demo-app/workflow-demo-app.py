@@ -1,7 +1,9 @@
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
 
 from sklearn.metrics import (
@@ -12,6 +14,7 @@ from sklearn.metrics import (
 
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.pipeline import Pipeline
+from sklearn.tree import DecisionTreeClassifier
 
 from data import testdaten
 
@@ -79,10 +82,28 @@ parameter_grid = [
         "tfidf__ngram_range": [(1, 1), (1, 2)],
         "classifier": [
             LinearSVC(
-                random_state=42
+                random_state=42,
+                max_iter=2000
             )
         ],
         "classifier__C": [0.1, 1, 10]
+    },
+    {
+        "tfidf__ngram_range": [(1, 1), (1, 2)],
+        "classifier": [
+            RandomForestClassifier(
+                n_estimators=100,
+                random_state=42
+            )
+        ],
+        "classifier__max_depth": [5, 10, None]
+    },
+    {
+        "tfidf__ngram_range": [(1, 1), (1, 2)],
+        "classifier": [
+            MultinomialNB()
+        ],
+    "classifier__alpha": [0.001, 0.01, 0.1, 1]
     }
 ]
 
