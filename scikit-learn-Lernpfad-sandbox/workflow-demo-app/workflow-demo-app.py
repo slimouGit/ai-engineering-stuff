@@ -144,6 +144,7 @@ best_model = grid_search.best_estimator_
 # ============================================================
 
 y_pred = best_model.predict(X_test)
+# y_pred = grid_search.predict(X_test)
 
 vergleich = pd.DataFrame({
     "Text": X_test,
