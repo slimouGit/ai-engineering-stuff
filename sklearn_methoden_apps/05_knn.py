@@ -32,3 +32,12 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 print(classification_report(y_test, y_pred, zero_division=0))
+
+# Einzelne Vorhersage fuer neue Person
+neue_person = pd.DataFrame([
+    {"alter": 40, "einkommen": 50}
+])
+
+einzel_vorhersage = model.predict(neue_person)[0]
+print("Einzelne Vorhersage:", einzel_vorhersage)
+
