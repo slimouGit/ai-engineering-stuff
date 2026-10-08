@@ -1,0 +1,101 @@
+text,label
+Ich habe heute einen neuen Wohnsitz gemeldet.,nicht_relevant
+Meine Telefonnummer hat sich geändert.,nicht_relevant
+Ich möchte einen Termin verschieben.,nicht_relevant
+Mein Ausweisdokument ist abgelaufen.,nicht_relevant
+Ich habe eine Frage zu den Öffnungszeiten.,nicht_relevant
+Ich möchte meine Adresse korrigieren lassen.,nicht_relevant
+Ich habe das Formular gestern abgeschickt.,nicht_relevant
+Ich brauche eine Kopie meiner Unterlagen.,nicht_relevant
+Ich möchte den Bearbeitungsstand wissen.,nicht_relevant
+Ich habe einen neuen Reisepass beantragt.,nicht_relevant
+Mein Bruder war beim Militär.,nicht_relevant
+In meiner Heimat gab es bewaffnete Auseinandersetzungen.,nicht_relevant
+"Ich kenne jemanden, der Soldat war.",nicht_relevant
+Ich bin vor Kämpfen geflohen.,nicht_relevant
+Ich wurde von unbekannten Männern bedroht.,nicht_relevant
+Ich hatte regelmäßig Kontakt zu einer bewaffneten Gruppe.,relevant
+"Mir wurde angeboten, Waffen für eine Gruppe zu transportieren.",relevant
+Ich habe an Treffen einer gewaltbereiten Organisation teilgenommen.,relevant
+Ein Bekannter wollte mich für eine bewaffnete Einheit anwerben.,relevant
+Ich stand mit Mitgliedern einer militanten Gruppe in Verbindung.,relevant
+Ich sollte Informationen für eine bewaffnete Organisation weitergeben.,relevant
+Ich habe Geld für eine gewaltbereite Gruppe gesammelt.,relevant
+"Ich wurde aufgefordert, Sprengstoff zu transportieren.",relevant
+Ich war für die Logistik einer bewaffneten Gruppe zuständig.,relevant
+"Ich hatte Kontakt zu Personen, die Anschläge planten.",relevant
+Ich traf mich mehrmals mit Mitgliedern der Gruppe.,relevant
+Ich sollte Pakete für die Gruppe weitergeben.,relevant
+Ich habe für die Organisation Nachrichten übermittelt.,relevant
+Ich habe regelmäßig Geld an die Gruppe weitergeleitet.,relevant
+Ich half der Gruppe bei Transporten.,relevant
+Ich möchte wissen welche Unterlagen noch fehlen.,nicht_relevant
+Ich habe gestern eine E-Mail an die Behörde geschickt.,nicht_relevant
+Meine neue Anschrift ist noch nicht im System hinterlegt.,nicht_relevant
+Ich benötige einen neuen Termin für mein Gespräch.,nicht_relevant
+Ich habe meinen Familienstand geändert.,nicht_relevant
+Meine Geburtsurkunde wurde nachgereicht.,nicht_relevant
+Ich möchte eine Bescheinigung über mein Verfahren erhalten.,nicht_relevant
+Ich habe mein Aktenzeichen vergessen.,nicht_relevant
+Ich möchte eine Änderung meiner Kontaktdaten melden.,nicht_relevant
+Mein Termin wurde kurzfristig abgesagt.,nicht_relevant
+Ich möchte wissen wann mein nächster Termin stattfindet.,nicht_relevant
+Ich habe meine Unterlagen per Post geschickt.,nicht_relevant
+Ich brauche eine Bestätigung über den Eingang meiner Dokumente.,nicht_relevant
+Mein Vater war früher Soldat.,nicht_relevant
+Mein Onkel arbeitete beim Militär.,nicht_relevant
+In meinem Heimatort waren häufig Soldaten unterwegs.,nicht_relevant
+Ich habe während des Krieges viele bewaffnete Männer gesehen.,nicht_relevant
+In meiner Region gab es mehrere militärische Kontrollpunkte.,nicht_relevant
+Ich bin wegen der Kämpfe aus meiner Heimatstadt geflohen.,nicht_relevant
+Mein Heimatdorf wurde während der Kämpfe beschädigt.,nicht_relevant
+Ich wurde auf der Straße von bewaffneten Männern kontrolliert.,nicht_relevant
+Ich habe eine bewaffnete Gruppe nur aus dem Fernsehen gekannt.,nicht_relevant
+Ich habe den Namen der Organisation in den Nachrichten gehört.,nicht_relevant
+Ein Nachbar war Mitglied einer bewaffneten Einheit.,nicht_relevant
+Ich kenne die Gruppe nur aus Berichten anderer Personen.,nicht_relevant
+Ich habe keine Mitglieder dieser Organisation persönlich gekannt.,nicht_relevant
+Ich hatte keinen direkten Kontakt zu bewaffneten Gruppen.,nicht_relevant
+Ich wurde von einer bewaffneten Gruppe bedroht.,nicht_relevant
+Ich musste wegen einer bewaffneten Gruppe mein Dorf verlassen.,nicht_relevant
+Mitglieder einer Gruppe haben mein Haus durchsucht.,nicht_relevant
+Ich wurde von bewaffneten Personen an einer Straßensperre angehalten.,nicht_relevant
+Ich habe mich vor den Kämpfen mehrere Tage versteckt.,nicht_relevant
+Meine Familie ist wegen des Krieges in eine andere Stadt gezogen.,nicht_relevant
+Ich habe niemals für eine bewaffnete Organisation gearbeitet.,nicht_relevant
+Ich habe jede Zusammenarbeit mit der Gruppe abgelehnt.,nicht_relevant
+Ich nahm regelmäßig an Besprechungen der bewaffneten Gruppe teil.,relevant
+Ich war mehrfach bei internen Treffen der Organisation anwesend.,relevant
+Ich hatte direkten Kontakt zu mehreren Mitgliedern der Gruppe.,relevant
+Ich kommunizierte regelmäßig mit einem Mitglied der bewaffneten Einheit.,relevant
+Ich erhielt Nachrichten von Mitgliedern der Organisation.,relevant
+Ich leitete Informationen zwischen verschiedenen Mitgliedern weiter.,relevant
+Ich überbrachte Nachrichten für die Gruppe.,relevant
+Ich erhielt den Auftrag Dokumente für die Organisation zu transportieren.,relevant
+Ich transportierte regelmäßig Pakete für Mitglieder der Gruppe.,relevant
+Ich half beim Transport von Material für die Organisation.,relevant
+Ich organisierte Fahrten für Mitglieder der bewaffneten Gruppe.,relevant
+Ich stellte der Gruppe ein Fahrzeug für Transporte zur Verfügung.,relevant
+Ich sammelte regelmäßig Geld für die Organisation.,relevant
+Ich leitete Geld an Mitglieder der Gruppe weiter.,relevant
+Ich unterstützte die Organisation finanziell.,relevant
+Ich verwaltete Geld für Mitglieder der bewaffneten Gruppe.,relevant
+Ich half bei der Organisation von Treffen der Gruppe.,relevant
+Ich informierte Mitglieder über geplante Treffen.,relevant
+Ich vermittelte Kontakte zwischen mehreren Mitgliedern der Organisation.,relevant
+Ich stellte Mitglieder der Gruppe einander vor.,relevant
+Ich erhielt Aufgaben von einem Mitglied der Organisation.,relevant
+Ich führte wiederholt Aufträge für die Gruppe aus.,relevant
+Ich wurde gebeten neue Mitglieder für die Gruppe anzusprechen.,relevant
+Ich half dabei Personen für die Organisation zu gewinnen.,relevant
+Ich wurde selbst von Mitgliedern der Gruppe angeworben.,relevant
+Ich erklärte mich bereit die Organisation zu unterstützen.,relevant
+Ich transportierte Ausrüstung für Mitglieder der bewaffneten Gruppe.,relevant
+Ich sollte Material an einen Treffpunkt der Organisation bringen.,relevant
+Ich half bei der Beschaffung von Fahrzeugen für die Gruppe.,relevant
+Ich stellte Räume für Treffen von Mitgliedern zur Verfügung.,relevant
+Ich bewahrte Material für Mitglieder der Organisation auf.,relevant
+Ich erhielt regelmäßig Anweisungen von Mitgliedern der Gruppe.,relevant
+Ich berichtete einem Mitglied der Organisation über bestimmte Personen.,relevant
+Ich übermittelte Informationen über Aufenthaltsorte an Mitglieder der Gruppe.,relevant
+Ich war über längere Zeit organisatorisch für die Gruppe tätig.,relevant
