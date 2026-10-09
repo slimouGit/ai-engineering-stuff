@@ -1,0 +1,119 @@
+HUGGING-FACE-MODELLE LOKAL HERUNTERLADEN
+=========================================
+
+Diese Befehle laden ein Transformers/Safetensors-Modell EINMALIG lokal herunter.
+Die App selbst arbeitet danach mit local_files_only=True und braucht für das Training
+keinen Hugging-Face-API-Aufruf.
+
+Voraussetzung:
+    py -m pip install huggingface_hub
+
+    py -m pip uninstall huggingface-hub -y
+    VERSION 0.34.0 oder neuer installieren:
+    py -m pip install "huggingface-hub>=0.34.0,<1.0"
+
+
+WICHTIG:
+Nach einem Modellwechsel in config.py immer beide Werte passend setzen:
+    LOCAL_TRAIN_MODEL = ROOT / "models" / "..."
+    OLLAMA_BASE_MODEL = "..."
+
+Die größeren Modelle brauchen sehr viel RAM und Trainingszeit. Für reines Lernen zuerst
+TinyLlama oder Qwen2.5 0.5B/1.5B verwenden.
+
+
+A) CA. 0.5B PARAMETER - SEHR KLEIN
+-----------------------------------
+Hugging Face:
+    Qwen/Qwen2.5-0.5B-Instruct
+
+Download:
+    py -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='Qwen/Qwen2.5-0.5B-Instruct', local_dir='models/qwen2.5-0.5b-instruct')"
+
+config.py:
+    LOCAL_TRAIN_MODEL = ROOT / "models" / "qwen2.5-0.5b-instruct"
+    OLLAMA_BASE_MODEL = "qwen2.5:0.5b"
+
+
+B) CA. 1.1B PARAMETER - KLEIN / GUT ZUM LERNEN
+-----------------------------------------------
+Hugging Face:
+    TinyLlama/TinyLlama-1.1B-Chat-v0.6
+
+Download:
+    py -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='TinyLlama/TinyLlama-1.1B-Chat-v0.6', local_dir='models/tinyllama-1.1b-chat-v0.6')"
+
+config.py:
+    LOCAL_TRAIN_MODEL = ROOT / "models" / "tinyllama-1.1b-chat-v0.6"
+    OLLAMA_BASE_MODEL = "tinyllama:1.1b-chat-v0.6-fp16"
+
+
+C) CA. 1.5B PARAMETER - NOCH KLEIN, ABER STÄRKER
+-------------------------------------------------
+Hugging Face:
+    Qwen/Qwen2.5-1.5B-Instruct
+
+Download:
+    py -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='Qwen/Qwen2.5-1.5B-Instruct', local_dir='models/qwen2.5-1.5b-instruct')"
+
+config.py:
+    LOCAL_TRAIN_MODEL = ROOT / "models" / "qwen2.5-1.5b-instruct"
+    OLLAMA_BASE_MODEL = "qwen2.5:1.5b"
+
+
+D) CA. 3B PARAMETER - DEUTLICH STÄRKER, ABER LANGSAMER
+-------------------------------------------------------
+Hugging Face:
+    Qwen/Qwen2.5-3B-Instruct
+
+Download:
+    py -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='Qwen/Qwen2.5-3B-Instruct', local_dir='models/qwen2.5-3b-instruct')"
+
+config.py:
+    LOCAL_TRAIN_MODEL = ROOT / "models" / "qwen2.5-3b-instruct"
+    OLLAMA_BASE_MODEL = "qwen2.5:3b"
+
+
+E) CA. 7B PARAMETER - GROSS FÜR DIESES LERNPROJEKT
+---------------------------------------------------
+Hugging Face:
+    Qwen/Qwen2.5-7B-Instruct
+
+Download:
+    py -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='Qwen/Qwen2.5-7B-Instruct', local_dir='models/qwen2.5-7b-instruct')"
+
+config.py:
+    LOCAL_TRAIN_MODEL = ROOT / "models" / "qwen2.5-7b-instruct"
+    OLLAMA_BASE_MODEL = "qwen2.5:7b-instruct"
+
+
+OLLAMA-BASISMODELL HERUNTERLADEN
+================================
+Beispiel TinyLlama:
+    ollama pull tinyllama:1.1b-chat-v0.6-fp16
+
+Beispiel Qwen 0.5B:
+    ollama pull qwen2.5:0.5b
+
+Beispiel Qwen 1.5B:
+    ollama pull qwen2.5:1.5b
+
+Beispiel Qwen 3B:
+    ollama pull qwen2.5:3b
+
+Beispiel Qwen 7B:
+    ollama pull qwen2.5:7b-instruct
+
+
+WAS SIND DIE ZWEI KOPIEN?
+=========================
+1. Hugging-Face/Transformers-Kopie:
+   Wird von PyTorch + PEFT für das LoRA-Training benutzt.
+
+2. Ollama-Kopie:
+   Wird nur für den Vergleich "vor dem Training" benutzt.
+
+Nach dem Training macht die App automatisch:
+    LoRA -> Merge -> GGUF -> ollama create trained-modell
+
+Du musst GGUF und ollama create nicht mehr manuell ausführen.

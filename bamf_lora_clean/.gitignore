@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+adapter/
+merged_model/
+training_output/
+trained-model.gguf
+training_info.json
+Modelfile
+models/*
+!models/.gitkeep
+llama.cpp/
