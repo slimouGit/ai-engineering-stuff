@@ -189,13 +189,26 @@ def train_lora():
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
+    use_gpu = torch.cuda.is_available()
+
+    print("\n--- Hardware ---")
+    if use_gpu:
+        print("GPU wird verwendet:", torch.cuda.get_device_name(0))
+    else:
+        print("Keine CUDA-GPU gefunden -> CPU wird verwendet")
+
     model = AutoModelForCausalLM.from_pretrained(
         config.LOCAL_TRAIN_MODEL,
         local_files_only=True,
-        torch_dtype=torch.float32,
+        dtype=torch.float16 if use_gpu else torch.float32,
         low_cpu_mem_usage=True,
         trust_remote_code=False,
     )
+
+    # Modell explizit auf die GPU legen.
+    if use_gpu:
+        model = model.to("cuda")
+
     model.config.use_cache = False
     model.config.pad_token_id = tokenizer.pad_token_id
 
@@ -227,8 +240,8 @@ def train_lora():
         logging_steps=5,
         save_strategy="no",
         report_to="none",
-        use_cpu=True,
-        dataloader_pin_memory=False,
+        use_cpu=not use_gpu,
+        dataloader_pin_memory=use_gpu,
         remove_unused_columns=False,
     )
 

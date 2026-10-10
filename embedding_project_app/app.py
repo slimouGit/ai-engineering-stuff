@@ -24,7 +24,7 @@ Voraussetzung:
         ollama pull nomic-embed-text
 
     Danach:
-        python app.py
+        python workflow-demo-app.py
 """
 
 import json
