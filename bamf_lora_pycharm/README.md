@@ -41,7 +41,7 @@ bamf_lora_pycharm/
 
 ```bash
 pip install -r requirements.txt
-python app.py
+python prompt_vergleich.py
 ```
 
 ---

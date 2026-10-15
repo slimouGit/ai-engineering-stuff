@@ -141,7 +141,7 @@ OLLAMA_BASE_MODEL = "qwen2.5:0.5b"
 ## 5. App starten
 
 ```bash
-python app.py
+python prompt_vergleich.py
 ```
 
 Menü:

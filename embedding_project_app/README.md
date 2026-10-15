@@ -53,7 +53,7 @@ ollama pull nomic-embed-text
 ## Start
 
 ```bash
-python app.py
+python prompt_vergleich.py
 ```
 
 ## Begriffe
